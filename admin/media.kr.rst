@@ -186,15 +186,32 @@ MP4파일 헤더의 위치에 상관없이 다운로드와 동시에 실시간�
    # vhosts.xml - <Vhosts><Vhost><Media>
 
    <MP4HLS Status="Inactive" Keyword="mp4hls">
-      <Index>index.m3u8</Index>
+      <Index Ver="3">index.m3u8</Index>
       <Sequence>0</Sequence>
       <Duration>10</Duration>
    </MP4HLS>   
-    
--  ``<MP4HLS>``   
-   ``Status`` 속성이 ``Active`` 일 때 활성화된다.
 
-예를 들어 서비스 주소가 다음과 같다면 해당 주소로 Pseudo-Streaming을 진행할 수 있다. ::
+-  ``<MP4HLS>``
+   
+   - ``Status (기본: Inactive)`` 속성이 ``Active`` 일 때 활성화된다.
+   
+   - ``Keyword (기본: mp4hls)`` HLS 서비스 키워드
+   
+-  ``<Index> (기본: index.m3u8)`` HLS 인덱스 파일(.m3u8) 이름
+   
+   - ``Ver (기본 3)`` 인덱스 파일 버전. 
+     Ver 3인 경우 ``#EXT-X-VERSION:3`` 헤더가 명시되며 ``#EXTINF`` 의 시간 값이 소수점 3째 자리까지 표시된다. 
+     Ver 1인 경우 ``#EXT-X-VERSION`` 헤더가 없으며, ``#EXTINF`` 의 시간 값이 정수(반올림)로 표시된다.
+
+-  ``<Sequence> (기본: 0)`` .ts 파일의 시작 번호. 이 수를 기준으로 순차적으로 증가한다.
+
+-  ``<Duration> (기본: 10초)`` MP4를 HLS로 분할할 때 자르는 기준 시간(초).
+   분할의 기준은 Video/Audio의 키 프레임이므로 정확히 원하는 시간으로 분할되지 않는다. 
+   만약 10으로 분할하려는데 키 프레임이 9와 12에 있다면 가까운 값(9)을 선택한다.
+
+
+다소 복잡하므로 예를 들어 설명한다.
+서비스 주소가 다음과 같다면 해당 주소로 Pseudo-Streaming을 진행할 수 있다. ::
 
     http://www.example.com/video.mp4
     
@@ -208,25 +225,24 @@ MP4파일 헤더의 위치에 상관없이 다운로드와 동시에 실시간�
 
    #EXTM3U
    #EXT-X-TARGETDURATION: 10
+   #EXT-X-VERSION:3
    #EXT-X-MEDIA-SEQUENCE: 0
-   #EXTINF:10,
+   #EXTINF:11.637,
    /video.mp4/mp4hls/0.ts
-   #EXTINF:10,
+   #EXTINF:10.092,
    /video.mp4/mp4hls/1.ts
-   #EXTINF:10,
+   #EXTINF:10.112,
    /video.mp4/mp4hls/2.ts
    
    ... (중략)...
     
-   #EXTINF:10,
+   #EXTINF:10.847,
    /video.mp4/mp4hls/161.ts
-   #EXTINF:9,
+   #EXTINF:9.078,
    /video.mp4/mp4hls/162.ts
    #EXT-X-ENDLIST
     
-#EXT-X-TARGETDURATION은 ``<Duration>`` 으로 설정한다.
-주의할 점은 원본파일은 정확히 Video의 KeyFrame에 의해서만 분할된다는 것이다. 
-다음 4가지 경우가 존재할 수 있다.
+분할에는 4가지 경우가 존재할 수 있다.
 
 -  **KeyFrame 간격보다** ``<Duration>`` **설정이 큰 경우**   
    KeyFrame이 3초, ``<Duration>`` 이 20초라면 20초를 넘지 않는 KeyFrame의 배수인 18초로 분할된다.
@@ -256,6 +272,18 @@ MP4파일 헤더의 위치에 상관없이 다운로드와 동시에 실시간�
 #.	``STON`` 100번째(99.ts)파일 생성 후 Range 서비스
 #.	``STON`` 서비스가 완료되면 99.ts파일 파괴
 
+.. note::
+
+   Trimming된 영상을 HLS로 변환할 수도 있다. (HLS영상을 Trimming할 수 없다. HLS는 MP4가 아니다!)
+   영상을 Trimming한 뒤, HLS로 변환하기 때문에 다음과 같이 URL로 표기하는 것이 자연스럽다. ::
+   
+      /video.mp4?start=0&end=60/mp4hls/index.m3u8
+      
+   동작에는 문제가 없지만 QueryString을 맨 뒤에 붙이는 HTTP 규격에 어긋난다.
+   이를 보완하기 위해 다음과 같은 표현해도 동일하게 동작한다. ::   
+   
+      /video.mp4/mp4hls/index.m3u8?start=0&end=60
+      /video.mp4?start=0/mp4hls/index.m3u8?end=60
 
 
 .. _media-dims:
