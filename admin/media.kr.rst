@@ -269,7 +269,7 @@ MP4파일 헤더의 위치에 상관없이 다운로드와 동시에 실시간�
 .. note::
 
    ``MP4Trimming`` 기능이 ``ON`` 이라면 Trimming된 MP4를 HLS로 변환할 수 있다. (HLS영상을 Trimming할 수 없다. HLS는 MP4가 아니라 MPEG2TS 임에 주의하자.)
-   영상을 Trimming한 뒤, HLS로 변환하기 때문에 다음과 같이 URL로 표기하는 것이 자연스럽다. ::
+   영상을 Trimming한 뒤, HLS로 변환하기 때문에 다음과 같이 표현하는 것이 자연스럽다. ::
    
       /video.mp4?start=0&end=60/mp4hls/index.m3u8
       
