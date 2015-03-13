@@ -9,7 +9,7 @@ STON Edge Server 완벽 가이드
 
 :저자: STON 개발팀
 
-:최신버전: 2.0.0, 2014년 12월 17일
+:최신버전: 2.0.4, 2015년 2월 27일
 
    
 1부. STON 기본: 설정 배우기
@@ -68,5 +68,4 @@ STON Edge Server 완벽 가이드
 .. toctree::
    :maxdepth: 2
 
-   admin/releasenote.kr
    admin/graph.kr
