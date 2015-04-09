@@ -658,8 +658,6 @@ System 통계
 
 
 
-.. _monitoring_stats_dims:
-
 DIMS 통계
 ------------------------------
 
@@ -675,7 +673,7 @@ DIMS의 성능지표를 제공한다. ::
      "AvgTime": 34
    },
    
--  ``Requests`` DIMS 변환요청 횟수
+-  ``Requests`` 변환요청 횟수
 -  ``Converted`` 변환성공 횟수
 -  ``Failed`` 변환실패 횟수
 -  ``AvgSrcSize (단위: Bytes)`` 원본 이미지의 평균 크기
