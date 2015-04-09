@@ -12,14 +12,14 @@
 
 무효화 API는 단순히 브라우저에 의해 호출되는 경우도 있지만 자동화되어 있는 경우가 많다.
 가령 FTP를 통한 파일 업로드가 끝나면 즉시 `Purge`_ 를 호출하는 식이다.
-관리자는 다음과 같이 몇가지 정책에 대해 설정할 수 있다. ::
+관리자는 다음과 같이 몇가지 동작방식에 대해 설정할 수 있다. ::
 
    # server.xml - <Server><VHostDefault><Options>
    # vhosts.xml - <Vhosts><Vhost><Options>
    
    <Purge2Expire>NONE</Purge2Expire>
    <RootPurgeExpire>ON</RootPurgeExpire>
-   <ResCodeNoCtrlTarget>200</ResCodeNoCtrlTarget>   
+   <ResCodeNoCtrlTarget>200</ResCodeNoCtrlTarget>
 
 -  ``<Purge2Expire> (기본: NONE)``
 
