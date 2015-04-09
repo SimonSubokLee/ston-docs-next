@@ -658,6 +658,8 @@ System 통계
 
 
 
+.. _monitoring_stats_dims:
+
 DIMS 통계
 ------------------------------
 
