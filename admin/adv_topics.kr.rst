@@ -76,9 +76,10 @@ STON은 일반적으로 OS와 같은 디스크에 설치되기 때문에 OS디�
 .. note::
 
    SSD의 수명은 접근 빈도보다 Write되는 양에 의해 결정된다.
-   Intel이나 Samsung등에서 공급하는 SSD의 경우 최소 600TB 이상의 수명을 보장한다.
-   이를 단순히 계산해보면 하루에 20GB씩 Write할 경우 약 10년 가량의 수명이 나온다.
-   이런 관점에서 Log를 SSD가 아닌 다른 디스크(SAS나 SATA등)에 기록하도록 하면 SSD수명에 대한 걱정을 없앨 수 있다.
+   Intel이나 Samsung등에서 공급하는 SSD의 경우 최소 600TB의 Write수명을 보장한다.
+   이를 단순히 계산해보면 하루에 20GB씩 Write할 경우 SSD의 수명을 10년으로 예측할 수 있다.
+   STON에서의 Write의 99%는 Log다.
+   이런 관점에서 Log를 SSD가 아닌 다른 디스크(SAS나 SATA등)에 기록하도록 하면 내구성을 보장할 수 있다.
 
 
 .. _adv_topics_mem:
