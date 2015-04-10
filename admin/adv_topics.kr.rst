@@ -86,7 +86,7 @@ STON은 일반적으로 OS와 같은 디스크에 설치되기 때문에 OS디�
 .. warning::
 
    메모리와 디스크 인덱싱 모드의 전환을 보장하지 않는다.
-   그러므로 모드를 변경할 경우 :ref:`getting-started-reset` 를 진행할 것을 권장한다.
+   그러므로 모드를 변경한 뒤 :ref:`getting-started-reset` 를 진행해야 안전하게 서비스할 수 있다.
 
 
 
