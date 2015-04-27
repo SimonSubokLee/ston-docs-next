@@ -289,7 +289,7 @@ TCP는 전송시 패킷을 분할(Segmentation)하는데, 이 작업을 CPU가 �
 결론적으로 TSO는 모두의 기대만큼 높은 성능을 내지 못하는 것으로 추정된다.
 (NIC만 1G로 바꿔도 이런 문제는 발생하지 않았다.)
 결론적으로 TSO를 OFF로 설정함으로써 서비스는 정상화되었다.
-이에 따른 CPU 사용량은 우려할 수준이 아니며 시스템 전체의 부하와 비례하는 정직한 지표를 보여 준다.
+이에 따른 CPU 사용량은 우려할 수준이 아니며 서비스 규모와 비례하는 정직한 지표를 보여 준다.
 
 TSO 설정은 다음과 같이 설정/확인할 수 있다. (K의 대/소문자에 유의한다.) ::
 
@@ -300,6 +300,8 @@ TSO 설정은 다음과 같이 설정/확인할 수 있다. (K의 대/소문자�
    ...
 
 .. tip::
+
+   더 자세한 정보는 다음 링크를 참조한다.
 
    -  `http://sandilands.info/sgordon/segmentation-offloading-with-wireshark-and-ethtool <http://sandilands.info/sgordon/segmentation-offloading-with-wireshark-and-ethtool>`_
    -  `http://www.linuxfoundation.org/collaborate/workgroups/networking/tso <http://www.linuxfoundation.org/collaborate/workgroups/networking/tso>`_
