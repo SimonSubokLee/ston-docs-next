@@ -269,7 +269,7 @@ Keep-Alive시간을 길게 줄수록 소켓의 재사용성은 좋아지지만 �
 
 
 
-.. _adv_topics_indexing:
+.. _adv_topics_tso:
 
 TCP Segmentation Offload
 ====================================
