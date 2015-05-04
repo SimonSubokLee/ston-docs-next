@@ -186,9 +186,10 @@ MP4파일 헤더의 위치에 상관없이 다운로드와 동시에 실시간�
    # vhosts.xml - <Vhosts><Vhost><Media>
 
    <MP4HLS Status="Inactive" Keyword="mp4hls">
-      <Index Ver="3">index.m3u8</Index>
+      <Index Ver="3" Alternates="off">index.m3u8</Index>
       <Sequence>0</Sequence>
       <Duration>10</Duration>
+      <AlternatesName>playlist.m3u8</AlternatesName>
    </MP4HLS>   
 
 -  ``<MP4HLS>``
@@ -202,6 +203,18 @@ MP4파일 헤더의 위치에 상관없이 다운로드와 동시에 실시간�
    - ``Ver (기본 3)`` 인덱스 파일 버전. 
      3인 경우 ``#EXT-X-VERSION:3`` 헤더가 명시되며 ``#EXTINF`` 의 시간 값이 소수점 3째 자리까지 표시된다. 
      1인 경우 ``#EXT-X-VERSION`` 헤더가 없으며, ``#EXTINF`` 의 시간 값이 정수(반올림)로 표시된다.
+     
+   - ``Alternates (기본: OFF)`` Stream Alternates 사용여부.
+   
+     .. figure:: img/hls_alternates_off.png
+        :align: center   
+        
+        OFF. <Index>파일에서 TS가 직접 서비스된다.
+        
+     .. figure:: img/hls_alternates_on.png
+        :align: center   
+        
+        ON. <Index>파일과 <AlternatesName>을 거쳐서 TS가 서비스된다.
 
 -  ``<Sequence> (기본: 0)`` .ts 파일의 시작 번호. 이 수를 기준으로 순차적으로 증가한다.
 
@@ -209,6 +222,10 @@ MP4파일 헤더의 위치에 상관없이 다운로드와 동시에 실시간�
    분할의 기준은 Video/Audio의 KeyFrame이다.
    KeyFrame은 들쭉날쭉할 수 있으므로 정확히 분할되지 않는다.
    만약 10초로 분할하려는데 KeyFrame이 9초와 12초에 있다면 가까운 값(9초)을 선택한다.
+   
+-  ``<AlternatesName> (기본: playlist.m3u8)`` Stream Alternates 파일명. ::
+
+      http://www.example.com/video.mp4/mp4hls/playlist.m3u8
 
 
 서비스 주소가 다음과 같다면 해당 주소로 Pseudo-Streaming을 진행할 수 있다. ::
