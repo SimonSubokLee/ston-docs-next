@@ -214,7 +214,7 @@ MP4파일 헤더의 위치에 상관없이 다운로드와 동시에 실시간�
      .. figure:: img/hls_alternates_on.png
         :align: center   
         
-        OFF. ``<AlternatesName>`` 에서 TS목록을 서비스한다.
+        ON. ``<AlternatesName>`` 에서 TS목록을 서비스한다.
 
 -  ``<Sequence> (기본: 0)`` .ts 파일의 시작 번호. 이 수를 기준으로 순차적으로 증가한다.
 
@@ -236,8 +236,17 @@ MP4파일 헤더의 위치에 상관없이 다운로드와 동시에 실시간�
 다음 URL이 호출되면 /video.mp4로부터 index.m3u8파일을 생성한다. ::
 
    http://www.example.com/video.mp4/mp4hls/index.m3u8
-    
-생성된 index.m3u8(버전 3)은 다음과 같다. ::
+   
+``Alternates`` 속성이 ON이라면 ``<Index>`` 파일은 ``<AlternatesName>`` 파일을 서비스한다. ::
+
+   #EXTM3U
+   #EXT-X-VERSION:3
+   #EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=200000,RESOLUTION=720x480
+   /video.mp4/mp4hls/playlist.m3u8
+
+#EXT-X-STREAM-INF의 Bandwidth와 Resolution은 영상을 분석하여 동적으로 제공된다.
+
+최종적으로 생성된 .ts 목록(버전 3)은 다음과 같다. ::
 
    #EXTM3U
    #EXT-X-TARGETDURATION: 10
