@@ -244,7 +244,7 @@ MP4파일 헤더의 위치에 상관없이 다운로드와 동시에 실시간�
    #EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=200000,RESOLUTION=720x480
    /video.mp4/mp4hls/playlist.m3u8
 
-#EXT-X-STREAM-INF의 Bandwidth와 Resolution은 영상을 분석하여 동적으로 제공된다.
+``#EXT-X-STREAM-INF`` 의 Bandwidth와 Resolution은 영상을 분석하여 동적으로 제공된다.
 
 최종적으로 생성된 .ts 목록(버전 3)은 다음과 같다. ::
 
