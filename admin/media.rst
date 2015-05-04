@@ -236,7 +236,7 @@ MP4파일 헤더의 위치에 상관없이 다운로드와 동시에 실시간�
 다음 URL이 호출되면 /video.mp4로부터 index.m3u8파일을 생성한다. ::
 
    http://www.example.com/video.mp4/mp4hls/index.m3u8
-   
+
 ``Alternates`` 속성이 ON이라면 ``<Index>`` 파일은 ``<AlternatesName>`` 파일을 서비스한다. ::
 
    #EXTM3U
@@ -244,7 +244,13 @@ MP4파일 헤더의 위치에 상관없이 다운로드와 동시에 실시간�
    #EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=200000,RESOLUTION=720x480
    /video.mp4/mp4hls/playlist.m3u8
 
-``#EXT-X-STREAM-INF`` 의 Bandwidth와 Resolution은 영상을 분석하여 동적으로 제공된다.
+``#EXT-X-STREAM-INF`` 의 Bandwidth와 Resolution은 영상을 분석하여 동적으로 제공한다.
+
+.. note::
+
+   Stream Alternates를 제공하긴 하지만 현재 버전에서 index.m3u8는 항상 하나의 서브 인덱스 파일(playlist.m3u8)만을 제공한다. 
+   캐시 입장에서는 video_1080.mp4와 video_720.mp4가 (인코딩 옵션만 다른) 같은 영상인지 알 수 없기 때문이다.
+   
 
 최종적으로 생성된 .ts 목록(버전 3)은 다음과 같다. ::
 
