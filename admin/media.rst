@@ -209,12 +209,12 @@ MP4파일 헤더의 위치에 상관없이 다운로드와 동시에 실시간�
      .. figure:: img/hls_alternates_off.png
         :align: center   
         
-        OFF. <Index>파일에서 TS가 직접 서비스된다.
+        OFF. ``<Index>`` 에서 TS목록을 서비스한다.
         
      .. figure:: img/hls_alternates_on.png
         :align: center   
         
-        ON. <Index>파일과 <AlternatesName>을 거쳐서 TS가 서비스된다.
+        OFF. ``<AlternatesName>`` 에서 TS목록을 서비스한다.
 
 -  ``<Sequence> (기본: 0)`` .ts 파일의 시작 번호. 이 수를 기준으로 순차적으로 증가한다.
 
