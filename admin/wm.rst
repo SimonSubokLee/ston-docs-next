@@ -348,8 +348,7 @@ WM에서는 색으로 재정의를 구분한다.
 
 .. figure:: img/wm_gstat1.png
    :align: center
-   
-   하드웨어 정보
+
    
    
 서비스 상태
