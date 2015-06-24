@@ -546,7 +546,6 @@ SyncStale
 ====================================
 
 (인덱싱시점과 성능상의 이유로) 서비스 재가동시 관리자가 :ref:`api-cmd-purge` , :ref:`api-cmd-expire` , :ref:`api-cmd-hardpurge` 한 컨텐츠가 인덱싱에서 누락될 수 있다. 
-서비스 중에는 문제가 되지 않지만 재구동시 문제가 될 수 있다.
 이를 보완하기 위해 API호출을 로그로 기록하여 서비스 재가동시 반영한다. ::
 
     # server.xml - <Server><Cache>
