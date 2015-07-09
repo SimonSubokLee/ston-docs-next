@@ -117,7 +117,7 @@ GSLB에는 전용 Health-Checker가 있어 장애 서버를 검출/배제하기 
 
 Cascade 캐시 분산
 ====================================
-Cascade 방식은 캐시의 특성을 통해 원본부하를 낮춘다.
+Cascade 방식(또는 2 Tier 구조)은 캐시의 특성을 이용해 원본부하를 낮춘다.
 이 방식은 Edge 캐시 서버(2차 캐시)와 원본 사이에 Parent 캐시(1차 캐시) 서버를 추가로 둔다.
 Edge캐시는 Parent로부터 캐싱하는데 이 때 Consistent Hashing 알고리즘으로 컨텐츠를 분산한다. ( :ref:`origin-balancemode` 참조)
 
@@ -129,9 +129,11 @@ Edge캐시는 Parent로부터 캐싱하는데 이 때 Consistent Hashing 알고�
 Parent 서버에 장애가 발생하면 다른 Parent로 부하가 몰릴 수 있다.
 이런 경우 "보조 주소"를 사용하면 "보조 주소"가 장애난 Parent를 대체한다. ( :ref:`env-vhost-activeorigin` 참조)
 하지만 보조 서버를 별도로 운영하는 것은 매우 번거롭기 때문에 원본 서버를 "보조 주소"로 설정하면 효과적이다. 
-Parent가 다시 정상화되면 보조 주소는 사용하지 않는다.
+Parent가 다시 정상화되면 보조 주소는 사용하지 않는다. 
+이 방식의 단점은 다음과 같다.
 
-이 방식의 가장 큰 단점은 Parent Layer 역할의 서버가 추가 투입된다는 점이다.
+- Parent 서버가 추가 투입된다.
+- Parent 서버의 역할이 컨텐츠 저장용으로 제한된다.
 
 
 .. _dist_cache_cluster:
