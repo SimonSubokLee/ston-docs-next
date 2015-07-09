@@ -74,9 +74,9 @@ DNS(Domain Name Service), L4/L7 Switch, GSLB(Global Service Load Balancer) 등 �
 
 
 
-.. _dist_typical:
+.. _dist_network:
 
-전통적 캐시 분산
+네트워크 캐시 분산
 ====================================
 네트워크 관점에서는 부하를 대상(End-Point = 클라이언트)으로 정의한다. 
 따라서 부하(=클라이언트)가 한 서버에 집중되지 않도록 클라이언트를 균등하게 캐시 서버로 분산시켜야 한다. 
@@ -109,7 +109,12 @@ GSLB에는 전용 Health-Checker가 있어 장애 서버를 검출/배제하기 
 왜냐하면 캐시 팜이 서비스 되는 컨텐츠를 모두 저장하지 못할 경우(=MISS) 원본으로 요청하기 때문이다. 
 서비스가 커질수록 원본 서버의 부하는 점점 상승한다.
 
-Cascade 방식은 이 문제를 극복하는 손쉬운 방법이다. 
+
+.. _dist_cascade:
+
+Cascade 캐시 분산
+====================================
+Cascade 방식은 원본부하 문제를 극복하는 손쉬운 방법이다. 
 Edge 캐시 서버와 원본 사이에 Parent 캐시 서버를 추가로 둔다(흔히 Parent를 1차 캐시, Edge를 2차 캐시라고 부른다).
 이 방식은 Edge가 Parent를 원본으로 바라보게 구성하는데, Edge 측에 원본 분산 정책을 적용하여 Parent가 저장하는 컨텐츠가 중복되지 않도록 만든다. ( :ref:`origin-balancemode` 참조)
 Edge에서 Parent로 분산할 때는 Consistent Hashing 알고리즘이 사용되어 Parent 증설/감축 상황에서도 컨텐츠 Hit율이 급격하게 떨어지지 않는다.
