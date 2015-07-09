@@ -229,7 +229,7 @@ A서버는 중간 Hop이외에 아무런 역할을 하지 않는다.
    
    Bypass 분산
 
-``Method`` 속성이 Redirect라면 다른 서버로 Redirect(응답코드. 302 Moved Temporary) 시킨다. 
+``Method`` 속성이 Redirect라면 다른 서버로 Redirect(응답코드 = 302 Moved Temporary) 시킨다. 
 클라이언트가 HTTP Redirect를 지원해야 한다.
 
 .. figure:: img/dist_cc4.png
@@ -249,10 +249,10 @@ A서버는 B서버로부터 컨텐츠를 캐싱하고 TTL이 만료되기 전까
 ``Method`` 속성은 컨텐츠 전체에 대해 일괄적으로 분산 정책을 적용한다. 
 하지만 좀 더 정교한 정책이 필요한 경우가 있다.
 
--  (``Method`` ="Bypass") 특정 컨텐츠의 접근 빈도가 월등히 올라가면 해당 서버만 부하가 상승한다. 
+-  `` Method="Bypass" `` 특정 컨텐츠의 접근 빈도가 월등히 올라가면 해당 서버만 부하가 상승한다. 
    해당 컨텐츠에 대해서만 모든 서버가 캐싱하여 서비스하고 싶다.
    
--  (``Method`` ="Cache") 빠른 응답 속도의 이미지 서비스를 구성했는데 일부 접근 빈도가 낮은 비디오가 저장 공간을 너무 많이 차지한다. 
+-  `` Method="Cache" `` 빠른 응답 속도의 이미지 서비스를 구성했는데 일부 접근 빈도가 낮은 비디오가 저장 공간을 너무 많이 차지한다. 
    해당 비디오를 가진 서버로 클라이언트를 Redirect하고 싶다.
    
 이런 경우에는 명시적인 분산 컨텐츠 목록을 설정한다. ::
@@ -264,10 +264,9 @@ A서버는 B서버로부터 컨텐츠를 캐싱하고 TTL이 만료되기 전까
    </Vhost>
 
 -  ``ContentDistribution (기본: OFF)``
+   ``ON`` 이라면 /svc/{가상호스트 이름}/distribution.txt 를 참조하여 컨텐츠별 분산 정책을 적용한다.
+   이 속성은 ``Method`` 보다 우선한다.
 
-	``ON`` 이라면 /svc/{가상호스트 이름}/distribution.txt 를 참조하여 컨텐츠별 분산 정책을 적용한다. 
-    이 속성은 ``Method`` 보다 우선한다.
-    
 ::
 
    # /svc/www.example.com/distribution.txt
@@ -300,7 +299,7 @@ A서버는 B서버로부터 컨텐츠를 캐싱하고 TTL이 만료되기 전까
      <Log Dir="/ston_log/cluster" Type="time" Unit="1440" Retention="10" Local="Off">ON</Log>
    </Cluster>
 
--  ``<HealthChecker>`` :ref:`origin-health-checker` 와 동일하다. 단, ResCode와 URI는 별도로 지정할 수 없다.
+-  ``<HealthChecker>`` :ref:`origin-health-checker` 와 동일하다. 단, ``ResCode`` , ``URI`` 속성은 별도로 지정할 수 없다.
 -  ``<Log>`` :ref:`admin-log-origin` 와 동일하다. 클러스터는 Origin로그가 없기 때문에 별도의 로그가 필요하다.
 
 기본 Health-Checker의 장애 판단 조건 외에 다음 조건이 추가된다.
