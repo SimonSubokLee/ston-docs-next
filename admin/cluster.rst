@@ -65,7 +65,7 @@ Scale-Out은 동일한 역할을 수행하는 (물리적으로 독립된) 서버
    `Google - Map & Reduce <http://www.eecs.berkeley.edu/~ballard/cs267.sp11/hw0/results/htmls/Muzaffar.html>`_
    
 반면 네트워크 관점에서는 통신하는 대상(End-Point)이 부하(Load)다. 
-통신하는 대상이 많아질수록 네트워크 부하가 상승하기 때문에 서비스 구축단계부터 이를 고려해야 한다.
+통신하는 대상이 많아질수록 네트워크 부하가 상승하기 때문에 서비스 구축단계부터 분산방안를 고려해야 한다.
 DNS(Domain Name Service), L4/L7 Switch, GSLB(Global Service Load Balancer) 등 형태와 기능은 다르지만 통신하려는 대상을 물리적으로 적절히 분배(Balancing)해주는 목적은 같다고 볼 수 있다.
 
 .. figure:: img/dist_scaleup2.png
