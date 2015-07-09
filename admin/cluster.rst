@@ -114,10 +114,9 @@ GSLB에는 전용 Health-Checker가 있어 장애 서버를 검출/배제하기 
 
 Cascade 캐시 분산
 ====================================
-Cascade 방식은 원본부하 문제를 극복하는 손쉬운 방법이다. 
-Edge 캐시 서버와 원본 사이에 Parent 캐시 서버를 추가로 둔다(흔히 Parent를 1차 캐시, Edge를 2차 캐시라고 부른다).
-이 방식은 Edge가 Parent를 원본으로 바라보게 구성하는데, Edge 측에 원본 분산 정책을 적용하여 Parent가 저장하는 컨텐츠가 중복되지 않도록 만든다. ( :ref:`origin-balancemode` 참조)
-Edge에서 Parent로 분산할 때는 Consistent Hashing 알고리즘이 사용되어 Parent 증설/감축 상황에서도 컨텐츠 Hit율이 급격하게 떨어지지 않는다.
+Cascade 방식은 캐시의 특성을 통해 원본부하 문제를 해결한다.
+이 방식은 Edge 캐시 서버(2차 캐시)와 원본 사이에 Parent 캐시(1차 캐시) 서버를 추가로 둔다.
+Edge캐시는 Parent로부터 캐싱하는데 이 때 Consistent Hashing 알고리즘으로 컨텐츠를 분산한다. ( :ref:`origin-balancemode` 참조)
 
 .. figure:: img/dist_cascade.png
    :align: center
