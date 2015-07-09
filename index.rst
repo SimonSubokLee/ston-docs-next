@@ -9,7 +9,7 @@ STON Edge Server 완벽 가이드
 
 :저자: STON 개발팀
 
-:최신버전: 2.1.2, 2015년 5월 29일
+:최신버전: 2.1.3, 2015년 6월 25일
 
    
 1부. STON 기본: 설정 배우기
@@ -35,9 +35,21 @@ STON Edge Server 완벽 가이드
    admin/origin
    admin/bypass
    admin/https
+
+
+3부. 관리/운영
+=============================
+
+.. toctree::
+   :maxdepth: 2
+   
+   admin/monitoring_stats
+   admin/snmp
+   admin/log
+   admin/wm
    
    
-3부. 고급기능
+4부. 고급기능
 =============================
 
 .. toctree::
@@ -48,18 +60,9 @@ STON Edge Server 완벽 가이드
    admin/media 
    admin/filesystem
    admin/adv_topics
+   admin/cluster
    
-   
-4부. 관리/운영
-=============================
 
-.. toctree::
-   :maxdepth: 2
-   
-   admin/monitoring_stats
-   admin/snmp
-   admin/log
-   admin/wm
    
    
 5부. 부록
