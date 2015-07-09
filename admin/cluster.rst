@@ -128,7 +128,7 @@ Edge캐시는 Parent로부터 캐싱하는데 이 때 Consistent Hashing 알고�
    
 이 방식의 가장 큰 단점은 Parent Layer 역할의 서버가 추가 투입된다는 점이다. 
 
-주의할 점은 Parent 중 일부 서버에 장애가 발생할 경우 다른 Parent들로 부하가 집중될 수 있다는 점이다. 
+Parent 서버에 장애가 발생하면 다른 Parent로 부하가 몰릴 수 있다.
 이 경우 "보조 주소"를 사용하면 Parent 장애 시에 "보조 주소"가 Parent주소로 투입된다. ( :ref:`env-vhost-activeorigin` 참조)
 보조 서버를 별도로 운영하는 것은 매우 번거롭기 때문에 원본 서버를 "보조 주소"로 설정하면 효과적이다. 
 Parent가 다시 정상화되면 보조 주소는 사용하지 않는다.
