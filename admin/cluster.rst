@@ -57,7 +57,7 @@ Scale-Out은 동일한 역할을 수행하는 (물리적으로 독립된) 서버
 
 솔루션 관점에서의 부하는 목적이나 동작 방식에 매우 특화되어 있다.
 따라서 분산방식도 공식적으로 제안/검증된 방식으로 운영되는 경우가 대부분이다.
-데이터 베이스의 Sharding, Replication, Google의 Map & Reduce, Hadoop등이 대표적인 솔루션 분산이다.
+데이터 베이스의 Sharding/Replication, Google의 Map & Reduce, Hadoop등이 대표적인 솔루션 분산이다.
 
 .. figure:: img/disk_mapreduce.png
    :align: center
@@ -65,7 +65,7 @@ Scale-Out은 동일한 역할을 수행하는 (물리적으로 독립된) 서버
    `Google - Map & Reduce <http://www.eecs.berkeley.edu/~ballard/cs267.sp11/hw0/results/htmls/Muzaffar.html>`_
    
 반면 네트워크 관점에서는 통신하는 대상(End-Point)이 부하(Load)다. 
-통신하는 대상이 많아 진다는 의미는 네트워크의 부하가 상승한다는 의미이기 때문이 대상을 적절히 분배하는 것이 핵심이다. 
+통신하는 대상이 많아질수록 네트워크 부하가 상승하기 때문에 서비스 구축단계부터 이를 고려해야 한다.
 DNS(Domain Name Service), L4/L7 Switch, GSLB(Global Service Load Balancer) 등 형태와 기능은 다르지만 통신하려는 대상을 물리적으로 적절히 분배(Balancing)해주는 목적은 같다고 볼 수 있다.
 
 .. figure:: img/dist_scaleup2.png
