@@ -262,8 +262,18 @@ STON에서는 다음과 같이 Listen속성에 IP명시하여 인증서를 여�
    <Https Listen="10.10.10.11"> ..B사 인증서.. </Https>  
    <Https Listen="10.10.10.12"> ..C사 인증서.. </Https>
 
-이 방법은 현재 가장 일반적으로 사용되는 방식이다.
+이 방법은 가장 일반적으로 사용되는 방식이다.
 
+.. note::
+
+   IP대신 NIC이름으로 설정할 수도 있다. ::
+
+      # server.xml - <Server>
+
+      <Https Listen="eth0"> ... </Https>  
+      <Https Listen="eth1"> ... </Https>  
+      <Https Listen="eth2"> ... </Https>
+         
 
 
 프로토콜 구성
