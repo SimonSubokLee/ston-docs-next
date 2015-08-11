@@ -402,9 +402,9 @@ Facade 가상호스트
        ...
     </Vhost>
     
-``Status`` 속성의 값을 키워드 ``facade:`` 에 이어 서비스를 처리할 가상호스트를 지정한다.
+``Status`` 속성의 값을 ``facade:`` + ``가상호스트`` 로 설정한다.
 예제의 경우 another.com을 통해 접속한 :ref:`monitoring_stats_vhost_client` 는 모두 another.com으로 수집된다.
-another.com은 캐싱을 전혀 수행하지 않으므로 :ref:`monitoring_stats_vhost_client` 외에는 모두 0이다.
+another.com은 :ref:`monitoring_stats_vhost_client` 수집 이외의 역할을 하지 않으므로 다른 통계 수치는 모두 Zero이다.
 
 
 
@@ -438,7 +438,7 @@ Sub-Path
       값은 경로 또는 패턴만 가능하다. ::
       
          <Path Vhost="baseball.com">baseball<Path>
-         <Path Vhost="baseball.com">*.jpg<Path>
+         <Path Vhost="photo.com">*.jpg<Path>
       
       위와 같이 입력해도 각각 /baseball/과 /*.jpg로 인식된다.
 
