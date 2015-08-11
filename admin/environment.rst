@@ -410,21 +410,18 @@ Sub-Path
     
    - ``Status (기본: Active)`` Inactive인 경우 무시한다.
 
-   -  ``<Path>`` 클라이언트가 요청한 URI 설정된 값의 경로와 일치하면 ``Vhost`` 로 해당 요청을 보낸다.
+   -  ``<Path>`` 클라이언트가 요청한 URI와 경로가 일치하면 ``Vhost`` 로 해당 요청을 보낸다.
+      값은 경로 또는 패턴만 가능하다. ::
+      
+         <Path Vhost="baseball.com">baseball<Path>
+      
+      위와 같이 입력해도 /baseball/로 인식된다.
 
 예를 들어 클라이언트가 다음과 같이 요청했다면 해당 요청은 가상호스트 football.com이 처리한다. ::
 
    GET /football/rank.html HTTP/1.1
    Host: sports.com
 
-
-.. note:
-   
-   ``<Path>`` 의 값은 경로 또는 패턴만 가능하다. ::
-      
-      <Path Vhost="baseball.com">baseball<Path>
-      
-   위와 같이 입력해도 /baseball/로 인식된다.
 
 
 .. _env-vhost-facadevhost:    
