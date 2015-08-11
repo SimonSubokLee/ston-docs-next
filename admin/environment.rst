@@ -395,10 +395,10 @@ Sub-Path
    
    <Vhost Name="sports.com">
       <Sub Status="Active">
-			   <Path Vhost="baseball.com">/baseball/<Path>
-			   <Path Vhost="football.com">/football/<Path>
-			   <Path Vhost="photo.com">/*.jpg<Path>
-			</Sub>
+         <Path Vhost="baseball.com">/baseball/<Path>
+         <Path Vhost="football.com">/football/<Path>
+         <Path Vhost="photo.com">/*.jpg<Path>
+      </Sub>
    </Vhost>
 
    <Vhost Name="baseball.com" />
