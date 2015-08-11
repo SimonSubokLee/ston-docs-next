@@ -401,7 +401,7 @@ Facade 가상호스트
     <Vhost Name="another.com" Status="facade:example.com">
        ...
     </Vhost>
-    
+
 ``Status`` 속성의 값을 ``facade:`` + ``가상호스트`` 로 설정한다.
 예제의 경우 another.com을 통해 접속한 :ref:`monitoring_stats_vhost_client` 는 모두 another.com으로 수집된다.
 another.com은 :ref:`monitoring_stats_vhost_client` 수집 이외의 역할을 하지 않으므로 다른 통계 수치는 모두 Zero이다.
