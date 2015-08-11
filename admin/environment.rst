@@ -414,8 +414,9 @@ Sub-Path
       값은 경로 또는 패턴만 가능하다. ::
       
          <Path Vhost="baseball.com">baseball<Path>
+         <Path Vhost="baseball.com">*.jpg<Path>
       
-      위와 같이 입력해도 /baseball/로 인식된다.
+      위와 같이 입력해도 각각 /baseball/과 /*.jpg로 인식된다.
 
 예를 들어 클라이언트가 다음과 같이 요청했다면 해당 요청은 가상호스트 football.com이 처리한다. ::
 
