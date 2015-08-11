@@ -384,6 +384,30 @@ vhosts.xml 가상호스트 설정
 
 
 
+.. _env-vhost-facadevhost:    
+
+Facade 가상호스트
+------------------------------------
+
+``<Alias>`` 는 가상호스트의 별명만을 추가하는 것이므로 통계가 분리되지 않는다.
+가상호스트는 공유하지만 도메인에 따라 :ref:`monitoring_stats_vhost_client` 를 분리하고 싶은 경우 Facade가상호스트를 설정한다. ::
+
+    # vhosts.xml - <Vhosts>
+    
+    <Vhost Name="example.com">
+       ...
+    </Vhost>
+    
+    <Vhost Name="another.com" Status="facade:example.com">
+       ...
+    </Vhost>
+    
+``Status`` 속성의 값을 키워드 ``facade:`` 에 이어 서비스를 처리할 가상호스트를 지정한다.
+예제의 경우 another.com을 통해 접속한 :ref:`monitoring_stats_vhost_client` 는 모두 another.com으로 수집된다.
+another.com은 캐싱을 전혀 수행하지 않으므로 :ref:`monitoring_stats_vhost_client` 외에는 모두 0이다.
+
+
+
 .. _env-vhost-sub-path:
     
 Sub-Path
@@ -422,33 +446,6 @@ Sub-Path
 
    GET /football/rank.html HTTP/1.1
    Host: sports.com
-
-
-
-.. _env-vhost-facadevhost:    
-
-Facade 가상호스트
-------------------------------------
-
-``<Alias>`` 는 가상호스트의 별명만을 추가하는 것이므로 통계가 분리되지 않는다.
-가상호스트는 공유하며 접근된 도메인에 따라 :ref:`monitoring_stats_vhost_client` 를 분리하고 싶은 경우 Facade가상호스트를 구성한다. ::
-
-    # vhosts.xml - <Vhosts>
-    
-    <Vhost Name="example.com">
-       ...
-    </Vhost>
-    
-    <Vhost Name="another.com" Status="facade:example.com">
-       ...
-    </Vhost>
-    
-``Status`` 속성의 값을 키워드 ``facade:`` 에 이어 서비스를 처리할 가상호스트를 지정한다.
-Facade 가상호스트는 통계 수집의 역할만을 수행한다.
-
-예제의 경우 another.com을 통해 접속한 :ref:`monitoring_stats_vhost_client` 는 모두 another.com에 수집된다.
-another.com은 캐싱을 전혀 수행하지 않으므로 :ref:`monitoring_stats_vhost_client` 외에는 모두 0이다.
-
 
 
 .. _env-vhost-defaultvhost:    
