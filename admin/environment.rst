@@ -384,11 +384,52 @@ vhosts.xml 가상호스트 설정
 
 
 
+.. _env-vhost-sub-path:
+    
+Sub-Path
+------------------------------------
+
+한 가상호스트에서 경로에 따라 다른 가상호스트가 처리하도록 설정할 수 있다. ::
+
+   # vhosts.xml - <Vhosts>
+   
+   <Vhost Name="sports.com">
+      <Sub Status="Active">
+			   <Path Vhost="baseball.com">/baseball/<Path>
+			   <Path Vhost="football.com">/football/<Path>
+			   <Path Vhost="photo.com">/*.jpg<Path>
+			</Sub>
+   </Vhost>
+
+   <Vhost Name="baseball.com" />
+   <Vhost Name="football.com" />
+   <Vhost Name="photo.com" />
+
+-  ``<Sub>`` 경로나 패턴이 일치하면 해당 요청을 다른 가상호스트로 보낸다.
+   일치하지 않는 경우만 현재 가상호스트가 처리한다.
+    
+   - ``Status (기본: Active)`` Inactive인 경우 무시한다.
+
+   -  ``<Path>`` 클라이언트가 요청한 URI 설정된 값의 경로와 일치하면 ``Vhost`` 로 해당 요청을 보낸다.
+
+예를 들어 클라이언트가 다음과 같이 요청했다면 해당 요청은 가상호스트 football.com이 처리한다. ::
+
+   GET /football/rank.html HTTP/1.1
+   Host: sports.com
+
+.. note:
+   
+   ``<Path>`` 의 값은 경로 또는 패턴만 가능하다. ::
+      
+      <Path Vhost="baseball.com">baseball<Path>
+      
+   위와 같이 입력해도 /baseball/로 인식된다.
+
 
 .. _env-vhost-facadevhost:    
 
 Facade 가상호스트
-====================================
+------------------------------------
 
 ``<Alias>`` 는 가상호스트의 별명만을 추가하는 것이므로 통계가 분리되지 않는다.
 가상호스트는 공유하며 접근된 도메인에 따라 :ref:`monitoring_stats_vhost_client` 를 분리하고 싶은 경우 Facade가상호스트를 구성한다. ::
