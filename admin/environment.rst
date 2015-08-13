@@ -390,7 +390,7 @@ Facade 가상호스트
 ------------------------------------
 
 ``<Alias>`` 는 가상호스트의 별명만을 추가하는 것이므로 통계가 분리되지 않는다.
-가상호스트는 공유하지만 도메인에 따라 :ref:`monitoring_stats_vhost_client` 를 분리하고 싶은 경우 Facade가상호스트를 설정한다. ::
+가상호스트는 공유하지만 도메인에 따라 :ref:`monitoring_stats_vhost_client` 와 :ref:`admin-log-access` 를 분리하고 싶은 경우 Facade가상호스트를 설정한다. ::
 
     # vhosts.xml - <Vhosts>
     
@@ -403,8 +403,7 @@ Facade 가상호스트
     </Vhost>
 
 ``Status`` 속성의 값을 ``facade:`` + ``가상호스트`` 로 설정한다.
-예제의 경우 another.com을 통해 접속한 :ref:`monitoring_stats_vhost_client` 는 모두 another.com으로 수집된다.
-another.com은 :ref:`monitoring_stats_vhost_client` 수집 이외의 역할을 하지 않으므로 다른 통계 수치는 모두 Zero이다.
+예제의 경우 another.com을 통해 접속한 :ref:`monitoring_stats_vhost_client` 와 :ref:`admin-log-access` 는 모두 another.com으로 수집된다.
 
 
 
