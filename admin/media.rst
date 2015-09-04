@@ -580,6 +580,35 @@ Format 변경
    http://image.example.com/img.jpg/dims/byoriginal/size_water/
 
 
+.. _media-dims-anigif:
+
+Animated GIF
+-----------------------
+
+Animated GIF에 대해서도 모든 DIMS변환이 동일하게 적용된다.
+처리 순서는 다음과 같다.
+
+1. Animated GIF를 낱개의 이미지들로 분해한다.
+2. 각각의 이미지를 변환한다.
+3. 변환된 이미지를 Animated GIF로 결합한다.
+
+결합된 이미지가 많을수록 처리부하가 증가하여 서비스 품질이 떨어질 수 있음에 유의해야 한다.
+상황에 따라 첫 번째 이미지에 대해서만 변환하도록 설정하면 유용하다. ::
+
+   # server.xml - <Server><VHostDefault><Options>
+   # vhosts.xml - <Vhosts><Vhost><Options>
+   
+   <Dims FirstFrameOnly="OFF" />
+   
+-  ``FirstFrameOnly (기본: OFF)`` ON인 경우 Animated GIF의 첫 장면만 변환한다.
+
+다음과 같이 URL을 호출할 때 ``FirstFrameOnly`` 옵션을 명시적으로 지정할 수 있다. ::
+
+   http://image.example.com/img.jpg/dims/firstframe/on/resize/200x200/
+   http://image.example.com/img.jpg/dims/firstframe/off/resize/200x200/
+
+위와 같이 URL에 명시적으로 지정되어 있는 경우 설정보다 우선한다.
+
 
 기타
 -----------------------
