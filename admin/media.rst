@@ -140,6 +140,10 @@ Multi-Trimming
 ====================================
 
 시간 값을 기준으로 복수로 지정된 구간을 하나의 영상으로 추출한다. 
+
+.. figure:: img/conf_media_mp4trimming_range.png
+   :align: center
+
 구간 지정방법만 다를뿐 동작방식은 `Trimming`_ 과 동일하다. ::
 
    # server.xml - <Server><VHostDefault><Media>
