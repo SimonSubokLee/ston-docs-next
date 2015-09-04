@@ -141,8 +141,10 @@ Multi-Trimming
 
 시간 값을 기준으로 복수로 지정된 구간을 하나의 영상으로 추출한다. 
 
-.. figure:: img/conf_media_mp4trimming_range.png
+.. figure:: img/conf_media_multitrimming.png
    :align: center
+   
+   /video.mp4?trimming=0-30,210-270,525-555
 
 구간 지정방법만 다를뿐 동작방식은 `Trimming`_ 과 동일하다. ::
 
@@ -165,10 +167,16 @@ Multi-Trimming
 같은 영상을 반복하거나 앞 뒤가 바뀐 영상을 만들 수도 있다. ::
 
    http://example.com/video.mp4?trimming=17-20,17-20,17-20,17-20
-   http://example.com/video.mp4?trimming=17-20,80-90,17-20,80-90,17-20,80-90,17-20
-   http://example.com/video.mp4?trimming=600-,-600
+   http://example.com/video.mp4?trimming=1000-1200,500-623,1900-2000
+   http://example.com/video.mp4?trimming=600-,400-600
    
 구간 값을 지정하지 않은 경우 맨 앞 또는 맨 뒤를 의미한다.
+
+
+.. note::
+
+   `Multi-Trimming`_ 은 `Trimming`_ 보다 우선한다. 
+   QueryString에 `Multi-Trimming`_ 키가 명시되어 있다면 `Trimming`_ 키는 무시된다.
 
 
 .. _media-hls:
