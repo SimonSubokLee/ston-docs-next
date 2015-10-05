@@ -321,22 +321,27 @@ Access 로그
    
    <Access Type="time" Unit="1440" Retention="10" XFF="on" Form="ston" Local="Off">ON</Access>   
     
--  ``XFF``
+-  ``Access (기본: ON)``
 
-   - ``OFF`` 클라이언트 IP를 기록한다.
-   - ``ON (기본)`` 클라이언트가 보낸 X-Forwarded-For헤더 값과 클라이언트 IP를 같이 기록한다. 없다면 ``OFF`` 와 같다.
+   ``OFF`` 인 경우 로그를 기록하지 않는다. 
+   ``TrimCIP`` 인 경우 XFF(X-Forward-For)헤더가 없을 경우 클라이언트 IP를, 있는 경우 (클라이언트 IP를 제외한) XFF헤더만을 기록한다.
+     
+   -  ``XFF``
 
--  ``Form``
+      - ``OFF`` 클라이언트 IP를 기록한다.
+      - ``ON (기본)`` 클라이언트가 보낸 X-Forwarded-For헤더 값과 클라이언트 IP를 같이 기록한다. 없다면 ``OFF`` 와 같다.
+
+   -  ``Form``
    
-   - ``ston (기본)`` W3C표준 + 확장필드
-   - ``apache`` Apache 형식
-   - ``iis`` IIS 형식
-   - ``custom`` `admin-log-access-custom`
+      - ``ston (기본)`` W3C표준 + 확장필드
+      - ``apache`` Apache 형식
+      - ``iis`` IIS 형식
+      - ``custom`` `admin-log-access-custom`
 
--  ``Local``
+   -  ``Local``
 
-   - ``OFF (기본)`` 로컬통신(Loopback)은 기록하지 않는다.
-   - ``ON`` 로컬통신(Loopback)도 기록한다.
+      - ``OFF (기본)`` 로컬통신(Loopback)은 기록하지 않는다.
+      - ``ON`` 로컬통신(Loopback)도 기록한다.
   
 ::
 
