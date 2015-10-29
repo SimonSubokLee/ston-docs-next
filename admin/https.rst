@@ -91,7 +91,7 @@ CipherSuite 선택
 지원하는 CipherSuites는 다음과 같다.
 
 ================================================ ======== ==============
-Name                                             TLS 1.2  TLS 1.1 이하
+Cipher Suite                                     1.2      1.1 이하
 ================================================ ======== ==============
 TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256	(0xc02F)   O       
 TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256	(0xC027)   O
