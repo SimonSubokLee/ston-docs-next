@@ -90,9 +90,9 @@ CipherSuite 선택
 
 지원하는 CipherSuites는 다음과 같다.
 
-================================================ ======== ==============
-Cipher Suite                                     1.2      1.1 이하
-================================================ ======== ==============
+================================================ ======== ============== ======= 
+Cipher Suite                                     TLS1.2   TLS1.1, 1.0    SSL3.0
+================================================ ======== ============== =======
 TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256	(0xc02F)   O       
 TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256	(0xC027)   O
 TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (0xC014)      O        O
@@ -103,9 +103,9 @@ TLS_RSA_WITH_AES_128_CBC_SHA256	(0x003C)         O
 TLS_RSA_WITH_AES_256_CBC_SHA (0x0035)            O        O
 TLS_RSA_WITH_AES_128_CBC_SHA (0x002F)            O        O
 TLS_RSA_WITH_3DES_EDE_CBC_SHA (0x000A)           O        O
-TLS_RSA_WITH_RC4_128_SHA (0x0005)                O        O
-TLS_RSA_WITH_RC4_128_MD5 (0x0004)                O        O
-================================================ ======== ==============
+TLS_RSA_WITH_RC4_128_SHA (0x0005)                O        O              O
+TLS_RSA_WITH_RC4_128_MD5 (0x0004)                O        O              O
+================================================ ======== ============== =======
 
 ``<Https>`` 의 ``CipherSuite`` 속성을 사용하면 사용할 CipherSuite를 설정할 수 있다. ::
 
