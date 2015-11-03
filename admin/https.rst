@@ -119,6 +119,28 @@ TLS_RSA_WITH_RC4_128_MD5 (0x0004)                                     O
 
 -  ``CipherSuite`` `Apache mod_ssl의 SSL CipherSuite표현 <http://httpd.apache.org/docs/2.2/mod/mod_ssl.html#sslciphersuite>`_ 을 따른다.
 
+`Forward Secrecy <https://en.wikipedia.org/wiki/Forward_secrecy>`_ 를 보장하면 더 높은 보안성을 얻을 수 있다. (아래 링크 참조)
+
+   - `SSL Labs: Deploying Forward Secrecy <https://community.qualys.com/blogs/securitylabs/2013/06/25/ssl-labs-deploying-forward-secrecy>`_
+   - `SSL/TLS & Perfect Forward Secrecy <http://vincent.bernat.im/en/blog/2011-ssl-perfect-forward-secrecy.html>`_   
+   - `Configuring Apache, Nginx, and OpenSSL for Forward Secrecy <https://community.qualys.com/blogs/securitylabs/2013/08/05/configuring-apache-nginx-and-openssl-for-forward-secrecy>`_
+
+STON에서는 별도로 설정하지 않아도 FS(Forward Secrecy)를 보장하는 CipherSuite를 우선적으로 선택한다. ::
+
+   # server.xml - <Server>
+
+   <Https FS="ON"> ...  </Https>
+
+-  ``FS``
+
+   - ``ON (기본)`` FS(Forward Secrecy)를 보장하는 CipherSuite를 우선적으로 선택한다.   
+   - ``OFF`` ClientHello에 명시된 순서대로 선택한다.
+
+
+.. note::
+
+   성능상의 이유ECDHE만을 지원한다. 로 DHE는 지원하지 않는다.
+
 
 
 .. _https-ciphersuite-query:
@@ -302,6 +324,4 @@ STON에서는 다음과 같이 Listen속성에 IP명시하여 인증서를 여�
 - ``TLS1.0 (기본: ON)`` TLS1.0을 사용한다.
 
 - ``SSL3.0 (기본: ON)`` SSL3.0을 사용한다.
-
-
 
