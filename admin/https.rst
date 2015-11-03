@@ -135,7 +135,8 @@ STON에서는 별도로 설정하지 않아도 FS(Forward Secrecy)를 보장하�
 
    - ``ON (기본)`` FS(Forward Secrecy)를 보장하는 CipherSuite를 우선적으로 선택한다.   
    - ``OFF`` ClientHello에 명시된 순서대로 선택한다.
-
+   
+``FS`` 속성은 ``CipherSuite`` 속성보다 우선한다.
 
 .. note::
 
