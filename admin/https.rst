@@ -140,7 +140,7 @@ STON에서는 별도로 설정하지 않아도 FS(Forward Secrecy)를 보장하�
 
 .. note::
 
-   성능상의 이유ECDHE만을 지원한다. 로 DHE는 지원하지 않는다.
+   성능상의 이유로 ECDHE만 지원한다. DHE는 지원하지 않는다.
 
 
 
