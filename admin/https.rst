@@ -125,7 +125,7 @@ TLS_RSA_WITH_RC4_128_MD5 (0x0004)                                     O
    - `SSL/TLS & Perfect Forward Secrecy <http://vincent.bernat.im/en/blog/2011-ssl-perfect-forward-secrecy.html>`_   
    - `Configuring Apache, Nginx, and OpenSSL for Forward Secrecy <https://community.qualys.com/blogs/securitylabs/2013/08/05/configuring-apache-nginx-and-openssl-for-forward-secrecy>`_
 
-STON에서는 별도로 설정하지 않아도 FS(Forward Secrecy)를 보장하는 CipherSuite를 우선적으로 선택한다. ::
+기본적으로 FS(Forward Secrecy)를 보장하는 CipherSuite를 우선적으로 선택한다. ::
 
    # server.xml - <Server>
 
