@@ -556,7 +556,7 @@ ETag 헤더 인식
 단, Range헤더는 변조할 수 없다.
       
 이 기능은 :ref:`handling_http_requests_modify_client` 의 하위 기능이다.
-헤더변경에는 $ORGREQ 키워드를 사용한다.
+헤더변경에는 $ORGREQ 키워드를 사용한다. ::
 
    # /svc/www.example.com/headers.txt
    
