@@ -536,7 +536,7 @@ ETag 헤더 인식
 
 .. _origin_modify_client:
 
-원본요청 Header변경
+원본 요청헤더 변경
 ====================================
 
 원본으로 HTTP요청을 보낼 때 조건에 따라 HTTP 헤더를 변경한다. ::
@@ -561,7 +561,7 @@ ETag 헤더 인식
    # /svc/www.example.com/headers.txt
    
    $URL[/*.mp4], $ORGREQ[x-media-type: video/mp4], set
-   $IP[1.1.1.1], $ORGREQ[user-agent: media_probe], set
+   $IP[1.1.1.1], $ORGREQ[user-agent: media_probe], put
 
 
 
