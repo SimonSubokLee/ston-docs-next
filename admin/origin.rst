@@ -531,31 +531,7 @@ ETag 헤더 인식
    
    - ``ON`` ETag를 인식하며 컨텐츠 갱신시 If-None-Match헤더를 추가한다.
 
-   
-Redirect 추적
-====================================
 
-원본서버에서 Redirect계열(301, 302, 303, 307)로 응답하는 경우 Location헤더를 추적하여 콘텐츠를 요청한다. 
-
-   .. figure:: img/conf_redirectiontrace.png
-      :align: center
-      
-      클라이언트는 Redirect여부를 모른다.
-
-::
-
-   # server.xml - <Server><VHostDefault><OriginOptions>
-   # vhosts.xml - <Vhosts><Vhost><OriginOptions>
-   
-   <RedirectionTrace>OFF</RedirectionTrace>   
-
--  ``<RedirectionTrace>``
-
-   - ``OFF (기본)`` 3xx 응답으로 저장된다.
-   
-   - ``ON`` Location헤더에 명시된 주소에서 콘텐츠를 다운로드 한다.
-     형식에 맞지 않거나 Location헤더가 없는 경우에는 동작하지 않는다.
-     무한히 Redirect되는 경우를 방지하기 위하여 1회만 추적한다.
 
 
 .. _origin_modify_client:
@@ -591,6 +567,35 @@ Redirect 추적
    
    $URL[/*.mp4], $ORGREQ[x-media-type: mp4], set
    $IP[1.1.1.1], $ORGREQ[user-agent: media_probe], set
+
+
+
+   
+Redirect 추적
+====================================
+
+원본서버에서 Redirect계열(301, 302, 303, 307)로 응답하는 경우 Location헤더를 추적하여 콘텐츠를 요청한다. 
+
+   .. figure:: img/conf_redirectiontrace.png
+      :align: center
       
+      클라이언트는 Redirect여부를 모른다.
+
+::
+
+   # server.xml - <Server><VHostDefault><OriginOptions>
+   # vhosts.xml - <Vhosts><Vhost><OriginOptions>
+   
+   <RedirectionTrace>OFF</RedirectionTrace>   
+
+-  ``<RedirectionTrace>``
+
+   - ``OFF (기본)`` 3xx 응답으로 저장된다.
+   
+   - ``ON`` Location헤더에 명시된 주소에서 콘텐츠를 다운로드 한다.
+     형식에 맞지 않거나 Location헤더가 없는 경우에는 동작하지 않는다.
+     무한히 Redirect되는 경우를 방지하기 위하여 1회만 추적한다.
+
+
    
    
