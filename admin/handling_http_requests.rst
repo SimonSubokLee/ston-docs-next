@@ -275,15 +275,72 @@ ETag 헤더
    -  ``ON (기본)`` ETag헤더를 명시한다.
    
    -  ``OFF``  ETag헤더를 생략한다.
-   
+
    
 
 
 응답 헤더
 ====================================
 
-클라이언트 요청/응답 헤더 변경
+원본 헤더
 ---------------------
+
+성능과 보안상의 이유로 원본서버가 보내는 헤더 중 표준헤더만을 선택적으로 인식한다. ::
+
+   # server.xml - <Server><VHostDefault><Options>
+   # vhosts.xml - <Vhosts><Vhost><Options>
+   
+   <OriginalHeader>OFF</OriginalHeader>   
+    
+-  ``<OriginalHeader>``
+
+   -  ``OFF (기본)`` 표준헤더가 아니라면 무시한다. 
+   
+   -  ``ON`` cookie, set-cookie, set-cookie2를 제외한 모든 헤더를 저장하여 클라이언트에게 전달한다.
+      단, 메모리와 저장비용을 좀 더 소비한다.
+
+
+Via 헤더
+---------------------
+
+클라이언트에게 보내는 HTTP응답에 Via 헤더 명시여부를 설정한다. ::
+
+   # server.xml - <Server><VHostDefault><Options>
+   # vhosts.xml - <Vhosts><Vhost><Options>
+   
+   <ViaHeader>ON</ViaHeader>   
+    
+-  ``<ViaHeader>``
+    
+   - ``ON (기본)`` Via헤더를 다음과 같이 명시한다.
+     ::
+      
+        Via: STON/2.0.0
+   
+   - ``OFF``  Via헤더를 생략한다.
+   
+   
+Server 헤더
+---------------------
+ 
+클라이언트에게 보내는 HTTP응답에 Server 헤더 명시여부를 설정한다. ::
+
+   # server.xml - <Server><VHostDefault><Options>
+   # vhosts.xml - <Vhosts><Vhost><Options>
+   
+   <ServerHeader>ON</ServerHeader>   
+    
+-  ``<ServerHeader>``
+    
+   -  ``ON (기본)`` 원본서버의 Server헤더를 명시한다. ::
+   
+   -  ``OFF``  Server헤더를 생략한다.
+
+
+.. _handling_http_requests_modify_client:
+
+클라이언트 요청/응답 헤더 변경
+====================================
 
 클라이언트 HTTP요청과 응답을 특정 조건에 따라 변경한다. ::
 
@@ -313,7 +370,7 @@ ETag 헤더
 
       
 헤더 변경조건은 /svc/{가상호스트 이름}/headers.txt에 설정한다. 
-헤더는 멀티로 설정이 가능하므로 조건과 일치한다면 모든 변경설정이 동시에 적용된다. 
+헤더는 멀티로 설정이 가능하므로 조건과 일치한다면 모든 변경설정이 순차적으로 모두 적용된다. 
 
 최초 조건에만 변경을 원할 경우 ``FirstOnly`` 속성을 ``ON`` 으로 설정한다.
 서로 다른 조건이 같은 헤더를 변경하는 경우 Last-Win이 되거나 명시적으로 ``append`` ``put`` 할 수 있다. ::
@@ -382,62 +439,6 @@ Value가 입력되지 않은 경우 빈 값("")이 입력된다.
 {Condition}은 200이나 304같은 구체적인 응답 코드외에 2xx, 3xx, 4xx, 5xx처럼 응답코드 계열조건으로 설정한다. 
 {Match}와 일치하더라도 {Condition}과 일치하지 않는다면 변경이 반영되지 않는다.
 {Condition}이 생략된 경우 응답코드를 검사하지 않는다.
-
-
-원본 헤더
----------------------
-
-성능과 보안상의 이유로 원본서버가 보내는 헤더 중 표준헤더만을 선택적으로 인식한다. ::
-
-   # server.xml - <Server><VHostDefault><Options>
-   # vhosts.xml - <Vhosts><Vhost><Options>
-   
-   <OriginalHeader>OFF</OriginalHeader>   
-    
--  ``<OriginalHeader>``
-
-   -  ``OFF (기본)`` 표준헤더가 아니라면 무시한다. 
-   
-   -  ``ON`` cookie, set-cookie, set-cookie2를 제외한 모든 헤더를 저장하여 클라이언트에게 전달한다.
-      단, 메모리와 저장비용을 좀 더 소비한다.
-
-
-Via 헤더
----------------------
-
-클라이언트에게 보내는 HTTP응답에 Via 헤더 명시여부를 설정한다. ::
-
-   # server.xml - <Server><VHostDefault><Options>
-   # vhosts.xml - <Vhosts><Vhost><Options>
-   
-   <ViaHeader>ON</ViaHeader>   
-    
--  ``<ViaHeader>``
-    
-   - ``ON (기본)`` Via헤더를 다음과 같이 명시한다.
-     ::
-      
-        Via: STON/2.0.0
-   
-   - ``OFF``  Via헤더를 생략한다.
-   
-   
-Server 헤더
----------------------
- 
-클라이언트에게 보내는 HTTP응답에 Server 헤더 명시여부를 설정한다. ::
-
-   # server.xml - <Server><VHostDefault><Options>
-   # vhosts.xml - <Vhosts><Vhost><Options>
-   
-   <ServerHeader>ON</ServerHeader>   
-    
--  ``<ServerHeader>``
-    
-   -  ``ON (기본)`` 원본서버의 Server헤더를 명시한다. ::
-   
-   -  ``OFF``  Server헤더를 생략한다.
-
 
 
 URL 전처리
