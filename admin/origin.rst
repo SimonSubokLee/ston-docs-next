@@ -552,20 +552,15 @@ ETag 헤더 인식
    
    -  ``ON`` 헤더 변경조건에 따라 헤더를 변경한다.
    
-헤더 변경시점을 정확히 이해하자.
-
--  **HTTP 요청헤더 변경시점**
-
-   HTTP 요청패킷이 완성되어 원본서버로 Send하기 직전에 헤더를 변경한다.
-   단, Range헤더는 변조할 수 없다.
-
+헤더 변경시점은 HTTP 요청패킷이 완성되어 원본서버로 전송하기 직전에 수행된다.
+단, Range헤더는 변조할 수 없다.
       
 이 기능은 :ref:`handling_http_requests_modify_client` 의 하위 기능이다.
 헤더변경에는 $ORGREQ 키워드를 사용한다.
 
    # /svc/www.example.com/headers.txt
    
-   $URL[/*.mp4], $ORGREQ[x-media-type: mp4], set
+   $URL[/*.mp4], $ORGREQ[x-media-type: video/mp4], set
    $IP[1.1.1.1], $ORGREQ[user-agent: media_probe], set
 
 
