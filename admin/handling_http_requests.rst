@@ -316,7 +316,7 @@ HTTP 요청/응답 헤더 변경
 헤더는 멀티로 설정이 가능하므로 조건과 일치한다면 모든 변경설정이 동시에 적용된다. 
 
 최초 조건에만 변경을 원할 경우 ``FirstOnly`` 속성을 ``ON`` 으로 설정한다.
-서로 다른 조건이 같은 헤더를 변경하는 경우 Last-Win이 되거나 명시적으로 Append할 수 있다. ::
+서로 다른 조건이 같은 헤더를 변경하는 경우 Last-Win이 되거나 명시적으로 ``append`` ``put`` 할 수 있다. ::
 
    # /svc/www.example.com/headers.txt
    # 구분자는 콤마(,)이다.
@@ -343,6 +343,8 @@ HTTP 요청/응답 헤더 변경
    $HEADER[x-custom-header], $RES[cache-control: no-cache, private], append, 5xx
    $URL[/source/*], $RES[cache-control: no-cache], set, 404
    /secure/*.dat, $RES[x-custom], unset, 200
+   /*.mp4, $RES[Access-Control-Allow-Origin: example1.com], set
+   /*.mp4, $RES[Access-Control-Allow-Origin: example2.com], put
     
 {Match}는 IP, GeoIP, Header, URL 4가지로 설정이 가능하다.
 
@@ -362,18 +364,20 @@ HTTP 요청/응답 헤더 변경
    $URL[...]로 표기하며 생략이 가능하다. 명확한 표현과 패턴을 인식한다.
     
 {$REQ}와 {$RES}는 헤더변경 방법을 설정한다.
-일반적으로 ``set`` 과 ``append`` 의 경우 {Key: Value}로 설정하며, 
+``set`` ``put`` ``append`` 의 경우 {Key: Value}로 설정하며, 
 Value가 입력되지 않은 경우 빈 값("")이 입력된다. 
 ``unset`` 의 경우 {Key}만 입력한다.
 
-{Action}은 ``set`` , ``unset`` , ``append`` 3가지로 설정이 가능하다.
+{Action}은 ``set`` , ``put`` , ``unset`` , ``append``  4가지로 설정이 가능하다.
 
 -  ``set``  요청/응답 헤더에 설정되어 있는 Key와 Value를 헤더에 추가한다. 
-   이미 같은 Key가 존재한다면 이전 값을 덮어쓴다.    
-
--  ``unset`` 요청/응답 헤더에 설정되어 있는 Key에 해당하는 헤더를 삭제한다.
+   이미 같은 Key가 존재한다면 이전 값을 덮어쓴다.
+   
+-  ``put``  ``set`` 과 유사하나 이미 같은 Key가 존재할 경우 덮어쓰지 않고 새로운 라인으로 붙여 넣는다.
 
 -  ``append``  ``set`` 과 유사하나 해당 Key가 존재한다면 기존의 Value와 설정된 Value사이에 Comma(,)로 구분하여 값을 결합한다.
+
+-  ``unset`` 요청/응답 헤더에 설정되어 있는 Key에 해당하는 헤더를 삭제한다.
 
 {Condition}은 200이나 304같은 구체적인 응답 코드외에 2xx, 3xx, 4xx, 5xx처럼 응답코드 계열조건으로 설정한다. 
 {Match}와 일치하더라도 {Condition}과 일치하지 않는다면 변경이 반영되지 않는다.
