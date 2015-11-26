@@ -448,7 +448,7 @@ Hit Raio를 높이기 위해 :ref:`caching-policy-casesensitive`, :ref:`caching-
 
 .. _origin-httprequest:
     
-원본요청 기본헤더
+원본요청 기본 Header
 ====================================
 
 Host 헤더
@@ -536,7 +536,7 @@ ETag 헤더 인식
 
 .. _origin_modify_client:
 
-원본 요청헤더 변경
+원본요청 Header변경
 ====================================
 
 원본으로 HTTP요청을 보낼 때 조건에 따라 HTTP 헤더를 변경한다. ::
