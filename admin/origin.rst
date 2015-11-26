@@ -448,7 +448,7 @@ Hit Raio를 높이기 위해 :ref:`caching-policy-casesensitive`, :ref:`caching-
 
 .. _origin-httprequest:
     
-원본요청 헤더
+원본요청 기본헤더
 ====================================
 
 Host 헤더
