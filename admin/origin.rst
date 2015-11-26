@@ -558,3 +558,39 @@ Redirect 추적
      무한히 Redirect되는 경우를 방지하기 위하여 1회만 추적한다.
 
 
+.. _origin_modify_client:
+
+원본 요청헤더 변경
+====================================
+
+원본으로 HTTP요청을 보낼 때 조건에 따라 HTTP 헤더를 변경한다. ::
+
+   # server.xml - <Server><VHostDefault><OriginOptions>
+   # vhosts.xml - <Vhosts><Vhost><OriginOptions>
+   
+   <ModifyHeader FirstOnly="OFF">OFF</ModifyHeader>   
+    
+-  ``<ModifyHeader>``
+    
+   -  ``OFF (기본)`` 변경하지 않는다.
+   
+   -  ``ON`` 헤더 변경조건에 따라 헤더를 변경한다.
+   
+헤더 변경시점을 정확히 이해하자.
+
+-  **HTTP 요청헤더 변경시점**
+
+   HTTP 요청패킷이 완성되어 원본서버로 Send하기 직전에 헤더를 변경한다.
+   단, Range헤더는 변조할 수 없다.
+
+      
+이 기능은 :ref:`handling_http_requests_modify_client` 의 하위 기능이다.
+헤더변경에는 $ORGREQ 키워드를 사용한다.
+
+   # /svc/www.example.com/headers.txt
+   
+   $URL[/*.mp4], $ORGREQ[x-media-type: mp4], set
+   $IP[1.1.1.1], $ORGREQ[user-agent: media_probe], set
+      
+   
+   
