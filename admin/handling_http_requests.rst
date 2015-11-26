@@ -322,7 +322,7 @@ ETag 헤더
    # 구분자는 콤마(,)이다.
    
    # 요청변경
-   # {Match}, {$REQ}, {Action(set|unset|append)} 순서로 표기한다.
+   # {Match}, {$REQ}, {Action(set|put|unset|append)} 순서로 표기한다.
    $IP[192.168.1.1], $REQ[SOAPAction], unset
    $IP[192.168.2.1-255], $REQ[accept-encoding: gzip], set
    $IP[192.168.3.0/24], $REQ[cache-control: no-cache], append
@@ -333,7 +333,7 @@ ETag 헤더
    $URL[/source/*.zip], $REQ[accept-encoding: deflate], set
    
    # 응답변경
-   # {Match}, {$RES}, {Action(set|unset|append)}, {condition} 순서로 표기한다.
+   # {Match}, {$RES}, {Action(set|put|unset|append)}, {condition} 순서로 표기한다.
    # {condition}은 특정 응답코드에 한하여 헤더를 변경할 수 있지만 필수는 아니다.
    $IP[192.168.1.1], $RES[via: STON for CDN], set
    $IP[192.168.2.1-255], $RES[X-Cache], unset, 200
@@ -373,9 +373,9 @@ Value가 입력되지 않은 경우 빈 값("")이 입력된다.
 -  ``set``  요청/응답 헤더에 설정되어 있는 Key와 Value를 헤더에 추가한다. 
    이미 같은 Key가 존재한다면 이전 값을 덮어쓴다.
    
--  ``put``  ``set`` 과 유사하나 이미 같은 Key가 존재할 경우 덮어쓰지 않고 새로운 라인으로 붙여 넣는다.
+-  ``put``  ( ``set`` 과 유사하나) 같은 Key가 존재하면, 덮어쓰지 않고 새로운 라인으로 붙여 넣는다.
 
--  ``append``  ``set`` 과 유사하나 해당 Key가 존재한다면 기존의 Value와 설정된 Value사이에 Comma(,)로 구분하여 값을 결합한다.
+-  ``append`` ( ``set`` 과 유사하나) 같은 Key가 존재하면, 기존의 Value와 설정된 Value사이에 Comma(,)로 구분하여 값을 결합한다.
 
 -  ``unset`` 요청/응답 헤더에 설정되어 있는 Key에 해당하는 헤더를 삭제한다.
 
