@@ -334,7 +334,6 @@ HSTS
 
 `HSTS(HTTP Strict Transport Security) <https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security>`_ 는 
 :ref:`handling_http_requests_modify_client` 를 이용해 손쉽게 구현이 가능하다. 
-이 기능은 :ref:`handling_http_requests_modify_client` 의 하위 기능이다.
 ::
 
    # /svc/www.example.com/headers.txt
