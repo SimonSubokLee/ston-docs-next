@@ -332,7 +332,8 @@ STON에서는 다음과 같이 Listen속성에 IP명시하여 인증서를 여�
 HSTS
 ====================================
 
-`HSTS(HTTP Strict Transport Security) <https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security>`_ 는 :ref:`handling-http-requests-modify-client` 를 이용해 다음과 같이 손쉽게 구현이 가능하다. ::
+`HSTS(HTTP Strict Transport Security) <https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security>`_ 는 
+:ref:`handling_http_requests_modify_client` 를 이용해 손쉽게 구현이 가능하다. ::
 
    # /svc/www.example.com/headers.txt
    
