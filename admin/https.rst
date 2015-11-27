@@ -342,7 +342,7 @@ HSTS
 
 `Qualys SSL Server Test <https://www.ssllabs.com/ssltest/>`_ 에서는 HSTS가 적용된 사이트에 대해서만 A+등급을 부여한다.
 
-   .. figure:: img/qualys_a_plus.png
-      :align: center
+.. figure:: img/qualys_a_plus.png
+   :align: center
       
    STON v2.2부터는 A+를 받을 수 있다.
