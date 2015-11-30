@@ -562,8 +562,12 @@ ETag 헤더 인식
    
    $URL[/*.mp4], $ORGREQ[x-media-type: video/mp4], set
    $IP[1.1.1.1], $ORGREQ[user-agent: media_probe], put
+   *, $ORGREQ[If-Modified-Since], unset
+   
 
+.. note::
 
+   If-Modified-Since 헤더를 ``unset`` 하면 TTL이 만료된 컨텐츠는 항상 다시 다운로드 한다.
 
    
 Redirect 추적
