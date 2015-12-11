@@ -586,7 +586,7 @@ Format 변경
    
    <Dims Status="Active" Keyword="dims" port="8500">
       <ByOriginal Name="size1">
-         <Condition Width="1024" Height="768">/quality/25/</Condition>
+         <Condition Width="1024" Height="768">/quality/50/</Condition>
          <Condition>/resize/1024x768/</Condition>
       </ByOriginal>
    </Dims>   
@@ -599,7 +599,7 @@ Format 변경
    조건에 만족하는 경우 설정된 변환을 수행한다.    
 
    -  ``Width`` 가로길이가 설정 값보다 작으면 적용된다.   
-   -  ``Heigth`` 세로길이가 설정 값보다 작으면 적용된다.
+   -  ``Height`` 세로길이가 설정 값보다 작으면 적용된다.
    
    조건을 설정하지 않으면 원본 이미지 크기에 상관없이 변환된다.
 
