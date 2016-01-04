@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
    
-STON Edge Server 완벽 가 이 드
+STON Edge Server 완벽 가이드
 ==========================
 
 :저자: STON 개발팀
