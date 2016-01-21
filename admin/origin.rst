@@ -423,27 +423,27 @@ Hit Raio를 높이기 위해 다음 설정들을 통해 Caching-Key를 결정한
 - :ref:`caching-policy-casesensitive`
 - :ref:`caching-policy-applyquerystring`
 
-이에 따라 원본서버로 요청하는 URL과 Caching-Key가 결정된다.
+이에 따라 원본서버로 요청하는 URL과 Caching-Key가 다음과 같이 결정된다.
 
-=============================================== ======================= ============================
-설정                                            클라이언트 요청 URL       원본 요청URL / Caching Key
-=============================================== ======================= ============================
-:ref:`caching-policy-casesensitive` ``OFF``     /Image/LOGO.png         /image/logo.png
-:ref:`caching-policy-casesensitive` ``ON``      /Image/LOGO.png         /Image/LOGO.png
-:ref:`caching-policy-applyquerystring` ``OFF``  /view/list.php?type=A   /view/list.php
-:ref:`caching-policy-applyquerystring` ``ON``   /view/list.php?type=A   /view/list.php?type=A
-=============================================== ======================= ============================
+============================================== ======================= ============================
+설정                                           클라이언트 요청 URL       원본 요청URL / Caching-Key
+============================================== ======================= ============================
+:ref:`caching-policy-casesensitive` ``OFF``    /Image/LOGO.png         /image/logo.png
+:ref:`caching-policy-casesensitive` ``ON``     /Image/LOGO.png         /Image/LOGO.png
+:ref:`caching-policy-applyquerystring` ``OFF`` /view/list.php?type=A   /view/list.php
+:ref:`caching-policy-applyquerystring` ``ON``  /view/list.php?type=A   /view/list.php?type=A
+============================================== ======================= ============================
 
-``ON`` 으로 설정하면 다음과 같이 클라이언트가 보낸 URL그대로 원본에 보낸다.
+``<WholeClientRequest>`` 를 ``ON`` 으로 설정하면 다음과 같이 Caching-Key와 상관없이 클라이언트가 보낸 URL을 그대로 원본에 보낸다.
 
-=============================================== =================================== ============================
-설정                                            클라이언트/원본 요청 URL              Caching Key
-=============================================== =================================== ============================
-:ref:`caching-policy-casesensitive` ``OFF``     /Image/LOGO.png                     /image/logo.png
-:ref:`caching-policy-casesensitive` ``ON``      /Image/LOGO.png                     /Image/LOGO.png
-:ref:`caching-policy-applyquerystring` ``OFF``  /view/list.php?type=A               /view/list.php
-:ref:`caching-policy-applyquerystring` ``ON``   /view/list.php?type=A               /view/list.php?type=A       
-=============================================== =================================== ============================
+============================================== =================================== ============================
+설정                                            클라이언트 / 원본 요청 URL           Caching-Key
+============================================== =================================== ============================
+:ref:`caching-policy-casesensitive` ``OFF``    /Image/LOGO.png                     /image/logo.png
+:ref:`caching-policy-casesensitive` ``ON``     /Image/LOGO.png                     /Image/LOGO.png
+:ref:`caching-policy-applyquerystring` ``OFF`` /view/list.php?type=A               /view/list.php
+:ref:`caching-policy-applyquerystring` ``ON``  /view/list.php?type=A               /view/list.php?type=A       
+============================================== =================================== ============================
        
 .. note::
        
