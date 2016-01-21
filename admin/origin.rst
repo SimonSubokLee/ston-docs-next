@@ -402,10 +402,10 @@ Range요청을 사용하면 모듈을 우회하여 원본을 다운로드할 수
    
 .. _origin-wholeclientrequest:
     
-원본요청 URI
+클라이언트 요청 유지
 ====================================
 
-원본에 요청할 때 사용할 URI를 선택한다. ::
+원본에 요청할 때 클라이언트가 보낸 요청을 유지하도록 설정한다. ::
 
    # server.xml - <Server><VHostDefault><OriginOptions>
    # vhosts.xml - <Vhosts><Vhost><OriginOptions>
@@ -414,15 +414,19 @@ Range요청을 사용하면 모듈을 우회하여 원본을 다운로드할 수
 
 -  ``<WholeClientRequest>``
 
-   - ``OFF (기본)`` Caching-Key를 원본 URI로 사용한다.
+   - ``OFF (기본)`` Caching-Key를 원본에 요청할 URL로 사용한다.
    
-   - ``ON`` 클라이언트가 보낸 URI를 사용한다.
+   - ``ON`` 클라이언트가 요청한 URL로 원본에 요청한다.
 
-Hit Raio를 높이기 위해 :ref:`caching-policy-casesensitive`, :ref:`caching-policy-applyquerystring` 을 적절하게 사용한다.
-이에 따라 원본서버로 요청되는 URI와 Caching-Key가 결정된다.
+Hit Raio를 높이기 위해 다음 설정들을 통해 Caching-Key를 결정한다.
+
+- :ref:`caching-policy-casesensitive`
+- :ref:`caching-policy-applyquerystring`
+
+이에 따라 원본서버로 요청하는 URL과 Caching-Key가 결정된다.
 
 =============================================== ======================= ============================
-설정                                            클라이언트 요청 URI     원본 요청URI / Caching Key
+설정                                            클라이언트 요청 URL       원본 요청URL / Caching Key
 =============================================== ======================= ============================
 :ref:`caching-policy-casesensitive` ``OFF``     /Image/LOGO.png         /image/logo.png
 :ref:`caching-policy-casesensitive` ``ON``      /Image/LOGO.png         /Image/LOGO.png
@@ -430,10 +434,10 @@ Hit Raio를 높이기 위해 :ref:`caching-policy-casesensitive`, :ref:`caching-
 :ref:`caching-policy-applyquerystring` ``ON``   /view/list.php?type=A   /view/list.php?type=A
 =============================================== ======================= ============================
 
-``ON`` 으로 설정하면 다음과 같이 클라이언트가 보낸 URI그대로 원본에 보낸다.
+``ON`` 으로 설정하면 다음과 같이 클라이언트가 보낸 URL그대로 원본에 보낸다.
 
 =============================================== =================================== ============================
-설정                                            클라이언트/원본 요청 URI            Caching Key
+설정                                            클라이언트/원본 요청 URL              Caching Key
 =============================================== =================================== ============================
 :ref:`caching-policy-casesensitive` ``OFF``     /Image/LOGO.png                     /image/logo.png
 :ref:`caching-policy-casesensitive` ``ON``      /Image/LOGO.png                     /Image/LOGO.png
@@ -443,7 +447,7 @@ Hit Raio를 높이기 위해 :ref:`caching-policy-casesensitive`, :ref:`caching-
        
 .. note::
        
-   클라이언트가 보낸 URI를 있는 그대로 보내기 때문에 :ref:`media-trimming` 처럼 부가기능을 위해 붙여진 QueryString도 그대로 원본서버로 전달된다.
+   클라이언트가 보낸 URL을 그대로 보내기 때문에 :ref:`media-trimming` 처럼 부가기능을 위해 붙여진 QueryString도 그대로 원본서버로 전달된다.
 
 
 .. _origin-httprequest:
