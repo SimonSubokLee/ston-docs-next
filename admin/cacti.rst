@@ -146,7 +146,7 @@ STON을 Graph Tree에 추가한다.
    
 .. _cacti_graph_confirm:
 
-graphs 확인
+Graphs 확인
 ====================================
 
 좌측 상단의 [graphs] 메뉴를 클릭하여 그래프가 정상적으로 나오는지 확인한다.
