@@ -127,7 +127,7 @@ Create 버튼을 클릭하여 생성된 그래프를 확인한다.
       
 .. _cacti_graph_tree:
 
-Graph Tree 구축하기
+Graph Tree 생성
 ====================================
 
 Graph Tree를 생성한다.
