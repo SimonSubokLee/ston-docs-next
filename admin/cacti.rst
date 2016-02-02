@@ -55,15 +55,11 @@ STON을 Cacti의 Device로 등록한다.
       
    Devices 항목을 작성한다.
       
-   ①	대상 STON의 이름을 작성한다.
-   
-   ②	대상 STON의 IP를 입력한다.
-   
-   ③	”STON”을 선택한다.
-   
-   ④	“Public”을 선택한다.
-   
-   ⑤	기본 포트 161을 입력한다.
+   *	대상 STON의 이름을 작성한다.   
+   *	대상 STON의 IP를 입력한다.   
+   *	”STON”을 선택한다.   
+   *	“Public”을 선택한다.   
+   *	기본 포트 161을 입력한다.
    
    
 Create 버튼을 클릭하여 Device를 연동한다.
