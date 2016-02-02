@@ -699,12 +699,12 @@ DIMS의 성능지표를 제공한다. ::
      "AvgTime": 34
    },
    
--  ``Requests`` 변환요청 횟수
--  ``Converted`` 변환성공 횟수
--  ``Failed`` 변환실패 횟수
+-  ``Requests`` 압축요청 횟수
+-  ``Converted`` 압축성공 횟수
+-  ``Failed`` 압축실패 횟수
 -  ``AvgSrcSize (단위: Bytes)`` 원본 파일의 평균 크기
--  ``AvgDestSize (단위: Bytes)`` 변환된 파일의 평균 크기
--  ``AvgTime (단위: ms)`` 변환 소요시간
+-  ``AvgDestSize (단위: Bytes)`` 압축된 파일의 평균 크기
+-  ``AvgTime (단위: ms)`` 압축 소요시간
 
 
 
