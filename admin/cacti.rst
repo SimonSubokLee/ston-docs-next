@@ -88,7 +88,7 @@ Device 연동에 성공하면 STON Template 에서 제공하는 18가지 항목�
 .. figure:: img/cacti08.png
    :align: center
       
-   Create Graphs for this Host 클릭한다.
+   "Create Graphs for this Host" 링크를 클릭한다.
 
 .. figure:: img/cacti09.png
    :align: center
