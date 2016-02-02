@@ -795,6 +795,32 @@ OID                      Name                                         Type      
 
 
 
+.. _snmp-cache-host-traffic-compression:
+
+cache.host.traffic.compression
+---------------------
+
+::
+
+   OID = 1.3.6.1.4.1.40001.1.4.1.11.22
+
+Host의 압축 통계를 제공한다.
+
+======================== ============================================ ========== =============================================
+OID                      Name                                         Type       Description                                  
+======================== ============================================ ========== =============================================
+.1. ``[vhostMin]``       requests                                     Integer    압축요청 횟수
+.2. ``[vhostMin]``       converted                                    Integer    압축성공 횟수
+.3. ``[vhostMin]``       failed                                       Integer    압축실패 횟수
+.4. ``[vhostMin]``       avgsrcsize                                   Integer    원본 파일의 평균 크기 (Bytes)
+.5. ``[vhostMin]``       avgdestsize                                  Integer    압축된 파일의 평균 크기 (Bytes)
+.6. ``[vhostMin]``       avgtime                                      Integer    압축 소요시간 (ms)
+======================== ============================================ ========== =============================================
+
+
+
+
+
 .. _snmp-cache-vhost:
 
 cache.vhost
@@ -1151,6 +1177,30 @@ OID                                         Name                                
 .4. ``[vhostMin]`` . ``[vhostIndex]``       avgsrcsize                                  Integer    원본 이미지의 평균 크기 (Bytes)                 
 .5. ``[vhostMin]`` . ``[vhostIndex]``       avgdestsize                                 Integer    변환된 이미지의 평균 크기 (Bytes)                
 .6. ``[vhostMin]`` . ``[vhostIndex]``       avgtime                                     Integer    변환 소요시간 (ms)          
+=========================================== =========================================== ========== ==============================================
+
+
+
+.. _snmp-cache-vhost-traffic-compression:                                                                                                         
+                                                                                                                                                 
+cache.vhost.traffic.compression
+---------------------                                                                                                                            
+                                                                                                                                                 
+::                                                                                                                                               
+                                                                                                                                                 
+   OID = 1.3.6.1.4.1.40001.1.4.3.1.11.22
+                                                                                                                                                 
+가상호스트의 압축 통계를 제공한다.                                                                                                                        
+                     
+=========================================== =========================================== ========== ==============================================
+OID                                         Name                                        Type       Description                                   
+=========================================== =========================================== ========== ==============================================
+.1. ``[vhostMin]`` . ``[vhostIndex]``       requests                                    Integer    압축요청 횟수                          
+.2. ``[vhostMin]`` . ``[vhostIndex]``       converted                                   Integer    압축성공 횟수                               
+.3. ``[vhostMin]`` . ``[vhostIndex]``       failed                                      Integer    압축실패 횟수                               
+.4. ``[vhostMin]`` . ``[vhostIndex]``       avgsrcsize                                  Integer    원본 파일의 평균 크기 (Bytes)                 
+.5. ``[vhostMin]`` . ``[vhostIndex]``       avgdestsize                                 Integer    압축된 파일의 평균 크기 (Bytes)                
+.6. ``[vhostMin]`` . ``[vhostIndex]``       avgtime                                     Integer    압축 소요시간 (ms)          
 =========================================== =========================================== ========== ==============================================
 
 
