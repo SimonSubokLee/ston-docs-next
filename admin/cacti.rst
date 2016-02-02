@@ -3,7 +3,7 @@
 Appendix B: Cacti 모니터링
 *************************
 
-이 장에서는 Cacti의 Graph Tree를 사용하여 다수의 STON을 통합 모니터링 하는 방법에 대해 설명한다.
+이 장에서는 `Cacti <http://www.cacti.net/>`_ 의 Graph Tree를 사용하여 다수의 STON을 통합 모니터링 하는 방법에 대해 설명한다.
 다음 2가지 사항이 전제된다.
 
 -  Cacti가 설치된 서버
