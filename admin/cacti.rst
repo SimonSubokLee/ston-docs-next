@@ -99,7 +99,7 @@ Device 연동에 성공하면 STON Template 에서 제공하는 18가지 항목�
       
    18가지 그래프가 제공된다.
       
-Create 버튼을 클릭하여 생성된 그래프를 확인한다.
+[Create] 버튼을 클릭하여 생성된 그래프를 확인한다.
 
 .. figure:: img/cacti10.png
    :align: center
@@ -117,7 +117,7 @@ Graph Tree를 생성한다.
 .. figure:: img/cacti11.png
    :align: center
       
-   Graph Trees 클릭한다.
+   [Graph Trees] 클릭한다.
       
 .. figure:: img/cacti12.png
    :align: center
