@@ -35,7 +35,7 @@ STON에서 제공하는 Host Template을 사용하면 모니터링 환경을 쉽
 
 .. _cacti_device_add:
 
-STON 추가
+Device 등록
 ====================================
 
 STON을 Cacti의 Device로 등록한다.
@@ -146,7 +146,7 @@ STON을 Graph Tree에 추가한다.
    
 .. _cacti_graph_confirm:
 
-모니터링 확인
+graphs 확인
 ====================================
 
 좌측 상단의 [graphs] 메뉴를 클릭하여 그래프가 정상적으로 나오는지 확인한다.
