@@ -56,15 +56,11 @@ STON을 Cacti의 Device로 등록한다.
    Devices 항목을 작성한다.
 
 
-①	대상 STON의 이름을 작성한다.
-
-②	대상 STON의 IP를 입력한다.
-
-③	”STON”을 선택한다.
-
-④	“Public”을 선택한다.
-
-⑤	기본 포트 161을 입력한다.
+-  ① 대상 STON의 이름을 작성한다.
+-  ② 대상 STON의 IP를 입력한다.
+-  ③ ”STON”을 선택한다.
+-  ④ “Public”을 선택한다.
+-  ⑤ 기본 포트 161을 입력한다.
 
 
 Create 버튼을 클릭하여 Device를 연동한다.
@@ -143,10 +139,9 @@ STON을 Graph Tree에 추가한다.
    [Tree Items]항목을 작성 한다.
 
 
-①	“Host”를 선택한다.
-②	추가할 “Devices”로 선택한다.
-③	“Graph Template”로 선택 한다.
-   
+-  ①	“Host”를 선택한다.
+-  ②	추가할 “Devices”로 선택한다.
+-  ③	“Graph Template”로 선택 한다.   
   
    
 .. _cacti_graph_confirm:
