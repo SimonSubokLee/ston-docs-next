@@ -363,6 +363,31 @@ MP4파일 헤더의 위치에 상관없이 다운로드와 동시에 실시간�
       /video.mp4?start=0/mp4hls/index.m3u8?end=60
 
 
+.. _media-mp3-hls:
+
+MP3 HLS
+====================================
+
+MP3파일을 HLS(HTTP Live Streaming)로 서비스한다. ::
+
+   # server.xml - <Server><VHostDefault><Media>
+   # vhosts.xml - <Vhosts><Vhost><Media>
+
+   <MP3HLS Status="Inactive" Keyword="mp3hls">
+      <Index Ver="3" Alternates="off">index.m3u8</Index>
+      <Sequence>0</Sequence>
+      <Duration>10</Duration>
+      <AlternatesName>playlist.m3u8</AlternatesName>
+   </MP3HLS>
+
+모든 설정과 동작방식이 `MP4 HLS`_ 와 동일하다.
+
+.. note::
+
+   MP4HLS와 MP3HLS가 같은 ``Keyword``로 설정되어 있을 경우 MP3HLS는 동작하지 않는다.
+
+
+
 .. _media-dims:
 
 DIMS
