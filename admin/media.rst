@@ -384,7 +384,7 @@ MP3파일을 HLS(HTTP Live Streaming)로 서비스한다. ::
 
 .. note::
 
-   `MP4 HLS`_ 와 `MP3 HLS`_ 가 같은 ``Keyword ``로 설정되어 있을 경우 MP3HLS는 동작하지 않는다.
+   `MP4 HLS`_ 와 `MP3 HLS`_ 가 같은 ``Keyword ``로 설정되어 있을 경우 `MP3 HLS`_ 는 동작하지 않는다.
 
 
 
