@@ -237,6 +237,40 @@ SSL/TLS의 `SNI(Server Name Indication) <http://en.wikipedia.org/wiki/Server_Nam
 - wget before 1.14
 - Java before 1.7
 
+기본 값으로 SNI는 비활성화되어 있다. ::
+
+   # server.xml - <Server><Cache>
+
+   <HttpsSNI>OFF</HttpsSNI>
+
+-  ``HttpsSNI``
+
+   - ``OFF (기본)`` SNI를 비활성화한다. 서로 다른 인증서가 같은 주소(IP+Port)에 바인딩 될 수 없다.
+   - ``ON`` SNI를 활성화한다. 서로 다른 인증서가 같은 주소(IP+Port)를 바인딩 할 수 있다.
+
+``<HttpsSNI>`` 를 ``ON`` 으로 설정하면 다음과 같이 기본 ``Listen`` 주소(*:443)으로 여러 인증서를 바인딩 할 수 있다. ::
+
+   <Https>
+      <Cert>/usr/ssl/example.pem</Cert>
+      <Key>/usr/ssl/example_key.pem</Key>
+      <CA>/usr/ssl/example_CA.pem</CA>
+   </Https>
+    
+   <Https>
+      <Cert>/usr/ssl/sample.pem</Cert>
+      <Key>/usr/ssl/sample_key.pem</Key>
+      <CA>/usr/ssl/sample_CA.pem</CA>
+   </Https>
+    
+   <Https>
+      <Cert>/usr/ssl/test.pem</Cert>
+      <Key>/usr/ssl/test_key.pem</Key>
+      <CA>/usr/ssl/test_CA.pem</CA>
+   </Https>
+
+
+``<HttpsSNI>`` 가 ``OFF`` 로 설정되었다면 처음 example.pem인증서만 *:443에 바인딩되고 나머지 설정(sample.pem, test.pem)은 모두 무시된다.
+
 
 
 
