@@ -243,7 +243,7 @@ SSL/TLS의 `SNI(Server Name Indication) <http://en.wikipedia.org/wiki/Server_Nam
 
    <HttpsSNI>OFF</HttpsSNI>
 
--  ``HttpsSNI``
+-  ``<HttpsSNI>``
 
    - ``OFF (기본)`` SNI를 비활성화한다. 서로 다른 인증서가 같은 주소(IP+Port)에 바인딩 될 수 없다.
    - ``ON`` SNI를 활성화한다. 서로 다른 인증서가 같은 주소(IP+Port)를 바인딩 할 수 있다.
@@ -270,7 +270,6 @@ SSL/TLS의 `SNI(Server Name Indication) <http://en.wikipedia.org/wiki/Server_Nam
 
 
 이 구성에서 인증서 설정 순서는 크게 중요하지 않지만 클라이언트가 요청한 가상호스트를 찾을 수 없다면 가장 먼저 설정된 인증서가 서비스된다.
-
 ``<HttpsSNI>`` 가 ``OFF`` 로 설정되었다면 처음 example.pem인증서만 *:443에 바인딩되고 나머지 설정(sample.pem, test.pem)은 모두 무시된다.
 
 
