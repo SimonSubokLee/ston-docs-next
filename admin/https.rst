@@ -1,4 +1,4 @@
-﻿.. _https:
+.. _https:
 
 9장. HTTPS
 ******************
@@ -225,9 +225,8 @@ SNI (Server Name Indication)
 
 SSL/TLS의 `SNI(Server Name Indication) <http://en.wikipedia.org/wiki/Server_Name_Indication>`_ 
 확장 필드를 사용하는 방식이다. 
-이 기능은 처음 클라이언트가 서버에게 SSL 연결을 요청할 때 HTTP 요청의 Host헤더처럼 대상 가상호스트를 명시함으로써 가능하다. 
-이 기능은 가장 우아한 방법이지만 호환성에 문제가 있다. 
-다음은 SNI를 지원하지 않는 클라이언트 목록이다.
+이 기능은 최초 클라이언트가 서버에게 SSL 연결을 요청할 때(ClientHello) HTTP 요청의 Host헤더처럼 대상 가상호스트를 명시함으로써 가능하다. 
+현재까지 가장 우아한 방법이지만 일부 구버전 클라이언트에서 지원하지 않는다.  
 (출처: `Wikipedia - Server Name Indication <http://en.wikipedia.org/wiki/Server_Name_Indication#Client_side>`_ ).
 
 - Internet Explorer (any version) on Windows XP or Internet Explorer 6 or earlier
@@ -238,7 +237,7 @@ SSL/TLS의 `SNI(Server Name Indication) <http://en.wikipedia.org/wiki/Server_Nam
 - wget before 1.14
 - Java before 1.7
 
-현실적으로 SNI의 사용은 불가능하므 STON은 SNI를 지원하고 있지 않다.
+
 
 
 
