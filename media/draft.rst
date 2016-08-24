@@ -32,7 +32,7 @@ Media. Draft
    <CaseSensitive>ON</CaseSensitive>
 
 
-.. note:
+.. note::
 
    라이센스(license.xml)는 설정이 아니다.
 
