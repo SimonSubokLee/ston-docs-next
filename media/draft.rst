@@ -5,7 +5,7 @@ Media. Draft
 
 .. warning::
 
-   개발용 임시 문서입니다.
+   개발용 임시 문서입니다. 설정 중 기본 값에 대해서는 정식버전 릴리스 전까지 변경될 수 있습니다.
 
 
 약어
@@ -154,8 +154,71 @@ SMS에서는 Application개념이 없기 때문애 Sub-Path기능으로 호환�
 
    <Default>sports.com</Default>
 
-각각의 가상호스트에 직접 접근도 가능하다. ::
+각각의 가상호스트를 통한 직접 접근도 가능하다. ::
 
    rtmp://baseball.com/highlight.mp4
    rtmp://football.com/highlight.mp4
    rtmp://photo.com/highlight.mp4
+
+
+
+RTMP URL - WOWZA 호환
+====================================
+
+WOWZA가 de-facto인 사실을 무시할 수 없다.
+이미 배포된 URL과 호환성을 맞추어야 한다. ::
+
+    // WOWZA 주소 형식
+    [protocol-method]://[wowza-ip-address]/[application]/[application-instance]
+
+    // 예제
+    rtmp://example.com/vod/_definst_/mp4:subfolder/subsubfolder/sample.mp4
+    rtmp://example.com/vod/mp4:subfolder/subsubfolder/sample.mp4
+
+SMS에서는 "_definst_" 와 "mp4:" 는 특별한 의미를 가지지 않는다.
+다만 해당 표현이 호환되도록 설정을 제공한다. ::
+
+    # vhosts.xml - <Vhosts>
+
+    <Vhost Name="www.example.com" WowzaURL="OFF">
+    </Vhost>
+
+    // WowzaURL = "OFF"
+    rtmp://example.com/subfolder/iu.mp4
+
+    // WowzaURL = "ON"
+    rtmp://example.com/mp4:subfolder/iu.mp4
+    rtmp://example.com/_definst_/mp4:subfolder/iu.mp4
+
+위에 언급한 Sub-Path인 경우 Entry Point가 되는 가상호스트에만
+설정하면 WOWZA와 동일한 URL을 만들 수 있다. ::
+
+   <Vhost Name="baseball.com" />
+   <Vhost Name="football.com" />
+   <Vhost Name="photo.com" />
+
+   <Vhost Name="sports.com" WowzaURL="ON">
+      <Sub Status="Active">
+         <Path Vhost="baseball.com">/baseball/<Path>
+         <Path Vhost="football.com">/football/<Path>
+         <Path Vhost="photo.com">/photo<Path>
+      </Sub>
+   </Vhost>
+
+   <Default>sports.com</Default>
+
+   // RTMP URL
+   rtmp://sports.com/baseball/mp4:highlight.mp4
+   rtmp://sports.com/baseball/_definst_/mp4:highlight.mp4
+   rtmp://sports.com/football/mp4:highlight.mp4
+   rtmp://sports.com/football/_definst_/mp4:highlight.mp4
+   rtmp://sports.com/photo/mp4:highlight.mp4
+   rtmp://sports.com/photo/_definst_/mp4:highlight.mp4
+
+
+통계/로그
+====================================
+
+아직 미정.
+통계는 SES와 동일하게 HTTP API(JSON/XML), SNMP로 제공한다.
+로그는 WOWZA와 같을 가능성이 높다.
