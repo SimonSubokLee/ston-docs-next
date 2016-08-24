@@ -3,47 +3,37 @@
 Media. Draft
 ******************
 
-이 장에서는 설정구조와 변경된 설정을 적용하는 방법에 대해 설명한다.
-구조를 정확히 이해해야 빠르게 서버를 배치할 수 있을뿐만 아니라 장애상황을 유연하게 극복할 수 있다.
-
-설정은 크게 전역(server.xml)과 가상호스트(vhosts.xml)로 나뉜다.
-
-   .. figure:: img/conf_files.png
-      :align: center
-
-      2개의 .xml파일이 전부입니다.
-
-2개의 XML파일로 대부분의 서비스를 구성한다.
-여러 TXT파일에는 가상호스트별 예외조건을 설정하는데, 특정기능의 목록을 작성하는데 사용된다.
-기능설명을 위해 다음처럼 완전한 형태의 XML을 예시하는 것은 굉장히 번거롭다. ::
-
-   <Server>
-       <VHostDefault>
-           <Options>
-               <CaseSensitive>ON</CaseSensitive>
-           </Options>
-       </VHostDefault>
-   </Server>
-
-때문에 다음과 같이 축약하여 설명한다. ::
-
-   # server.xml - <Server><VHostDefault><Options>
-
-   <CaseSensitive>ON</CaseSensitive>
-
-
 .. note::
 
-   라이센스(license.xml)는 설정이 아니다.
+   개발용 임시 문서입니다. SMS는 STON Media Server의 약어이다.
 
 
-.. _api-conf-reload:
-
-설정 Reload
+Edge Server 호환성 정책
 ====================================
 
-설정 변경 후 관리자가 명확하게 API를 호출해야 한다.
-시스템과 성능 관련설정을 제외한 대부분의 설정은 서비스 중단없이 즉시 적용된다. ::
+가급적 유지하나 절대적인 것은 아니다.
+웹과 미디어는 태생이 달라 개념이 상이한 부분이 많다.
+서비스 단위의 표현도 웹에서는 Virtual Host, 미디어에서는 Application이 de-facto로 자리 잡았다.
+프로토콜의 표준화방향도 웹을 중심으로 이루어지고 있으므로 SMS도 웹에 무게를 둔다.
+결과적으로 Edge Server와 유사한 표현을 가지게 되는 것이 자연스럽다.
+이미 친숙한 고객들에게 생소한 표현을 제시할 이유는 없다.
+
+
+가상호스트 개념
+====================================
+
+전통적으로 웹과 미디어는 태생이 다르다.
+서비스 단위도 웹에서는 Virtual Host, 미디어에서는 Application으로 표현하는 것이
+de-facto로 자리 잡았다.
+둘은 양립할 수 없는 개념으로 SMS는 Virtual Host를 서비스 단위로 사용한다. ::
+
+   # vhosts.xml
+
+   <Vhosts>
+      <Vhost Status="Active" Name="www.example.com"> ... </Vhost>
+ <Vhost Status="Active" Name="img.example.com"> ... </Vhost>
+ <Default>www.example.com</Default>
+</Vhosts>
 
    http://127.0.0.1:10040/conf/reload
 
