@@ -20,7 +20,7 @@ SES 호환성 방향
 
 - 웹과 미디어는 태생이 달라 개념이 상이한 부분이 많다.
 - 서비스 단위의 표현도 웹에서는 Virtual Host, 미디어에서는 Application이 de-facto로 자리 잡았다.
-- 프로토콜의 표준화방향도 웹을 중심으로 이루어지고 있으므로 SMS도 웹에 무게를 둔다.
+- 프로토콜의 표준화방향도 웹을 중심으로 이루어지고 있으므로 웹에 무게를 둔다.
 - 결과적으로 SES와 유사한 표현을 가지게 되는 것이 자연스럽다.
 - 이미 SES에 친숙한 고객들에게 굳이 생소한 표현을 제시할 이유는 없다.
 
@@ -47,7 +47,7 @@ SES 호환성 방향
 ====================================
 
 포트와 프로토콜은 1:1 관계이다.
-SES와 같이 가상호스트끼리 같은 포트를 공유할 수 있다.
+SES처럼 가상호스트끼리 같은 포트를 공유할 수 있다.
 단, A가상호스트가 HTTP로 80을 열었다면 B가상호스트는 RTMP로 80을 열 수 없다. ::
 
     # vhosts.xml - <Vhosts>
@@ -57,7 +57,7 @@ SES와 같이 가상호스트끼리 같은 포트를 공유할 수 있다.
     </Vhost>
 
 SMS는 콤마를 구분자로 HTTP, RTMP순서로 포트를 명시한다.
-HTTP는 기본 80, RTMP는 1935를 사용한다.
+기본 포트로 HTTP는 80, RTMP는 1935를 사용한다.
 다음과 같은 표현이 가능하다. ::
 
     // HTTP=80, RTMP=1935
@@ -97,7 +97,7 @@ HTTP는 기본 80, RTMP는 1935를 사용한다.
     </Vhost>
 
 
-기본 URL표현
+URL - 기본
 ====================================
 
 독자적인 URL표현을 기본으로 한다. ::
@@ -110,33 +110,41 @@ HTTP는 기본 80, RTMP는 1935를 사용한다.
 
 원본파일이 /video/iu.mp4이라면 다음과 같이 표현이 가능한다. ::
 
+   // HTTP - Pseudo Streaming
    http://www.example.com/video/iu.mp4
+
+   // HLS
    http://www.example.com/video/iu.mp4/mp4hls/index.m3u8
+
+   // RTMP
    rtmp://www.example.com/video/iu.mp4
 
 
-Application 호환
+URL - Application 호환
 ====================================
 
 기존 미디어서버는 Domain(=Virtual Host)개념이 아니라 Application으로 구성되어 있다.
-Application은 Domain뒤의 첫 번째 디렉토리를 사용한다. ::
+Application은 주소(IP or Domain)뒤의 첫 번째 디렉토리에 배치된다. ::
 
     // Application = baseball
+    rtmp://sports.com/baseball/highlight.mp4
     rtmp://1.1.1.1/baseball/highlight.mp4
 
     // Application = football
+    rtmp://sports.com/football/highlight.mp4
     rtmp://1.1.1.1/football/highlight.mp4
 
     // Application = photo
+    rtmp://sports.com/photo/highlight.mp4
     rtmp://1.1.1.1/photo/highlight.mp4
 
-SMS에서는 Application개념이 없기 때문애 SES의 Sub-Path로 이를 표현한다. ::
+SMS에서는 Application개념이 없기 때문애 Sub-Path기능으로 호환한다. ::
 
    <Vhost Name="baseball.com" />
    <Vhost Name="football.com" />
    <Vhost Name="photo.com" />
 
-   <Vhost Name="dummy_application">
+   <Vhost Name="sports.com">
       <Sub Status="Active">
          <Path Vhost="baseball.com">/baseball/<Path>
          <Path Vhost="football.com">/football/<Path>
@@ -144,9 +152,9 @@ SMS에서는 Application개념이 없기 때문애 SES의 Sub-Path로 이를 표
       </Sub>
    </Vhost>
 
-   <Default>dummy_application</Default>
+   <Default>sports.com</Default>
 
-dummy_application을 통한 접근도 가능하며 아래와 같이 각각의 가상호스트에 직접 접근도 가능하다. ::
+각각의 가상호스트에 직접 접근도 가능하다. ::
 
    rtmp://baseball.com/highlight.mp4
    rtmp://football.com/highlight.mp4
