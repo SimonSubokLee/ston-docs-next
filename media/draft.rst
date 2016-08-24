@@ -79,14 +79,70 @@ HTTP는 기본 80, RTMP는 1935를 사용한다.
         <Listen>*:80, *:1935</Listen> // 가능
     </Vhost>
 
-    <Vhost Name="bar.com">
+    <Vhost Name="wine.com">
         <Listen>*:8080, *:1935</Listen> // 가능
     </Vhost>
 
-    <Vhost Name="bar.com">
+    <Vhost Name="soft.com">
         <Listen>*:80, *:8080</Listen> // 불가능
     </Vhost>
 
-    <Vhost Name="bar.com">
+    <Vhost Name="ston.com">
         <Listen>*:1935</Listen> // 불가능
     </Vhost>
+
+
+기본 URL표현
+====================================
+
+독자적인 URL표현을 기본으로 한다. ::
+
+    # vhosts.xml - <Vhosts>
+
+    <Vhost Name="www.example.com">
+        <Listen>*:80, *:1935</Listen>
+    </Vhost>
+
+원본파일이 /video/iu.mp4이라면 다음과 같이 표현이 가능한다. ::
+
+   http://www.example.com/video/iu.mp4
+   http://www.example.com/video/iu.mp4/mp4hls/index.m3u8
+   rtmp://www.example.com/video/iu.mp4
+
+
+Application 호환
+====================================
+
+기존 미디어서버는 Domain(=Virtual Host)개념이 아니라 Application으로 구성되어 있다.
+Application은 Domain뒤의 첫 번째 디렉토리를 사용한다. ::
+
+    // Application = baseball
+    rtmp://1.1.1.1/baseball/highlight.mp4
+
+    // Application = football
+    rtmp://1.1.1.1/football/highlight.mp4
+
+    // Application = photo
+    rtmp://1.1.1.1/photo/highlight.mp4
+
+SMS에서는 Application개념이 없기 때문애 SES의 Sub-Path로 이를 표현한다. ::
+
+   <Vhost Name="baseball.com" />
+   <Vhost Name="football.com" />
+   <Vhost Name="photo.com" />
+
+   <Vhost Name="dummy_application">
+      <Sub Status="Active">
+         <Path Vhost="baseball.com">/baseball/<Path>
+         <Path Vhost="football.com">/football/<Path>
+         <Path Vhost="photo.com">/photo<Path>
+      </Sub>
+   </Vhost>
+
+   <Default>dummy_application</Default>
+
+dummy_application을 통한 접근도 가능하며 아래와 같이 각각의 가상호스트에 직접 접근도 가능하다. ::
+
+   rtmp://baseball.com/highlight.mp4
+   rtmp://football.com/highlight.mp4
+   rtmp://photo.com/highlight.mp4
