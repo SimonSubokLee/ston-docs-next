@@ -8,11 +8,11 @@ Media. Draft
    개발용 임시 문서입니다.
 
 
- 약어
- ====================================
+약어
+====================================
 
- - SES - STON Edge Server
- - SMS - STON Media Server
+- SES - STON Edge Server
+- SMS - STON Media Server
 
 
 SES 호환성 방향
