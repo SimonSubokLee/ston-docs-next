@@ -3,7 +3,7 @@
 Media. Draft
 ******************
 
-.. note::
+.. warning::
 
    개발용 임시 문서입니다. SMS는 STON Media Server의 약어이다.
 
