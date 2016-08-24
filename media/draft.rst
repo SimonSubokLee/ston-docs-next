@@ -1,6 +1,6 @@
 ﻿.. _media_draft:
 
-Media. Draft
+Media. v0.1 Draft
 ******************
 
 .. warning::
@@ -151,8 +151,6 @@ SMS에서는 Application개념이 없기 때문애 Sub-Path기능으로 호환�
          <Path Vhost="photo.com">/photo<Path>
       </Sub>
    </Vhost>
-
-   <Default>sports.com</Default>
 
 각각의 가상호스트를 통한 직접 접근도 가능하다. ::
 
