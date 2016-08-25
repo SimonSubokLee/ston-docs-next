@@ -38,9 +38,9 @@ SES 호환성 방향
 
 가상호스트를 만들면 아래와 같은 서비스가 기본으로 가능하다.
 
-- HTTP Pseudo Streaming (feat. bandwidth-throttling)
-- HLS
-- RTMP
+- HTTP Pseudo Streaming (80)
+- HLS (80)
+- RTMP (1935)
 
 
 서비스 포트/프로토콜
