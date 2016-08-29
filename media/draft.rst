@@ -15,32 +15,115 @@ Media. v0.1 Draft
 - SMS - STON Media Server
 
 
-SES 호환성 방향
+호환성
 ====================================
 
-- 웹과 미디어는 태생이 달라 개념이 상이한 부분이 많다.
-- 서비스 단위의 표현도 웹에서는 Virtual Host, 미디어에서는 Application이 de-facto로 자리 잡았다.
-- 프로토콜의 표준화방향도 웹을 중심으로 이루어지고 있으므로 웹에 무게를 둔다.
-- 결과적으로 SES와 유사한 표현을 가지게 되는 것이 자연스럽다.
-- 이미 SES에 친숙한 고객들에게 굳이 생소한 표현을 제시할 이유는 없다.
+- WOWZA, FMS등과 URL호환성이 맞아야 한다.
+- SES 경험에 익숙한 고객들에게 되도록 친숙한 표현을 제공한다.
 
+
+기본값 - 설정 활성화
+====================================
+
+- Bandwidth-Throttling
+- MP4HLS
 
 가상호스트 개념
 ====================================
 
+서비스의 기본 단위는 가상호스트이다.
 가상호스트 설정은 SES와 동일하다. ::
 
    # vhosts.xml
 
    <Vhosts>
-      <Vhost Status="Active" Name="www.example.com"> ... </Vhost>
+      <Vhost Name="www.example.com" Application="exam_vod"> ... </Vhost>
    </Vhosts>
 
-가상호스트를 만들면 아래와 같은 서비스가 기본으로 가능하다.
+가상호스트를 만들면 HTTP(80)/RTMP(1935) 서비스가 기본으로 활성화된다.
+멀티 프로토콜 서비스를 위해 가상호스트 이름과 Application이름을 반드시 같이 넣어 주어야 한다.
 
-- HTTP Pseudo Streaming (80)
-- HLS (80)
-- RTMP (1935)
+- 가상호스트 Name 속성은 유일해야 한다.
+- Application 값은 유일해야 한다.
+
+
+URL 표현
+====================================
+
+URL 표현은 Adobe Media Server(구 FMS)를 따르며
+파생된 미디어 서버(i.e. WOWZA)들과 호환성을 가진다.
+앞서 설정한 가상호스트(www.example.com)의
+원본서버 경로가 /subdir/iu.mp4 라면 서비스 주소는 아래와 같다. ::
+
+    // Adobe Flash Player (RTMP)
+    Server: rtmp://www.example.com/exam_vod
+    Stream: mp4:subdir/iu.mp4
+
+    // Apple iOS device (Cupertino/Apple HTTP Live Streaming)
+    http://www.example.com/exam_vod/mp4:subdir/iu.mp4/playlist.m3u8
+
+    // HTTP Pseudo-Streaming (+ Bandwidth-Throttling)
+    http://www.example.com/exam_vod/mp4:subdir/iu.mp4
+
+가상호스트의 Prefix 속성을 설정하면 URL 호환성을 더 강화할 수 있다. ::
+
+   # vhosts.xml
+
+   <Vhosts>
+      <Vhost Name="www.example.com"
+             Application="exam_vod"
+             Prefix="http/"> ... </Vhost>
+   </Vhosts>
+
+Prefix는 URL에만 추가될 뿐 아무런 역할을 수행하지 않는다.
+Prefix가 추가된 상태 주소는 아래와 같다. ::
+
+    // Adobe Flash Player (RTMP)
+    Server: rtmp://www.example.com/exam_vod
+    Stream: mp4:http/subdir/iu.mp4
+
+    // Apple iOS device (Cupertino/Apple HTTP Live Streaming)
+    http://www.example.com/exam_vod/mp4:http/subdir/iu.mp4/playlist.m3u8
+
+    // HTTP Pseudo-Streaming (+ Bandwidth-Throttling)
+    http://www.example.com/exam_vod/mp4:http/subdir/iu.mp4
+
+WOWZA 같은 경우 Application명 뒤에 application-instance명을 함께 명시하고 있다.
+(이 값은 대부분 _definst_ 이다.)
+다음 주소에서 대해서도 정상적인 서비스가 가능하다. ::
+
+    // Adobe Flash Player (RTMP)
+    Server: rtmp://www.example.com/exam_vod
+    Stream: mp4:http/subdir/iu.mp4
+
+    // Apple iOS device (Cupertino/Apple HTTP Live Streaming)
+    http://www.example.com/exam_vod/_definst_/mp4:http/subdir/iu.mp4/playlist.m3u8
+
+    // HTTP Pseudo-Streaming (+ Bandwidth-Throttling)
+    http://www.example.com/exam_vod/_definst_/mp4:http/subdir/iu.mp4
+
+
+멀티 프로토콜에서 가상호스트 찾기
+====================================
+
+프로토콜에 따라 클라이언트 요청에 해당하는 가상호스트를 찾는 방식이 다르다.
+
+HTTP
+-----------------------------------------------
+HTTP 프로토콜에서는 클라이언트가 보낸 Host헤더를 통해 가상호스트를 찾는다. ::
+
+   GET /exam_vod/mp4:http/subdir/iou.mp4 HTTP/1.1
+   Host: www.example.com
+
+Host헤더와 일치하는 가상호스트/Alias가 있다면 Application이름이 달라도 서비스는 이루어진다.
+반면 클라이언트가 IP로 접근하거나 Host헤더가 없는 경우라면 HTTP에서는 가상호스트를 찾을 수 없다.
+이 때는 Application이름이 일치하는 가상호스트를 찾는다.
+
+
+RTMP
+-----------------------------------------------
+
+RTMP에서는 Application이름만으로 가상호스트를 찾는다.
 
 
 서비스 포트/프로토콜
@@ -52,7 +135,7 @@ SES처럼 가상호스트끼리 같은 포트를 공유할 수 있다.
 
     # vhosts.xml - <Vhosts>
 
-    <Vhost Name="www.example.com">
+    <Vhost Name="www.example.com" Application="exam_vod">
         <Listen>*:80, *:1935</Listen>
     </Vhost>
 
@@ -76,142 +159,26 @@ SMS는 콤마를 구분자로 HTTP, RTMP순서로 포트를 명시한다.
 
     # vhosts.xml - <Vhosts>
 
-    <Vhost Name="foo.com">
+    <Vhost Name="foo.com" Application="foo">
         <Listen>*:80, *:1935</Listen> // 가능
     </Vhost>
 
-    <Vhost Name="bar.com">
+    <Vhost Name="bar.com" Application="bar">
         <Listen>*:80, *:1935</Listen> // 가능
     </Vhost>
 
-    <Vhost Name="wine.com">
+    <Vhost Name="wine.com" Application="wine">
         <Listen>*:8080, *:1935</Listen> // 가능
     </Vhost>
 
-    <Vhost Name="soft.com">
+    <Vhost Name="soft.com" Application="soft">
         <Listen>*:80, *:8080</Listen> // 불가능
     </Vhost>
 
-    <Vhost Name="ston.com">
+    <Vhost Name="ston.com" Application="ston">
         <Listen>*:1935</Listen> // 불가능
     </Vhost>
 
-
-URL - 기본
-====================================
-
-독자적인 URL표현을 기본으로 한다. ::
-
-    # vhosts.xml - <Vhosts>
-
-    <Vhost Name="www.example.com">
-        <Listen>*:80, *:1935</Listen>
-    </Vhost>
-
-원본파일이 /video/iu.mp4이라면 다음과 같이 표현이 가능한다. ::
-
-   // HTTP - Pseudo Streaming
-   http://www.example.com/video/iu.mp4
-
-   // HLS
-   http://www.example.com/video/iu.mp4/mp4hls/index.m3u8
-
-   // RTMP
-   rtmp://www.example.com/video/iu.mp4
-
-
-URL - Application 호환
-====================================
-
-기존 미디어서버는 Domain(=Virtual Host)개념이 아니라 Application으로 구성되어 있다.
-Application은 주소(IP or Domain)뒤의 첫 번째 디렉토리에 배치된다. ::
-
-    // Application = baseball
-    rtmp://sports.com/baseball/highlight.mp4
-    rtmp://1.1.1.1/baseball/highlight.mp4
-
-    // Application = football
-    rtmp://sports.com/football/highlight.mp4
-    rtmp://1.1.1.1/football/highlight.mp4
-
-    // Application = photo
-    rtmp://sports.com/photo/highlight.mp4
-    rtmp://1.1.1.1/photo/highlight.mp4
-
-SMS에서는 Application개념이 없기 때문애 Sub-Path기능으로 호환한다. ::
-
-   <Vhost Name="baseball.com" />
-   <Vhost Name="football.com" />
-   <Vhost Name="photo.com" />
-
-   <Vhost Name="sports.com">
-      <Sub Status="Active">
-         <Path Vhost="baseball.com">/baseball/<Path>
-         <Path Vhost="football.com">/football/<Path>
-         <Path Vhost="photo.com">/photo<Path>
-      </Sub>
-   </Vhost>
-
-각각의 가상호스트를 통한 직접 접근도 가능하다. ::
-
-   rtmp://baseball.com/highlight.mp4
-   rtmp://football.com/highlight.mp4
-   rtmp://photo.com/highlight.mp4
-
-
-
-RTMP URL - WOWZA 호환
-====================================
-
-WOWZA가 de-facto인 사실을 무시할 수 없다.
-이미 배포된 URL과 호환성을 맞추어야 한다. ::
-
-    // WOWZA 주소 형식
-    [protocol-method]://[wowza-ip-address]/[application]/[application-instance]
-
-    // 예제
-    rtmp://example.com/vod/_definst_/mp4:subfolder/subsubfolder/sample.mp4
-    rtmp://example.com/vod/mp4:subfolder/subsubfolder/sample.mp4
-
-SMS에서는 "_definst_" 와 "mp4:" 는 특별한 의미를 가지지 않는다.
-다만 해당 표현이 호환되도록 설정을 제공한다. ::
-
-    # vhosts.xml - <Vhosts>
-
-    <Vhost Name="www.example.com" WowzaURL="OFF">
-    </Vhost>
-
-    // WowzaURL = "OFF"
-    rtmp://example.com/subfolder/iu.mp4
-
-    // WowzaURL = "ON"
-    rtmp://example.com/mp4:subfolder/iu.mp4
-    rtmp://example.com/_definst_/mp4:subfolder/iu.mp4
-
-위에 언급한 Sub-Path인 경우 Entry Point가 되는 가상호스트에만
-설정하면 WOWZA와 동일한 URL을 만들 수 있다. ::
-
-   <Vhost Name="baseball.com" />
-   <Vhost Name="football.com" />
-   <Vhost Name="photo.com" />
-
-   <Vhost Name="sports.com" WowzaURL="ON">
-      <Sub Status="Active">
-         <Path Vhost="baseball.com">/baseball/<Path>
-         <Path Vhost="football.com">/football/<Path>
-         <Path Vhost="photo.com">/photo<Path>
-      </Sub>
-   </Vhost>
-
-   <Default>sports.com</Default>
-
-   // RTMP URL
-   rtmp://sports.com/baseball/mp4:highlight.mp4
-   rtmp://sports.com/baseball/_definst_/mp4:highlight.mp4
-   rtmp://sports.com/football/mp4:highlight.mp4
-   rtmp://sports.com/football/_definst_/mp4:highlight.mp4
-   rtmp://sports.com/photo/mp4:highlight.mp4
-   rtmp://sports.com/photo/_definst_/mp4:highlight.mp4
 
 
 통계/로그
