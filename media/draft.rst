@@ -18,7 +18,7 @@ Media. v0.1 Draft
 호환성
 ====================================
 
-- WOWZA, FMS등과 URL호환성이 맞아야 한다.
+- AMS(구 FMS), WOWZA 등과 URL호환성을 가진다.
 - SES 경험에 익숙한 고객들에게 되도록 친숙한 표현을 제공한다.
 
 
@@ -88,11 +88,11 @@ Prefix가 추가된 상태 주소는 아래와 같다. ::
     // HTTP Pseudo-Streaming (+ Bandwidth-Throttling)
     http://www.example.com/exam_vod/mp4:http/subdir/iu.mp4
 
-WOWZA 같은 경우 Application명 뒤에 application-instance명을 함께 명시하고 있다.
+WOWZA의 경우 Application이름 뒤에 application-instance명을 함께 명시하고 있다.
 (이 값은 대부분 _definst_ 이다.)
 다음 주소에서 대해서도 정상적인 서비스가 가능하다. ::
 
-    // Adobe Flash Player (RTMP)
+    // Adobe Flash Player (RTMP) - 동일
     Server: rtmp://www.example.com/exam_vod
     Stream: mp4:http/subdir/iu.mp4
 
@@ -110,14 +110,20 @@ WOWZA 같은 경우 Application명 뒤에 application-instance명을 함께 명�
 
 HTTP
 -----------------------------------------------
-HTTP 프로토콜에서는 클라이언트가 보낸 Host헤더를 통해 가상호스트를 찾는다. ::
+HTTP 프로토콜에서는 클라이언트가 보낸 Host헤더를 통해 가상호스트를 찾는 것이 가장 표준적인 방식이다. ::
 
    GET /exam_vod/mp4:http/subdir/iou.mp4 HTTP/1.1
    Host: www.example.com
 
 Host헤더와 일치하는 가상호스트/Alias가 있다면 Application이름이 달라도 서비스는 이루어진다.
-반면 클라이언트가 IP로 접근하거나 Host헤더가 없는 경우라면 HTTP에서는 가상호스트를 찾을 수 없다.
-이 때는 Application이름이 일치하는 가상호스트를 찾는다.
+
+다음의 경우 가상호스트를 찾을 수 없다.
+
+- 클라이언트가 IP로 접근한 경우
+- Host헤더를 의도적으로 생략한 경우
+- 존재하지 않는 가상호스트를 Host헤더로 설정한 경우
+
+이상의 경우에는 Application이름이 일치하는 가상호스트를 찾는다.
 
 
 RTMP
@@ -184,6 +190,4 @@ SMS는 콤마를 구분자로 HTTP, RTMP순서로 포트를 명시한다.
 통계/로그
 ====================================
 
-아직 미정.
-통계는 SES와 동일하게 HTTP API(JSON/XML), SNMP로 제공한다.
-로그는 WOWZA와 같을 가능성이 높다.
+준비 중입니다.
