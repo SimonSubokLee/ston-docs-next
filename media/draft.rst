@@ -22,11 +22,11 @@ Media. v0.1 Draft
 - SES 경험에 익숙한 고객들에게 되도록 친숙한 표현을 제공한다.
 
 
-기본값 - 설정 활성화
+기본설정
 ====================================
 
-- Bandwidth-Throttling
-- MP4HLS
+- Bandwidth-Throttling (Active)
+- MP4HLS (Active)
 
 가상호스트 개념
 ====================================
@@ -76,7 +76,7 @@ URL 표현은 Adobe Media Server(구 FMS)를 따르며
    </Vhosts>
 
 Prefix는 URL에만 추가될 뿐 아무런 역할을 수행하지 않는다.
-Prefix가 추가된 상태 주소는 아래와 같다. ::
+Prefix가 추가된 주소는 아래와 같다. ::
 
     // Adobe Flash Player (RTMP)
     Server: rtmp://www.example.com/exam_vod
@@ -103,33 +103,14 @@ WOWZA의 경우 Application이름 뒤에 application-instance명을 함께 명�
     http://www.example.com/exam_vod/_definst_/mp4:http/subdir/iu.mp4
 
 
-멀티 프로토콜에서 가상호스트 찾기
+가상호스트 매칭정책
 ====================================
 
-프로토콜에 따라 클라이언트 요청에 해당하는 가상호스트를 찾는 방식이 다르다.
+가상호스트 매칭정책은 다음 우선순위를 따른다.
 
-HTTP
------------------------------------------------
-HTTP 프로토콜에서는 클라이언트가 보낸 Host헤더를 통해 가상호스트를 찾는 것이 가장 표준적인 방식이다. ::
-
-   GET /exam_vod/mp4:http/subdir/iou.mp4 HTTP/1.1
-   Host: www.example.com
-
-Host헤더와 일치하는 가상호스트/Alias가 있다면 Application이름이 달라도 서비스는 이루어진다.
-
-다음의 경우 가상호스트를 찾을 수 없다.
-
-- 클라이언트가 IP로 접근한 경우
-- Host헤더를 의도적으로 생략한 경우
-- 존재하지 않는 가상호스트를 Host헤더로 설정한 경우
-
-이상의 경우에는 Application이름이 일치하는 가상호스트를 찾는다.
-
-
-RTMP
------------------------------------------------
-
-RTMP에서는 Application이름만으로 가상호스트를 찾는다.
+1. Application명과 일치하는 가상호스트를 찾는다.
+2. (HTTP인 경우) Host헤더와 일치하는 가상호스트를 찾는다.
+3. 기본 가상호스트를 찾는다.
 
 
 서비스 포트/프로토콜
