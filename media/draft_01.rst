@@ -39,7 +39,7 @@ HTTP Pseudo-Streaming    .mp4            H.264           AAC
 ====================== ===============================
 프로토콜                 예외처리 응답
 ====================== ===============================
-Apple HLS              NetStream.Play.StreamNotFound
+RTMP                   NetStream.Play.StreamNotFound
 Apple HLS              406 Not Acceptable
 HTTP Pseudo-Streaming  406 Not Acceptable
 ====================== ===============================
