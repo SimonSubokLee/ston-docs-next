@@ -27,7 +27,7 @@ Media. v0.1 Draft
 프로토콜에 따라 지원되는 파일규격은 아래와 같다.
 
 ======================== =============== =============== ===============
-프로토콜                   File Extention  Video Codec     Audio Codec
+프로토콜                 File Extention  Video Codec     Audio Codec
 ======================== =============== =============== ===============
 RTMP                     .mp4            H.264           AAC
 Apple HLS                .mp4            H.264           AAC
