@@ -18,7 +18,7 @@ Media. v0.1 Draft
 호환성
 ====================================
 
-- AMS(구 FMS), WOWZA 등과 URL호환성을 가진다.
+- Adobe Media Server (구 Flash Media Server), WOWZA 등과 URL호환성을 가진다.
 - SES 경험에 익숙한 고객들에게 되도록 친숙한 표현을 제공한다.
 
 서비스 범위
