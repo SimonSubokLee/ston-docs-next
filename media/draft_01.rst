@@ -51,23 +51,60 @@ HTTP Pseudo-Streaming  406 Not Acceptable
 - Bandwidth-Throttling (Active)
 - MP4HLS (Active)
 
-가상호스트 개념
+가상호스트
 ====================================
 
-서비스의 기본 단위는 가상호스트이다.
-가상호스트 설정은 SES와 동일하다. ::
+가상호스트는 서비스의 기본단위이다.
+클라이언트가 접속하는 URL을 가상호스트 이름과 매칭하여 서비스할 가상호스트를 결정한다. ::
 
    # vhosts.xml
 
    <Vhosts>
-      <Vhost Name="www.example.com" Application="exam_vod"> ... </Vhost>
+      <Vhost Name="www.example.com"> ... </Vhost>
    </Vhosts>
 
-가상호스트를 만들면 HTTP(80)/RTMP(1935) 서비스가 기본으로 활성화된다.
-멀티 프로토콜 서비스를 위해 가상호스트 이름과 Application이름을 반드시 같이 넣어 주어야 한다.
+   <Vhosts>
+      <Vhost Name="/vod"> ... </Vhost>
+   </Vhosts>
 
-- 가상호스트 Name 속성은 유일해야 한다.
-- Application 값은 유일해야 한다.
+   <Vhosts>
+      <Vhost Name="www.example.com/vod"> ... </Vhost>
+   </Vhosts>
+
+가상호스트 이름(Name)은 3가지 형태로 구성할 수 있다.
+
+- 도메인 (www.example.com) + 디렉토리(/vod)
+- 도메인 (www.example.com)
+- 디렉토리(/vod)
+
+디렉토리는 1-depth만 가능하다.
+가상호스트를 검색할 때는 가장 명확한 표현을 우선적으로 선택한다.
+URL에 따라 가상호스트가 선택되는 예제는 아래와 같다. ::
+
+   http://www.example.com/vod/video.mp4
+   // "www.example.com/vod" 선택
+
+   http://www.example.com/sports/highlight.mp4
+   // "www.example.com" 선택
+
+   http://www.foobar.com/vod/vidoe.mp4
+   // "/vod" 선택
+
+   http://www.foobar.com/sports/highlight.mp4
+   // 404 Not Found
+
+``<Alias>`` 도 다음과 같이 표현이 가능하다. ::
+
+   # vhosts.xml - <Vhosts>
+
+   <Vhost Name="example.com">
+      <Alias>another.com</Alias>
+      <Alias>*.sub.example.com</Alias>
+      <Alias>sports.com/highlight</Alias>
+      <Alias>/myvideo</Alias>
+   </Vhost>
+
+패턴표현(*)은 도메인에만 사용할 수 있으며 가상호스트 이름과 ``<Alias>`` 는 유일해야 한다.
 
 
 URL 표현
