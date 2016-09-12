@@ -85,7 +85,7 @@ URL                                            가상호스트 ``Name``
 http://www.example.com/vod/video.mp4           www.example.com/vod
 http://www.example.com/sports/highlight.mp4    www.example.com
 http://www.foobar.com/vod/video.mp4            /vod
-http://www.foobar.com/sports/highlight.mp4     N.A.
+http://www.foobar.com/sports/highlight.mp4     404 Not Found
 ============================================== ====================
 
 가상호스트 ``<Alias>`` 를 통해 패턴표현과 디렉토리 표현이 가능하다. ::
