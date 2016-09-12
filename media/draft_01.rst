@@ -69,7 +69,7 @@ HTTP Pseudo-Streaming  406 Not Acceptable
 
 - 도메인 (www.example.com) + 디렉토리(/vod)
 - 도메인 (www.example.com)
-- 디렉토리(/vod)
+- 디렉토리 (/vod)
 
 디렉토리는 1-depth만 가능하다.
 가상호스트를 검색할 때는 가장 명확한 표현을 우선적으로 선택한다.
