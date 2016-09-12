@@ -60,7 +60,7 @@ HTTP Pseudo-Streaming  406 Not Acceptable
 
 가상호스트는 서비스의 기본단위이다.
 가상호스트가 생성되면 HTTP (80)포트와 RTMP (1935)포트가 오픈된다.
-클라이언트가 접속하는 URL을 가상호스트 Name과 매칭하여 서비스할 가상호스트를 결정한다. ::
+클라이언트가 접속하는 URL을 가상호스트 ``Name`` 과 매칭하여 서비스할 가상호스트를 결정한다. ::
 
    # vhosts.xml
 
@@ -70,39 +70,25 @@ HTTP Pseudo-Streaming  406 Not Acceptable
       <Vhost Name="www.example.com/vod"> ... </Vhost>
    </Vhosts>
 
-가상호스트 Name은 3가지 형태로 구성할 수 있으며, 아래 열거한 순서대로 선택 우선순위를 가진다.
+가상호스트 ``Name`` 은 3가지 형태로 구성할 수 있으며, 아래 열거한 순서대로 선택 우선순위를 가진다.
 
 - 도메인 (www.example.com) + 디렉토리(/vod)
 - 도메인 (www.example.com)
 - 디렉토리 (/vod)
 
 디렉토리는 1-depth만 가능하다.
-URL에 따라 가상호스트가 선택되는 예제는 아래와 같다.
+URL에 따라 가상호스트는 다음과 같이 선택된다.
 
 ============================================== ====================
-URL                                            가상호스트
+URL                                            가상호스트 ``Name``
 ============================================== ====================
 http://www.example.com/vod/video.mp4           www.example.com/vod
 http://www.example.com/sports/highlight.mp4    www.example.com
 http://www.foobar.com/vod/video.mp4            /vod
-http://www.foobar.com/sports/highlight.mp4     -
+http://www.foobar.com/sports/highlight.mp4     N.A.
 ============================================== ====================
 
-::
-
-   http://www.example.com/vod/video.mp4
-   // "www.example.com/vod" 선택
-
-   http://www.example.com/sports/highlight.mp4
-   // "www.example.com" 선택
-
-   http://www.foobar.com/vod/video.mp4
-   // "/vod" 선택
-
-   http://www.foobar.com/sports/highlight.mp4
-   // 404 Not Found
-
-``<Alias>`` 를 통해 패턴표현과 디렉토리 표현이 가능하다. ::
+가상호스트 ``<Alias>`` 를 통해 패턴표현과 디렉토리 표현이 가능하다. ::
 
    # vhosts.xml - <Vhosts>
 
@@ -119,11 +105,11 @@ http://www.foobar.com/sports/highlight.mp4     -
 원본요청 Host헤더
 ====================================
 
-가상호스트 Name은 원본요청의 Host헤더의 기본 값이 된다.
-Name에 따른 Host헤더는 아래와 같다.
+가상호스트 ``Name`` 은 원본요청의 Host헤더의 기본 값이 된다.
+``Name`` 에 따른 Host헤더는 아래와 같다.
 
 ====================== ===============================
-Vhost Name             HTTP Host Header
+Vhost ``Name``         HTTP Host Header
 ====================== ===============================
 www.example.com/vod    www.example.com
 www.example.com        www.example.com
@@ -221,7 +207,7 @@ SES처럼 가상호스트끼리 같은 포트를 공유할 수 있다.
 
     # vhosts.xml - <Vhosts>
 
-    <Vhost Name="www.example.com" Application="exam_vod">
+    <Vhost Name="www.example.com">
         <Listen>*:80, *:1935</Listen>
     </Vhost>
 
@@ -245,23 +231,23 @@ SMS는 콤마를 구분자로 HTTP, RTMP순서로 포트를 명시한다.
 
     # vhosts.xml - <Vhosts>
 
-    <Vhost Name="foo.com" Application="foo">
+    <Vhost Name="foo.com">
         <Listen>*:80, *:1935</Listen> // 가능
     </Vhost>
 
-    <Vhost Name="bar.com" Application="bar">
+    <Vhost Name="bar.com">
         <Listen>*:80, *:1935</Listen> // 가능
     </Vhost>
 
-    <Vhost Name="wine.com" Application="wine">
+    <Vhost Name="wine.com">
         <Listen>*:8080, *:1935</Listen> // 가능
     </Vhost>
 
-    <Vhost Name="soft.com" Application="soft">
+    <Vhost Name="soft.com">
         <Listen>*:80, *:8080</Listen> // 불가능
     </Vhost>
 
-    <Vhost Name="ston.com" Application="ston">
+    <Vhost Name="ston.com">
         <Listen>*:1935</Listen> // 불가능
     </Vhost>
 
