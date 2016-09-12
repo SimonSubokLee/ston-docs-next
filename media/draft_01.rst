@@ -101,12 +101,34 @@ URL에 따라 가상호스트가 선택되는 예제는 아래와 같다. ::
 패턴표현(*)은 도메인에만 사용할 수 있으며 가상호스트 ``Name`` 과 ``<Alias>`` 는 중복될 수 없다.
 
 
+원본요청 Host헤더
+====================================
+
+가상호스트 Name은 원본요청의 Host헤더의 기본 값이 된다.
+Name에 따른 Host헤더는 아래와 같다. ::
+
+====================== ===============================
+Vhost Name             HTTP Host Header
+====================== ===============================
+www.example.com/vod    www.example.com
+www.example.com        www.example.com
+/vod                   (보내지 않음)
+====================== ===============================
+
+HTTP Host Header는 다음 설정을 통해 설정이 가능하다. ::
+
+   # server.xml - <Server><VHostDefault><OriginOptions>
+   # vhosts.xml - <Vhosts><Vhost><OriginOptions>
+
+   <Host />
+
+
 URL 표현
 ====================================
 
 URL 표현은 Adobe Media Server(구 FMS)를 따르며
 파생된 미디어 서버(i.e. WOWZA)들과 호환성을 가진다.
-앞서 설정한 가상호스트(www.example.com)의
+앞서 설정한 가상호스트(www.example.com/vod)의
 원본서버 경로가 /subdir/iu.mp4 라면 서비스 주소는 아래와 같다. ::
 
     // Adobe Flash Player (RTMP)
