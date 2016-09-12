@@ -55,23 +55,17 @@ HTTP Pseudo-Streaming  406 Not Acceptable
 ====================================
 
 가상호스트는 서비스의 기본단위이다.
-클라이언트가 접속하는 URL을 가상호스트 이름과 매칭하여 서비스할 가상호스트를 결정한다. ::
+클라이언트가 접속하는 URL을 가상호스트 Name과 매칭하여 서비스할 가상호스트를 결정한다. ::
 
    # vhosts.xml
 
    <Vhosts>
       <Vhost Name="www.example.com"> ... </Vhost>
-   </Vhosts>
-
-   <Vhosts>
       <Vhost Name="/vod"> ... </Vhost>
-   </Vhosts>
-
-   <Vhosts>
       <Vhost Name="www.example.com/vod"> ... </Vhost>
    </Vhosts>
 
-가상호스트 이름(Name)은 3가지 형태로 구성할 수 있다.
+가상호스트 Name은 3가지 형태로 구성할 수 있다.
 
 - 도메인 (www.example.com) + 디렉토리(/vod)
 - 도메인 (www.example.com)
@@ -93,7 +87,7 @@ URL에 따라 가상호스트가 선택되는 예제는 아래와 같다. ::
    http://www.foobar.com/sports/highlight.mp4
    // 404 Not Found
 
-``<Alias>`` 도 다음과 같이 표현이 가능하다. ::
+``<Alias>`` 를 통해 패턴표현과 디렉토리 표현이 가능하다. ::
 
    # vhosts.xml - <Vhosts>
 
@@ -101,10 +95,10 @@ URL에 따라 가상호스트가 선택되는 예제는 아래와 같다. ::
       <Alias>another.com</Alias>
       <Alias>*.sub.example.com</Alias>
       <Alias>sports.com/highlight</Alias>
-      <Alias>/myvideo</Alias>
+      <Alias>/video2</Alias>
    </Vhost>
 
-패턴표현(*)은 도메인에만 사용할 수 있으며 가상호스트 이름과 ``<Alias>`` 는 유일해야 한다.
+패턴표현(*)은 도메인에만 사용할 수 있으며 가상호스트 ``Name`` 과 ``<Alias>`` 는 중복될 수 없다.
 
 
 URL 표현
