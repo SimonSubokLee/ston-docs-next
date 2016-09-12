@@ -80,12 +80,12 @@ HTTP Pseudo-Streaming  406 Not Acceptable
 URL에 따라 가상호스트는 다음과 같이 선택된다.
 
 ============================================== ====================
-URL                                            가상호스트 ``Name``
+URL                                            가상호스트
 ============================================== ====================
 http://www.example.com/vod/video.mp4           www.example.com/vod
 http://www.example.com/sports/highlight.mp4    www.example.com
 http://www.foobar.com/vod/video.mp4            /vod
-http://www.foobar.com/sports/highlight.mp4     404 Not Found
+http://www.foobar.com/sports/highlight.mp4     (찾을 수 없음)
 ============================================== ====================
 
 가상호스트 ``<Alias>`` 를 통해 패턴표현과 디렉토리 표현이 가능하다. ::
