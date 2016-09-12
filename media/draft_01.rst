@@ -128,8 +128,11 @@ URL 표현
 
 URL 표현은 Adobe Media Server(구 FMS)를 따르며
 파생된 미디어 서버(i.e. WOWZA)들과 호환성을 가진다.
-앞서 설정한 가상호스트(www.example.com/vod)의
 원본서버 경로가 /subdir/iu.mp4 라면 서비스 주소는 아래와 같다. ::
+
+    //////////////////////////////////////////////////////
+    // <Vhost Name="www.example.com/exam_vod">
+    //////////////////////////////////////////////////////
 
     // Adobe Flash Player (RTMP)
     Server: rtmp://www.example.com/exam_vod
@@ -141,13 +144,27 @@ URL 표현은 Adobe Media Server(구 FMS)를 따르며
     // HTTP Pseudo-Streaming (+ Bandwidth-Throttling)
     http://www.example.com/exam_vod/mp4:subdir/iu.mp4
 
+    //////////////////////////////////////////////////////
+    // <Vhost Name="www.example.com">
+    //////////////////////////////////////////////////////
+
+    // Adobe Flash Player (RTMP)
+    Server: rtmp://www.example.com/
+    Stream: mp4:subdir/iu.mp4
+
+    // Apple iOS device (Cupertino/Apple HTTP Live Streaming)
+    http://www.example.com/mp4:subdir/iu.mp4/playlist.m3u8
+
+    // HTTP Pseudo-Streaming (+ Bandwidth-Throttling)
+    http://www.example.com/mp4:subdir/iu.mp4
+
+
 가상호스트의 Prefix 속성을 설정하면 URL 호환성을 더 강화할 수 있다. ::
 
    # vhosts.xml
 
    <Vhosts>
-      <Vhost Name="www.example.com"
-             Application="exam_vod"
+      <Vhost Name="www.example.com/exam_vod"
              Prefix="http/"> ... </Vhost>
    </Vhosts>
 
@@ -178,17 +195,6 @@ WOWZA의 경우 Application이름 뒤에 application-instance명을 함께 명�
     // HTTP Pseudo-Streaming (+ Bandwidth-Throttling)
     http://www.example.com/exam_vod/_definst_/mp4:http/subdir/iu.mp4
 
-
-가상호스트 매칭정책
-====================================
-
-HTTP/RTMP 클라이언트 요청을 처리할 가상호스트 선택은 다음 우선순위를 따른다.
-
-1. Application명과 일치하는 가상호스트를 찾는다.
-2. (HTTP인 경우) Host헤더와 일치하는 가상호스트를 찾는다.
-3. 기본 가상호스트를 찾는다.
-
-이상의 순서에서도 가상호스트를 선택할 수 없다면 각 프로토콜에 맞도록 예외처리 한다.
 
 
 서비스 포트/프로토콜
