@@ -1,6 +1,6 @@
-﻿.. _media_draft_01:
+﻿.. _media_draft_02:
 
-Media. v0.1 Draft
+Media. v0.2 Draft
 ******************
 
 .. warning::
@@ -250,3 +250,10 @@ SMS는 콤마를 구분자로 HTTP, RTMP순서로 포트를 명시한다.
     <Vhost Name="ston.com">
         <Listen>*:1935</Listen> // 불가능
     </Vhost>
+
+
+
+통계/로그
+====================================
+
+v0.2에서 지원됩니다.

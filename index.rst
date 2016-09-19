@@ -74,3 +74,4 @@ STON Edge Server 완벽 가이드
    admin/cacti
    admin/dynpage_exception.rst
    media/draft_01.rst
+   media/draft_02.rst
