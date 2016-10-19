@@ -219,13 +219,13 @@ WOWZA의 경우 Application이름 뒤에 application-instance명을 함께 명�
     <Vhost Name="foo.com">
         <Listen>
             <Http>*:80</Http>
-            <Rtmp>*:1935</Http>
+            <Rtmp>*:1935</Rtmp>
         </Listen>
     </Vhost>
 
     <Vhost Name="bar.com">
         <Listen>
             <Http>*:8080</Http>   // 가능
-            <Rtmp>*:80</Http>     // 불가능 - 열리지 않는다.
+            <Rtmp>*:80</Rtmp>     // 불가능 - 이미 HTTP에서 사용
         </Listen>
     </Vhost>
