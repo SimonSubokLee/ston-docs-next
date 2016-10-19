@@ -208,45 +208,27 @@ SES처럼 가상호스트끼리 같은 포트를 공유할 수 있다.
     # vhosts.xml - <Vhosts>
 
     <Vhost Name="www.example.com">
-        <Listen>*:80, *:1935</Listen>
+        <Listen>
+          <Http>*:80</Http>
+          <Rtmp>*:1935</Rtmp>
+        </Listen>
     </Vhost>
 
-SMS는 콤마를 구분자로 HTTP, RTMP순서로 포트를 명시한다.
 기본 포트로 HTTP는 80, RTMP는 1935를 사용한다.
-다음과 같은 표현이 가능하다. ::
-
-    // HTTP=80, RTMP=1935
-    <Listen></Listen>
-
-    // HTTP=90, RTMP=1935
-    <Listen>*:90</Listen>
-
-    // HTTP=80, RTMP=2222
-    <Listen>, *:2222</Listen>
-
-    // HTTP=90, RTMP=2222
-    <Listen>*:90, *:2222</Listen>
-
-멀티 가상호스트 예제는 아래와 같다. ::
+가상호스트끼리 서로 다른 프로토콜에 대해 포트를 공유할 수 없다. ::
 
     # vhosts.xml - <Vhosts>
 
     <Vhost Name="foo.com">
-        <Listen>*:80, *:1935</Listen> // 가능
+        <Listen>
+            <Http>*:80</Http>
+            <Rtmp>*:1935</Http>
+        </Listen>
     </Vhost>
 
     <Vhost Name="bar.com">
-        <Listen>*:80, *:1935</Listen> // 가능
-    </Vhost>
-
-    <Vhost Name="wine.com">
-        <Listen>*:8080, *:1935</Listen> // 가능
-    </Vhost>
-
-    <Vhost Name="soft.com">
-        <Listen>*:80, *:8080</Listen> // 불가능
-    </Vhost>
-
-    <Vhost Name="ston.com">
-        <Listen>*:1935</Listen> // 불가능
+        <Listen>
+            <Http>*:8080</Http>   // 가능
+            <Rtmp>*:80</Http>     // 불가능 - 열리지 않는다.
+        </Listen>
     </Vhost>
