@@ -568,7 +568,8 @@ ETag 헤더 인식
 
 .. note::
 
-   바이패스 요청에는 반영되지 않으며 ``<WholeClientRequest>`` 보다 우선한다.
+   바이패스되는 HTTP요청의 URL은 변경할 수 없다.
+   ``<WholeClientRequest>`` 보다 우선한다.
 
 
 
