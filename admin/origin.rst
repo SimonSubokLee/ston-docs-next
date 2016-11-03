@@ -564,11 +564,11 @@ ETag 헤더 인식
    // Replace : /image.jpg?date=20140326/STON/composite/watermark1
 
 :ref:`handling_http_requests_url_rewrite` 와 같은 표현을 사용하지만
-가상호스트마다 독립적으로 설정한다는 점이 다르다.
+가상호스트마다 독립적으로 설정하기 때문에 가상호스트명을 입력하지 않는다.
 
 .. note::
 
-   즉, 바이패스 요청에는 반영되지 않으며 ``<WholeClientRequest>`` 보다 우선한다.
+   바이패스 요청에는 반영되지 않으며 ``<WholeClientRequest>`` 보다 우선한다.
 
 
 
