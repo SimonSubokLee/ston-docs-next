@@ -122,7 +122,14 @@ Facade 가상호스트
 ====================================
 
 ``<Alias>`` 는 가상호스트의 별명만을 추가하는 것이므로 통계와 로그가 분리되지 않는다.
-가상호스트는 공유하지만 도메인에 따라 :ref:`monitoring_stats_vhost_client` 와 :ref:`admin-log-access` 를 분리하고 싶은 경우 Facade가상호스트를 설정한다. ::
+가상호스트는 공유하지만 도메인에 따라 :ref:`monitoring_stats_vhost_client` 와 :ref:`admin-log-access` 를 분리하고 싶은 경우 Facade가상호스트를 설정한다.
+
+.. figure:: img/adv_vhost_facade.png
+   :align: center
+
+   facade는 통계와 로그만 수집한다.
+
+::
 
     # vhosts.xml - <Vhosts>
 
@@ -144,7 +151,15 @@ Facade 가상호스트
 Sub-Path 지정
 ====================================
 
-한 가상호스트에서 경로에 따라 다른 가상호스트가 처리하도록 설정할 수 있다. ::
+한 가상호스트에서 경로에 따라 다른 가상호스트가 처리하도록 설정할 수 있다.
+
+.. figure:: img/adv_vhost_subpath.png
+   :align: center
+
+   통계/로그는 요청을 처리한 가상호스트에 기록된다.
+
+
+::
 
    # vhosts.xml - <Vhosts>
 
