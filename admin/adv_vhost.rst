@@ -156,7 +156,7 @@ Sub-Path 지정
 .. figure:: img/adv_vhost_subpath.png
    :align: center
 
-   통계/로그는 요청을 처리한 가상호스트에 기록된다.
+   통계/로그는 요청을 최종처리한 각각의 가상호스트에 기록된다.
 
 
 ::
