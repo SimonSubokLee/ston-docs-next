@@ -310,8 +310,8 @@ Redirect 추적
    #Fields: date time s-ip cs-method cs-uri-stem ...(중략)... vhostlink
    2016.11.24 16:52:24 220.134.10.5 GET /test.jpg ...(중략)... bar.com+helloworld.com+example.com
 
-다음의 경우 요청은 다른 가상호스트로 위임되지 않고 현재 가상호스트가 처리한다.
+다음의 경우 링크는 즉시 중단된다.
 
 * 대상 가상호스트가 존재하지 않는 경우 (foo.com -> ?)
 * 자기 자신을 대상 가상호스트로 지정한 경우 (foo.com -> foo.com)
-* Loop가 발생한 경우 (foo.com -> bar.com -> foo.com)
+* 재귀링크(Recursive Link)가 발생한 경우 (foo.com -> bar.com -> foo.com)
