@@ -212,3 +212,77 @@ Redirect 추적
 
 가상호스트 링크
 ====================================
+
+콘텐츠가 여러 원본에 분산되어 있다면, 가상호스트 링크를 활용하여 콘텐츠가 통합되어 있는 것처럼 서비스가 가능하다.
+특히 On-Premise에서 클라우드로 스토리지를 마이그레이션하거나, 스토리지의 용량, 비용 등의 이유로 콘텐츠가 분산되어 있는 환경에서 유용하다. ::
+
+.. figure:: img/conf_redirectiontrace.png
+   :align: center
+
+   그림 그려야 함
+
+::
+
+   # vhosts.xml - <Vhosts><Vhost><OriginOptions>
+
+   <VhostLink Condition="조건">대상 가상호스트</VhostLink>
+
+   -  ``<VhostLink>`` 콘텐츠에 대한 원본 응답이 ``Condition`` 에 해당할 경우 지정된 가상호스트로 요청을 위임한다.
+
+      - ``Condition`` HTTP 응답코드/패턴(1xx, 2xx, 3xx, 4xx, 5xx), fail(원본에서 캐싱하지 못한 경우)
+
+클라이언트 요청이 다른 가상호스트로 위임되더라도 통계와 Access로그는 클라이언트가 접근한 가상호스트에 기록된다.
+
+예를 들어 nas.com의 콘텐츠를 cloud.com으로 이전 중일 경우, cloud.com에 없는(=404 Not Found) 콘텐츠에 대해서만 nas.com으로 요청을 보낼 수 있다.
+아래의 경우 요청이 nas.com에 의해 처리되더라도 통계와 Access로그는 cloud.com에 기록된다.
+
+::
+
+   # vhosts.xml - <Vhosts>
+
+   <Vhost Name="cloud.com">
+     <VhostLink Condition="404">nas.com</VhostLink>
+   </Vhost>
+
+   <Vhost Name="nas.com">
+   </Vhost>
+
+연결시킬 수 있는 가상호스트 개수에 제한은 없다. 다음과 같이 여러 가상호스트를 다른 조건으로 링크할 수 있다.
+
+::
+
+   # vhosts.xml - <Vhosts>
+
+   // 원본서버가 5xx로 응답했거나 캐싱하지 못했을 때(=fail) 해당 요청을 bar.com에게 위임한다.
+   <Vhost Name="foo.com">
+     <VhostLink Condition="5xx,fail">bar.com</VhostLink>
+   </Vhost>
+
+   // 원본서버가 4xx로 응답했을 때 해당 요청을 helloworld.com에게 위임한다.
+   <Vhost Name="bar.com">
+     <VhostLink Condition="4xx">helloworld.com</VhostLink>
+   </Vhost>
+
+   // 원본서버에서 403, 404 또는 5xx로 응답했을 때 해당 요청을 example.com에게 위임한다.
+   <Vhost Name="helloworld.com">
+     <VhostLink Condition="403,404,5xx">example.com</VhostLink>
+   </Vhost>
+
+   // 더 이상 위임하지 않는다.
+   <Vhost Name="example.com">
+   </Vhost>
+
+위 설정에서 http://foo.com/test.jpg 요청에 대해 발생할 수 있는 최악의 시나리오는 아래와 같다.
+
+*  [foo.com] /test.jpg에 대해 원본으로 요청했으나 장애로 Connect Timeout이 발생했다.
+*  [foo.com] fail 조건을 만족하여 해당 요청을 bar.com으로 위임한다.
+*  [bar.com] /test.jpg이 404 Not Found로 캐싱되어 있다. (원본요청 없음)
+*  [bar.com] 4xx 조건을 만족하여 해당 요청을 helloworld.com으로 위임한다.
+*  [helloworld.com] /test.jpg에 대해 원본으로부터 403 Forbidden을 응답받았다.
+*  [helloworld.com] 403 조건을 만족하여 해당 요청을 example.com으로 위임한다.
+*  [example.com] 더 이상 위임하지 않고 응답한다.
+
+다음의 경우 요청은 다른 가상호스트로 위임되지 않고 현재 가상호스트가 처리한다.
+
+* 자기 자신을 대상 가상호스트로 지정한 경우 (foo.com -> foo.com)
+* Loop가 발생한 경우 (foo.com -> bar.com -> foo.com)
