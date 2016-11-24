@@ -303,7 +303,7 @@ Redirect 추적
 .. figure:: img/adv_vhost_link_worst.png
    :align: center
 
-   위 설정에서 http://foo.com/test.jpg 요청에 대해 발생할 수 있는 최악의 시나리오
+   억지스럽지만 가능하다.
 
 위 예제의 경우 foo.com의 :ref:`admin-log-access` 는 다음과 같다. ::
 
