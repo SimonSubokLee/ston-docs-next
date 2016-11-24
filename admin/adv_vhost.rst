@@ -299,7 +299,7 @@ Redirect 추적
    <Vhost Name="example.com">
    </Vhost>
 
-.. figure:: img/adv_vhost_link.png
+.. figure:: img/adv_vhost_link_worst.png
    :align: center
 
    위 설정에서 http://foo.com/test.jpg 요청에 대해 발생할 수 있는 최악의 시나리오
