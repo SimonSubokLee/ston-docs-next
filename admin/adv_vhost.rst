@@ -304,7 +304,7 @@ Redirect 추적
 
    위 설정에서 http://foo.com/test.jpg 요청에 대해 발생할 수 있는 최악의 시나리오
 
-위 예제의 경우 :ref:`admin-log-access` 는 다음과 같이 기록된다. ::
+위 예제의 경우 foo.com의 :ref:`admin-log-access` 는 다음과 같다. ::
 
    #Fields: date time s-ip cs-method cs-uri-stem ...(중략)... vhostlink
    2016.11.24 16:52:24 220.134.10.5 GET /test.jpg ...(중략)... bar.com+helloworld.com+example.com
