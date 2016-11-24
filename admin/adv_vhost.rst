@@ -234,7 +234,7 @@ Redirect 추적
 .. figure:: img/adv_vhost_link.png
    :align: center
 
-   클라이언트는 모든 콘텐츠를 cloud.com에서 공급받는다.
+   cloud.com에 없는 콘텐츠는 nas.com이 처리한다.
 
 ::
 
@@ -247,11 +247,6 @@ Redirect 추적
    - ``Condition`` HTTP 응답코드/패턴(1xx, 2xx, 3xx, 4xx, 5xx), fail(원본에서 캐싱하지 못한 경우)
 
 클라이언트 요청이 다른 가상호스트로 위임되더라도 :ref:`monitoring_stats_vhost_client` 와 :ref:`admin-log-access` 는 클라이언트가 접근한 가상호스트에 기록된다.
-:ref:`admin-log-access` 의 vhostlink 필드를 통해 클라이언트 요청이 어느 가상호스트에서 처리되었는지 알 수 있다. ::
-
-#Fields: date time s-ip cs-method cs-uri-stem ...(중략)... vhostlink
-2016.11.24 16:52:24 220.134.10.5 GET /web/h.gif ...(중략)... -
-2016.11.24 16:52:26 220.134.10.5 GET /favicon.ico ...(중략)... nas.com
 
 예를 들어 nas.com의 콘텐츠를 cloud.com으로 이전 중일 경우, cloud.com에 없는(=404 Not Found) 콘텐츠에 대해서만 nas.com으로 요청을 보낼 수 있다.
 아래의 경우 요청이 nas.com에 의해 처리되더라도 통계와 Access로그는 cloud.com에 기록된다.
@@ -268,7 +263,18 @@ Redirect 추적
    <Vhost Name="nas.com">
    </Vhost>
 
-연결시킬 수 있는 가상호스트 개수에 제한은 없다. 다음과 같이 여러 가상호스트를 다른 조건으로 링크할 수 있다.
+ :ref:`admin-log-access` 의 vhostlink 필드를 통해 클라이언트 요청이 어느 가상호스트에서 처리되었는지 알 수 있다.
+ "-" 는 요청이 링크되지 않았음을 의미하며 "nas.com" 은 해당 요청이 링크되어 nas.com에서 처리되었음을 의미한다. ::
+
+    #Fields: date time s-ip cs-method cs-uri-stem ...(중략)... vhostlink
+    2016.11.24 16:52:24 220.134.10.5 GET /web/h.gif ...(중략)... -
+    2016.11.24 16:52:26 220.134.10.5 GET /favicon.ico ...(중략)... nas.com
+
+연결시킬 수 있는 가상호스트 개수에 제한은 없다.
+링크가 여러 번 발생했다면 "+"를 구분자로 링크된 모든 가상호스트가 명시된다.
+이 경우 가장 마지막에 위치한 가상호스트가 최종 요청을 처리한 가상호스트이다.
+
+다음과 같이 여러 가상호스트를 다른 조건으로 링크할 수 있다.
 
 ::
 
@@ -300,8 +306,8 @@ Redirect 추적
 
 위 예제의 경우 :ref:`admin-log-access` 는 다음과 같이 기록된다. ::
 
-#Fields: date time s-ip cs-method cs-uri-stem ...(중략)... vhostlink
-2016.11.24 16:52:24 220.134.10.5 GET /test.jpg ...(중략)... bar.com+helloworld.com+example.com
+   #Fields: date time s-ip cs-method cs-uri-stem ...(중략)... vhostlink
+   2016.11.24 16:52:24 220.134.10.5 GET /test.jpg ...(중략)... bar.com+helloworld.com+example.com
 
 다음의 경우 요청은 다른 가상호스트로 위임되지 않고 현재 가상호스트가 처리한다.
 
