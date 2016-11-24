@@ -4,10 +4,11 @@
 ******************
 
 이 장에서는 가상호스트를 활용하여 서비스를 유연하게 구성하는 여러 기법에 대해 설명한다.
-가상호스트는 보통 원본(도메인 또는 IP목록)과 1:1로 구성되는 것이 기본이다.
+
+가상호스트는 보통 원본(Domain 또는 IP목록)과 1:1로 구성되는 것이 기본이다.
 하지만 상황에 따라 대표 가상호스트를 여러 하위 가상호스트로 분기하거나, 반대로 분산된 가상호스트를
-마치 하나의 서비스인 것처럼 포장하는 경우도 있을 수 있다.
-특히 각 기능에 따라 통계와 로그가 어디에 기록되는지 유의해야 한다.
+하나의 서비스로 포장해야 하는 경우도 발생한다.
+각 기능에 따라 통계/로그의 정책이 다르므로 이를 유념해서 사용해야 한다.
 
 
 .. toctree::
@@ -178,97 +179,36 @@ Sub-Path 지정
    Host: sports.com
 
 
-.. _access-control-vhost:
+.. _adv-vhost-redirection-trace:
 
-가상호스트 접근제어
+Redirect 추적
 ====================================
 
-가상호스트별로 접근을 제어한다.
-클라이언트가 HTTP요청을 보냈을 때 차단여부를 결정한다.
-왜냐하면 HTTP요청을 보내지 않는다면 가상호스트를 찾을 수 없기 때문이다. ::
+원본서버에서 Redirect계열(301, 302, 303, 307)로 응답하는 경우 Location헤더를 추적하여 콘텐츠를 요청한다.
 
-   # server.xml - <Server><VHostDefault><Options>
-   # vhosts.xml - <Vhosts><Vhost><Options>
+   .. figure:: img/conf_redirectiontrace.png
+      :align: center
 
-   <AccessControl Default="Allow" DenialCode="401">OFF</AccessControl>
+      클라이언트는 Redirect여부를 모른다.
 
--  ``<AccessControl>``
+::
 
-   - ``OFF (기본)`` ACL이 활성화되지 않는다. 모든 클라이언트 요청을 허가한다.
+   # server.xml - <Server><VHostDefault><OriginOptions>
+   # vhosts.xml - <Vhosts><Vhost><OriginOptions>
 
-   - ``ON`` ACL이 활성화된다.
-     차단된 요청에 대해서는 ``DenialCode`` 속성에 설정된 응답코드로 응답한다.
-     ``Default (기본: Allow)`` 속성이 ``Allow`` 라면 ACL은 거부목록이 된다.
-     반대로 ``Deny`` 라면 ACL은 허가목록이 된다.
+   <RedirectionTrace>OFF</RedirectionTrace>
 
-Deny된 요청은 :ref:`admin-log-access` 에 TCP_DENY로 기록된다.
+-  ``<RedirectionTrace>``
+
+   - ``OFF (기본)`` 3xx 응답으로 저장된다.
+
+   - ``ON`` Location헤더에 명시된 주소에서 콘텐츠를 다운로드 한다.
+     형식에 맞지 않거나 Location헤더가 없는 경우에는 동작하지 않는다.
+     무한히 Redirect되는 경우를 방지하기 위하여 1회만 추적한다.
 
 
-.. _access-control-vhost_acl:
 
-가상호스트 ACL
----------------------
+.. _adv-vhost-link:
 
-모든 클라이언트 HTTP요청에 대하여 허용/거부/Redirect 여부를 판단한다.
-각 조건마다 별도로 응답코드를 설정할 수도 있다.
-Redirect된 요청에 대해서는 **302 Moved temporarily** 로 응답한다.
-ACL은 /svc/{가상호스트 이름}/acl.txt에 설정한다. ::
-
-   # /svc/www.example.com/acl.txt
-   # 구분자는 콤마(,)이며 {조건},{키워드 = allow | deny | redirect} 순서로 표기한다.
-   # deny일 경우 키워드 뒤에 응답코드를 명시할 수 있다.
-   # 명시하지 않으면 ``<AccessControl>`` 의 ``DenialCode`` 를 사용한다.
-   # redirect일 경우 키워드 뒤에 이동시킬 URL을 명시한다. (Location헤더의 값으로 명시)
-   # n 개의 조건을 결합(AND)하기 위해서는 &를 사용한다.
-
-   $IP[192.168.1.1], allow
-   $IP[192.168.2.1-255]
-   $IP[192.168.3.0/24], deny
-   $IP[192.168.4.0/255.255.255.0]
-   $IP[AP] & !HEADER[referer], allow
-   $IP[GIN], redirect, /page/illegal_access.html
-   $HEADER[cookie: *ILLEGAL*], deny, 404
-   $HEADER[via: Apache]
-   $HEADER[x-custom-header]
-   $HEADER[referer:], redirect, http://another-site.com
-   !HEADER[referer] & !HEADER[user-agent] & !HEADER[host], deny
-   $URL[/source/public.zip], allow
-   $URL[/source/*]
-   /profile.zip, deny, 500
-   /secure/*.dat
-
-조건은 IP, GeoIP, Header, URL 4가지로 설정이 가능하다.
-
--  **IP**
-   $IP[...]로 표기하며 IP, IP Range, Bitmask, Subnet 네 가지 형식을 지원한다.
-
--  **GeoIP**
-   $IP[...]로 표기하며 반드시 GeoIP설정이 되어 있어야 동작한다.
-
--  **Header**
-   $HEADER[Key : Value]로 표기한다.
-   Value는 명확한 표현과 패턴을 인식한다.
-   $HEADER[Key:]처럼 구분자는 있지만 Value가 빈 문자열이라면 요청 헤더의 값이 비어 있는 경우를 의미한다.
-   $HEADER[Key]처럼 구분자 없이 Key만 명시되어 있다면 Key에 해당하는 헤더의 존재유무를 조건으로 판단한다.
-
--  **URL**
-   $URL[...]로 표기하며 생략이 가능합니다. 명확한 표현과 패턴을 인식합니다.
-
-$는 "조건에 맞다면 ~ 한다"를 의미하지만 !는 "조건에 맞지 않는다면 ~ 한다"를 의미한다.
-다음과 같이 부정조건으로 지원한다. ::
-
-   # 국가가 KOR이 아니라면 deny한다.
-   !IP[KOR], deny
-
-   # referer헤더가 존재하지 않는다면 deny한다.
-   !HEADER[referer], deny
-
-   # /secure/ 경로 하위가 아니라면 allow한다.
-   !URL[/secure/*], allow
-
-Redirect 할 때 클라이언트가 요청한 URI가 필요할 수 있다.
-이런 경우 ``#URI`` 키워드를 사용한다. ::
-
-   # referer헤더가 존재하지 않는다면 example.com에 요청 URI를 붙여서 Redirect한다.
-   # 클라이언트 요청은 /로 시작하기 때문에 #URI 앞에 /를 붙이지 않도록 주의한다.
-   !HEADER[referer], redirect, http://example.com#URI
+가상호스트 링크
+====================================
