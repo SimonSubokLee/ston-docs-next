@@ -227,9 +227,9 @@ Redirect 추적
 
    <VhostLink Condition="조건">대상 가상호스트</VhostLink>
 
-   -  ``<VhostLink>`` 콘텐츠에 대한 원본 응답이 ``Condition`` 에 해당할 경우 지정된 가상호스트로 요청을 위임한다.
+-  ``<VhostLink>`` 콘텐츠에 대한 원본 응답이 ``Condition`` 에 해당할 경우 지정된 가상호스트로 요청을 위임한다.
 
-      - ``Condition`` HTTP 응답코드/패턴(1xx, 2xx, 3xx, 4xx, 5xx), fail(원본에서 캐싱하지 못한 경우)
+   - ``Condition`` HTTP 응답코드/패턴(1xx, 2xx, 3xx, 4xx, 5xx), fail(원본에서 캐싱하지 못한 경우)
 
 클라이언트 요청이 다른 가상호스트로 위임되더라도 통계와 Access로그는 클라이언트가 접근한 가상호스트에 기록된다.
 
