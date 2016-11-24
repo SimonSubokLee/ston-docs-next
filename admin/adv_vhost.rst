@@ -223,11 +223,11 @@ Redirect 추적
 
 ::
 
-   # vhosts.xml - <Vhosts><Vhost><OriginOptions>
+   # vhosts.xml - <Vhosts><Vhost>
 
-   <VhostLink Condition="조건">대상 가상호스트</VhostLink>
+   <VhostLink Condition="...">...</VhostLink>
 
--  ``<VhostLink>`` 콘텐츠에 대한 원본 응답이 ``Condition`` 에 해당할 경우 지정된 가상호스트로 요청을 위임한다.
+-  ``<VhostLink>`` 요청을 위임할 가상호스트 이름. 콘텐츠에 대한 원본 응답이 ``Condition`` 을 만족하면 지정된 가상호스트로 요청을 위임한다.
 
    - ``Condition`` HTTP 응답코드/패턴(1xx, 2xx, 3xx, 4xx, 5xx), fail(원본에서 캐싱하지 못한 경우)
 
