@@ -263,8 +263,9 @@ Redirect 추적
    <Vhost Name="nas.com">
    </Vhost>
 
- :ref:`admin-log-access` 의 vhostlink 필드를 통해 클라이언트 요청이 어느 가상호스트에서 처리되었는지 알 수 있다.
- "-" 는 요청이 링크되지 않았음을 의미하며 "nas.com" 은 해당 요청이 링크되어 nas.com에서 처리되었음을 의미한다. ::
+
+:ref:`admin-log-access` 의 vhostlink 필드를 통해 클라이언트 요청이 어느 가상호스트에서 처리되었는지 알 수 있다.
+"-" 는 요청이 링크되지 않았음을 의미하며 "nas.com" 은 해당 요청이 링크되어 nas.com에서 처리되었음을 의미한다. ::
 
     #Fields: date time s-ip cs-method cs-uri-stem ...(중략)... vhostlink
     2016.11.24 16:52:24 220.134.10.5 GET /web/h.gif ...(중략)... -
