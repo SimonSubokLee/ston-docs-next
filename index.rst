@@ -59,8 +59,7 @@ STON Edge Server 완벽 가이드
    admin/media
    admin/filesystem
    admin/adv_topics
-
-
+   admin/adv_vhost
 
 
 5부. 부록
