@@ -240,6 +240,7 @@ Redirect 추적
 
    # vhosts.xml - <Vhosts>
 
+   // cloud.com에 없는(=404 Not Found) 콘텐츠는 nas.com에서 서비스한다.
    <Vhost Name="cloud.com">
      <VhostLink Condition="404">nas.com</VhostLink>
    </Vhost>
@@ -284,5 +285,6 @@ Redirect 추적
 
 다음의 경우 요청은 다른 가상호스트로 위임되지 않고 현재 가상호스트가 처리한다.
 
+* 대상 가상호스트가 존재하지 않는 경우 (foo.com -> ?)
 * 자기 자신을 대상 가상호스트로 지정한 경우 (foo.com -> foo.com)
 * Loop가 발생한 경우 (foo.com -> bar.com -> foo.com)
