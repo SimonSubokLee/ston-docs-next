@@ -6,6 +6,7 @@
 .. note::
 
    `[동영상 강좌] 해보자! STON Edge Server - Chapter 2. 설정하기 <https://youtu.be/BROcSuFyHOQ?list=PLqvIfHb2IlKeZ-Eym_UPsp6hbpeF-a2gE>`_
+   
    `[동영상 강좌] 해보자! STON Edge Server - Chapter 3. 가상호스트 만들기 <https://youtu.be/AvxxSWgXcqA?list=PLqvIfHb2IlKeZ-Eym_UPsp6hbpeF-a2gE>`_
 
 이 장에서는 설정구조와 변경된 설정을 적용하는 방법에 대해 설명한다.
