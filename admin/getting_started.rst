@@ -3,6 +3,10 @@
 2장. 시작하기
 ******************
 
+.. info::
+
+   `YouTube 강좌<https://youtu.be/sMfp728pMtM?list=PLqvIfHb2IlKeZ-Eym_UPsp6hbpeF-a2gE>`_ 가 있습니다.
+
 이 장에서는 시스템 구성으로부터 설치 그리고 예제 가상호스트까지 구성해본다.
 텍스트 편집기만 있으면 누구나 할 수 있다.
 
