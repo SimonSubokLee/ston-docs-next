@@ -3,7 +3,7 @@
 2장. 시작하기
 ******************
 
-.. info::
+.. hint::
 
    `YouTube 강좌<https://youtu.be/sMfp728pMtM?list=PLqvIfHb2IlKeZ-Eym_UPsp6hbpeF-a2gE>`_ 가 있습니다.
 
