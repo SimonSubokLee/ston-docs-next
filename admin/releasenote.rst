@@ -393,7 +393,7 @@ v2.1.x
      | /monitoring/cacheresource.json
      | /monitoring/origin.json
      | /monitoring/coldfiledist.json
-     
+
    - WM - resolv.conf 편집기능 삭제
 
 
@@ -441,12 +441,15 @@ v2.0.x
 
    - :ref:`trimming` 된 영상을 :ref:`hls-http-live-streaming` 로 서비스할 수 있다.
      다음은 원본영상(/vod.mp4)의 0~60초 구간을 Trimming한 뒤 :ref:`hls-http-live-streaming` 로 서비스하는 표현이다.
-     | /vod.mp4?start=0&end=60/**mp4hls/index.m3u8**
-     | /vod.mp4**/mp4hls/index.m3u8**?start=0&end=60
-     | /vod.mp4?start=0/**mp4hls/index.m3u8**?end=60
+
+       | /vod.mp4?start=0&end=60/**mp4hls/index.m3u8**
+       | /vod.mp4**/mp4hls/index.m3u8**?start=0&end=60
+       | /vod.mp4?start=0/**mp4hls/index.m3u8**?end=60
+
    - :ref:`hls-http-live-streaming` 인덱스 파일(.m3u8) 버전 개선
-     | **Before**. 버전 1
-     | **After**. 버전 3 (버전 1로 변경 가능)
+
+       | **Before**. 버전 1
+       | **After**. 버전 3 (버전 1로 변경 가능)
 
 **버그수정**
 
@@ -463,8 +466,10 @@ v2.0.x
 **기능개선/정책변경**
 
    - :ref:`origin-balancemode` 의 Hash 알고리즘 변경
-     | **Before**. hash(URL) / 서버대수
-     | **After**. `Consistent Hashing <http://en.wikipedia.org/wiki/Consistent_hashing>`
+
+       | **Before**. hash(URL) / 서버대수
+       | **After**. `Consistent Hashing <http://en.wikipedia.org/wiki/Consistent_hashing>`
+
    - :ref:`access-control-vhost` 를 통해 Redirect 할 때 클라이언트가 요청한 URI을 파라미터로 입력할 수 있다.
 
 **버그수정**
@@ -517,13 +522,14 @@ v2.0.x
    - 원본 :ref:`origin-health-checker` 추가
    - :ref:`adv_topics_sys_free_mem` 추가
    - 기타
-     | 최소 실행환경 변경. (Cent 6.2이상, Ubuntu 10.01 이상)
-     | 설치 패키지에 NSCD데몬이 탑재.
-     | :ref:`media-dims` 기본 탑재.
-     | :ref:`getting-started-reset` 후 STON 재시작하도록 변경.
-     | <DNSBackup> 기능 삭제
-     | <MaxFileCount> 기능 삭제.
-     | <Distribution> 기능 삭제. :ref:`origin-balancemode` 기능에 통합.
+
+       | 최소 실행환경 변경. (Cent 6.2이상, Ubuntu 10.01 이상)
+       | 설치 패키지에 NSCD데몬이 탑재
+       | :ref:`media-dims` 기본 탑재
+       | :ref:`getting-started-reset` 후 STON 재시작하도록 변경
+       | <DNSBackup> 기능 삭제
+       | <MaxFileCount> 기능 삭제
+       | <Distribution> 기능 삭제. :ref:`origin-balancemode` 기능에 통합
 
 
 v1.4.x
