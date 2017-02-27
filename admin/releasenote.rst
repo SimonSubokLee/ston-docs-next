@@ -247,6 +247,7 @@ v2.2.x
 
    - 디스크 정보를 얻지 못한 경우 비정상 종료되던 증상
    - TLS - Handshake과정에서 Max버전을 선택하지 않던 증상
+
      | **Before**. TLSPlaintext.version 사용
      | **After**. ClientHello.client_version 사용
 
@@ -314,13 +315,14 @@ v2.1.x
    - CPU사용량 개선
    - :ref:`multi-nic` - NIC이름으로 Listen한다.
    - 접근제어 시점 변경
+
      | **Before**. 클라이언트가 요청한 URI에서 키워드(DIMS나 MP4HLS등) 제거 후 검사
      | **After**. 클라이언트가 요청한 URI 그대로 검사
 
 **버그수정**
 
    - :ref:`media-dims` - 인코딩된 변환 문자열을 인식하지 못하던 증상
-   - :ref:`hardpurge` 가 :ref:`caching-policy-casesensitive` 구분 정책을 따르지 않던 증상
+   - :ref:`hardpurge` 가 :ref:`caching-policy-casesensitive` 정책을 따르지 않던 증상
    - 설정백업할 때 :ref:`post` 이 누락되던 증상
 
 
@@ -366,16 +368,18 @@ v2.1.x
 2.1.0 (2015.04.15)
 ----------------------------
 
-   - :ref:`adv-topics-indexing` 모드 추가.
    - :ref:`media-dims` 에서 Animated GIF포맷을 지원한다.
    - :ref:`media-dims` 변환 통계추가
 
 **기능개선/정책변경**
 
    - :ref:`caching-purge` 에서 디렉토리 표현 제거
+
      | 디렉토리 표현(example.com/img/)은 해당 URL에 해당하는 (원본서버가 응답한)파일 하나만을 의미한다.
      | 기존의 디렉토리 표현(example.com/img/)은 패턴(example.com/img/*)으로 통합한다.
+
    - API표현 추가
+
      | /monitoring/average.xml
      | /monitoring/average.json
      | /monitoring/realtime.xml
@@ -389,6 +393,7 @@ v2.1.x
      | /monitoring/cacheresource.json
      | /monitoring/origin.json
      | /monitoring/coldfiledist.json
+     
    - WM - resolv.conf 편집기능 삭제
 
 
