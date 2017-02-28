@@ -37,9 +37,9 @@ STON은 원본서버와 HTTPS로 통신하지 않는다.
    </Https>
 
    <Https Listen="*:886">
-      <Cert>/usr/ssl_port/cert.pem</Cert>
-      <Key>/usr/ssl_port/certkey.pem</Key>
-      <CA>/usr/ssl_port/CA.pem</CA>
+      <Cert>/usr/ssl_port886/cert.pem</Cert>
+      <Key>/usr/ssl_port886/certkey.pem</Key>
+      <CA>/usr/ssl_port886/CA.pem</CA>
    </Https>
 
 -  ``<Https>`` HTTPS를 구성한다.
@@ -52,8 +52,9 @@ STON은 원본서버와 HTTPS로 통신하지 않는다.
 
 같은 Port를 서비스하더라도 보다 명확한 표현이 우선한다.
 
-예를 들어 위 예제처럼 NIC가 여러 개인 경우 1.1.1.1:443으로 접속한 클라이언트는 가장 명시적 표현인 2번째(1.1.1.1:443)인증서로 서비스된다.
-반면 1.1.1.4:443으로 접속한 클라이언트는 IP가 일치하는 1번째(생략 - 기본값 *:443) 인증서로 서비스된다.
+예를 들어 위 NIC가 3개이고 각각의 IP가 1.1.1.1, 1.1.1.2, 1.1.1.3인 경우를 가정해 보자.
+1.1.1.1:443으로 접속한 클라이언트는 가장 명시적 표현인 2번째(<Https Listen="1.1.1.1:443">)인증서로 서비스된다.
+반면 1.1.1.3:443으로 접속한 클라이언트는 IP가 일치하는 1번째(<Https>, Listen="*:443" 속성이 생략되어 있음) 인증서로 서비스된다.
 인증서파일을 같은 이름으로 덮어쓰기 하여도 Reload할 때 반영된다.
 
 .. note::
