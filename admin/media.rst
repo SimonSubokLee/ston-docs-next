@@ -344,7 +344,7 @@ MP4파일 헤더의 위치에 상관없이 다운로드와 동시에 실시간�
 
    GET /video.mp4/mp4hls/99.ts HTTP/1.1
    Range: bytes=0-512000
-   Host: www.wineosft.co.kr
+   Host: www.winesoft.com
 
 1.	``STON`` 최초 로딩 (아무 것도 캐싱되어 있지 않음.)
 #.	``Client`` HTTP Range 요청 (100번째 파일의 최초 500KB 요청)

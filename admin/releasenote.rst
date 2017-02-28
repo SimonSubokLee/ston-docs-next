@@ -208,7 +208,7 @@ v2.2.x
 
 **버그수정**
 
-   - :ref:`hls-http-live-streaming` - 일부 영상에서 Segmentation정책때문에 재생되지 않던 증상
+   - HLS - 일부 영상에서 Segmentation정책때문에 재생되지 않던 증상
 
 
 2.2.3 (2015.12.04)
@@ -260,7 +260,7 @@ v2.1.x
 
 **버그수정**
 
-   - :ref:`hls-http-live-streaming` - v2.1.7 업데이트 이후 일부 영상이 정상적으로 재생되지 않던 증상
+   - :ref:`media-hls` - v2.1.7 업데이트 이후 일부 영상이 정상적으로 재생되지 않던 증상
 
 
 2.1.8 (2015.10.14)
@@ -282,7 +282,7 @@ v2.1.x
 
 **버그수정**
 
-   - :ref:`hls-http-live-streaming` - 일부 profile에서의 화면떨림 증상
+   - HLS - 일부 profile에서의 화면떨림 증상
    - :ref:`media-dims` - TTL이 0으로 설정되어 있을 때 간헐적으로 500 Internal Error로 응답하던 증상
    - X-Forwarded-For 헤더를 로그에 c-ip필드로 기록할 때 공백 문자가 포함되던 증상
 
@@ -292,11 +292,11 @@ v2.1.x
 
 **기능개선/정책변경**
 
-   - :ref:`media-dims` - :ref:`animated-gif` 에 대해 첫 장면만 변환할 수 있다.
+   - :ref:`media-dims` - Animated GIF 에 대해 첫 장면만 변환할 수 있다.
 
 **버그수정**
 
-   - :ref:`access-control` - IP허용/차단이 정상동작하지 않던 증상
+   - ACL - IP허용/차단이 정상동작하지 않던 증상
    - :ref:`media-dims` - Crop등에서 + 기호를 이용한 좌표지정이 되지 않던 증상
 
 
@@ -358,7 +358,7 @@ v2.1.x
 2.1.1 (2015.05.07)
 ----------------------------
 
-   - :ref:`has-http-live-streaming` - Stream Alternates형식을 통해 Bandwidth, Resolution 정보를 제공한다.
+   - HLS - Stream Alternates형식을 통해 Bandwidth, Resolution 정보를 제공한다.
 
 **버그수정**
 
@@ -373,7 +373,7 @@ v2.1.x
 
 **기능개선/정책변경**
 
-   - :ref:`caching-purge` 에서 디렉토리 표현 제거
+   - :ref:`caching-purge` API에서 디렉토리 표현 제거
 
      | 디렉토리 표현(example.com/img/)은 해당 URL에 해당하는 (원본서버가 응답한)파일 하나만을 의미한다.
      | 기존의 디렉토리 표현(example.com/img/)은 패턴(example.com/img/*)으로 통합한다.
@@ -439,23 +439,23 @@ v2.0.x
 
 **기능개선/정책변경**
 
-   - :ref:`trimming` 된 영상을 :ref:`hls-http-live-streaming` 로 서비스할 수 있다.
-     다음은 원본영상(/vod.mp4)의 0~60초 구간을 Trimming한 뒤 :ref:`hls-http-live-streaming` 로 서비스하는 표현이다.
+   - Trimming 된 영상을 HLS 로 서비스할 수 있다.
+     다음은 원본영상(/vod.mp4)의 0~60초 구간을 Trimming한 뒤 HLS 로 서비스하는 표현이다.
 
        | /vod.mp4?start=0&end=60/**mp4hls/index.m3u8**
        | /vod.mp4**/mp4hls/index.m3u8**?start=0&end=60
        | /vod.mp4?start=0/**mp4hls/index.m3u8**?end=60
 
-   - :ref:`hls-http-live-streaming` 인덱스 파일(.m3u8) 버전 개선
+   - HLS 인덱스 파일(.m3u8) 버전 개선
 
        | **Before**. 버전 1
        | **After**. 버전 3 (버전 1로 변경 가능)
 
 **버그수정**
 
-   - :ref:`hls-http-live-streaming` 변환 중 HTTP인코딩되는 특수문자가 있을 때 비정상 종료되던 증상
+   - HLS 변환 중 HTTP인코딩되는 특수문자가 있을 때 비정상 종료되던 증상
    - 헤더가 깨진 MP4영상 분석 중 CPU가 과도하게 점유되던 증상
-   - Audio의 KeyFrame이 균일하지 않은 MP4영상을 :ref:`hls-http-live-streaming` 로 서비스할 때 Audio와 Video의 동기가 안맞는 증상
+   - Audio의 KeyFrame이 균일하지 않은 MP4영상을 HLS 로 서비스할 때 Audio와 Video의 동기가 안맞는 증상
    - RRD - 통계수집이 되지 않던 증상, 응답시간이 평균이 아니라 합으로 표시되던 증상
    - WM - 신규 디스크 투입시 포맷을 강제하던 조건 제거
 
@@ -512,12 +512,12 @@ v2.0.x
 ----------------------------
 
    - 원본에서 다운로드된 크기만큼만 디스크 공간사용. (:ref:`origin-partsize` 참조)
-   - :ref:`env-cache-resource` 기능추가.
-   - TLS 1.1 지원.
-   - AES-NI를 통해 :ref:`https-aes-ni` 지원.
+   - :ref:`env-cache-resource` 기능추가
+   - TLS 1.1 지원
+   - AES-NI를 통해 :ref:`https-aes-ni` 지원
    - ECDHE 계열의 CipherSuite를 지원. (:ref:`https-ciphersuite` 참조)
    - :ref:`admin-log-dns` 추가
-   - 원본서버가 Domain일 경우 각 IP별 TTL을 사용하도록 정책변경.
+   - 원본서버가 Domain일 경우 각 IP별 TTL을 사용하도록 정책변경
    - 원본 :ref:`origin_exclusion_and_recovery` 추가
    - 원본 :ref:`origin-health-checker` 추가
    - :ref:`adv_topics_sys_free_mem` 추가
@@ -607,7 +607,7 @@ v1.3.x
      | **Before**. 로컬에 캐싱된 시간
      | **After**. 원본의 Last-Modified 시간
 
-   - :ref:`id5` ON 설정시 동작변경
+   - 쿠키관련 정책변경
 
      | **Before**. cookie 헤더를 제거한다.
      | **After**. cookie, set-cookie, set-cookie2 헤더를 제거한다. WM에서 경고메시지 강화
@@ -640,7 +640,7 @@ v1.3.x
 
    - :ref:`media-dims` 처리에서 클라이언트가 보낸 QueryString이 반영되지 않던 증상
    - 원본서버가 모두 배제되었을 때 특정조건에서 캐싱파일이 초기화되지 않던 증상
-   - WM - 보안정책 강화 및 가상호스트 이름에 공백이 없도록 Trim.
+   - WM - 보안정책 강화 및 가상호스트 이름에 공백이 들어가지 않도록 예외처리
    - WM - Unmount된 디스크의 상태를 올바르게 인식하지 못하던 증상
 
 
@@ -702,7 +702,7 @@ v1.3.x
 
 **기능개선/정책변경**
 
-   - :ref:`acl`, :ref:`bypass`, :ref:`id2` - 복합조건을 설정할 때 결합(AND) 키워드를 "&"에서 " & "로 변경.
+   - :ref:`acl`, :ref:`bypass` - 복합조건을 설정할 때 결합(AND) 키워드를 "&"에서 " & "로 변경.
 
      | **Before**. $IP[AP]&!HEADER[referer] 표현가능
      | **After**. $IP[AP] & !HEADER[referer] 처럼 결합조건 사이에 반드시 공백필요
@@ -788,7 +788,7 @@ v1.3.x
 
 **버그수정**
 
-   - :ref:`hls-http-live-streaming` 변환 중 비디오가 깨지던 증상.
+   - HLS 변환 중 비디오가 깨지던 증상.
    - 강제로 TTL을 만료시킨 컨텐츠가 304 Not Modified로 인해 TTL이 다시 정해질 때 설정상 가장 큰 값이 할당되던 증상. 설정상 가장 작은 값이 할당되도록 수정.
 
 
@@ -884,7 +884,7 @@ v1.3.x
 
    - :ref:`filesystem` 추가 - STON을 Linux VFS(Virtual File System)에 Mount합니다. 원본서버의 모든 파일을 로컬 파일 I/O로 사용할 수 있습니다.
    - :ref:`caching` 추가 - 설정이 변경될 때마다 전체설정을 기록합니다. API(목록, 롤백, 다운로드, 업로드)와 SNMP를 통해 열람, 다운로드, 업로드, 복원이 가능합니다.
-   - :ref:`has-http-live-streaming` 추가 - 단일 MP4파일을 HLS(Http Live Streaming)으로 전송할 수 있습니다.
+   - MP4HLS 추가 - 단일 MP4파일을 HLS(Http Live Streaming)으로 전송할 수 있습니다.
    - 통계 추가 - 전송 중 원본서버에서 먼저 소켓을 종료시킨 횟수
 
 **기능개선/정책변경**
@@ -1206,6 +1206,7 @@ v1.1.x
 **기능개선/정책변경**
 
    - No-Cache요청 인식조건 변경
+
      | **Before**. "pragma: no-cache" 또는 "cache-control: no-cache"
      | **After**. 기존 조건에 "cache-control: max-age=0" 추가
 
@@ -1229,8 +1230,10 @@ v1.1.x
 **기능개선/정책변경**
 
    - 원본서버 장애코드 변경
+
      | **Before**. 숫자로 표시
      | **After**. 읽기 쉬운 형식으로 표시(Connect-Timeout, Receive-Timeout, Server-Close)
+
    - 원본서버 장애로그 기록시 주석으로 에러상황을 기록하던 것 제거. OriginErrorLog로 통합.
 
 **버그수정**
@@ -1527,7 +1530,7 @@ v1.1.x
 
    - 가상호스트별로 최대 Outbound를 제한하도록 설정할 수 있습니다.
    - 헤더가 뒤에 있는 MP4파일을 헤더를 앞으로 옮겨서 서비스하도록 설정할 수 있습니다.
-   - MP4를 BiteRate만큼 낮은 대역폭으로 전송하도록 설정할 수 있습니다.
+   - MP4를 Bitrate 만큼 낮은 대역폭으로 전송하도록 설정할 수 있습니다.
    - 최대 서비스 파일개수를 설정할 수 있습니다.
    - 최대 HTTP 세션 수를 설정할 수 있습니다.
    - API의 모든 함수를 리눅스 콘솔에서 호출할 수 있습니다.
@@ -1557,13 +1560,16 @@ v1.1.x
    - HTTP 요청에서 헤더가 키와 값 사이에 공백이 없으면 해석하지 못하던 증상
    - 로그를 "Size"로 설정했을 때 중간파일이 먼저 롤링되어 삭제되던 증상
    - 다음 상황에서 응답을 주지 않던 증상
+
      | A파일을 원본서버에 요청하였으나 404 Not Found가 발생
      | Memory Swap과정 중 A파일의 Body를 Memory에서 삭제 (A파일은 Meta만 존재하는 상태가 됨)
      | A파일 서비스 요청이 들어옴
      | A파일이 서비스를 위해 Body를 Load하려고 하였으나 실패함. 파일 초기화 수행
      | A파일이 원본서버로 다운로드를 진행하려고 하였으나 원본서버 배제로 실패함
      | 이후 A파일은 초기화 시점을 잃어버리고 초기화 상태로 존재함
+
    - 다음 상황에서 Expire/Purge가 성공된 것처럼 나오고 갱신되지 않던 증상
+
      | A파일을 백그라운드로 갱신 시도함
      | 원본서버에서 HTTP응답을 받았으나 전송지연이 발생함
      | 전송지연으로 연결이 종료되거나 세션이 비정상 종료됐을 때 갱신실패가 제대로 정리되지 않는 상황이 발생함
