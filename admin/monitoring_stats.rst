@@ -390,7 +390,7 @@ System 통계
    - ``SoftIRQ`` servicing softirqs
    - ``Steal`` involuntary wait
 
--  ``Mem (단위: Bytes)`` 메모리 사용량.
+-  ``Mem (단위: Bytes)`` 메모리 사용량
 
    - ``Free`` 시스템 Free 메모리 크기
    - ``STON`` STON이 사용하는 메모리 크기
