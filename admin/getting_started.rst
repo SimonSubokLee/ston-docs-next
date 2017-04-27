@@ -205,7 +205,7 @@ STON이 설치된 서버에서 외부접속이 되지 않을 경우 다음과 �
 
 1. 외부 연결이 가능한 PC에서 STON을 다운로드 한다. 다운로드 URL은 공식 release메일을 통해 배포된다.
 
-2. 다운로드 받은 파일을 PC에서 서버로 복사한다. 파일명은 형식은 다음과 같다.
+2. 다운로드 받은 파일을 PC에서 서버로 복사한다. 파일명 형식은 다음과 같다.
 
    * RHEL/CentOS/openSUSE - ston. ``version`` .rhel.2.6.32.x64.tar.gz
    * Ubuntu - ston. ``version`` .ubuntu.2.6.32.x64.tar.gz
