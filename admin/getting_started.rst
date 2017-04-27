@@ -209,25 +209,29 @@ STON이 설치된 서버에서 외부접속이 되지 않을 경우 다음과 �
 
 3. STON이 실행 중이라면 중단시킨다. ::
 
-   service stop stop
+      service stop stop
+
 
 4. 서버내 복사된 경로에서 압축을 해제한다. ::
 
-   tar zxvf ston.2.4.9.rhel.2.6.32.x64.tar.gz
+      tar zxvf ston.2.4.9.rhel.2.6.32.x64.tar.gz
+
 
    .. figure:: img/update_manual1.png
       :align: center
 
 5. 설치 스크립트를 실행한다. 만약 STON이 실행 중이라면 "yes"를 입력하여 중단시킨다. ::
 
-   sh ston.2.4.9.rhel.2.6.32.x64.sh
+      sh ston.2.4.9.rhel.2.6.32.x64.sh
+
 
    .. figure:: img/update_manual2.png
       :align: center
 
 6. 설치 완료 후 STON을 시작한다. ::
 
-   service ston start
+      service ston start
+      
 
    .. figure:: img/update_manual3.png
       :align: center
