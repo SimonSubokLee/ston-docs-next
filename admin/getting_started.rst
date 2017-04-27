@@ -211,7 +211,7 @@ STON이 설치된 서버에서 외부접속이 되지 않을 경우 다음과 �
    * Ubuntu - ston. ``version`` .ubuntu.2.6.32.x64.tar.gz
 
 
-   예를 들어 버전이 CentOS의 버전 ``2.4.9`` 라면 파일명은 ston.2.4.9.rhel.2.6.32.x64.tar.gz가 된다.
+   CentOS에서 버전 ``2.4.9`` 라면 파일명은 ston.2.4.9.rhel.2.6.32.x64.tar.gz 이다.
 
 
 3. STON이 실행 중이라면 중단시킨다. ::
