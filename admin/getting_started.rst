@@ -205,7 +205,7 @@ STON이 설치된 서버에서 외부접속이 되지 않을 경우 다음과 �
 
 1. 외부 연결이 가능한 PC에서 STON을 다운로드 한다. 다운로드 URL은 공식 release메일을 통해 배포된다.
 
-2. 다운로드 받은 파일을 PC에서 서버로 복사한다. 파일명은 ston. ``version`` .rhel.2.6.32.x64.tar.gz 형식이다. 예를 들어 2.4.9라면 ston.2.4.9.rhel.2.6.32.x64.tar.gz가 된다.
+2. 다운로드 받은 파일을 PC에서 서버로 복사한다. 파일명은 ston. ``version`` .rhel.2.6.32.x64.tar.gz 형식이다. 예를 들어 버전이 ``2.4.9`` 라면 ston.2.4.9.rhel.2.6.32.x64.tar.gz가 된다.
 
 3. STON이 실행 중이라면 중단시킨다. ::
 
@@ -214,7 +214,7 @@ STON이 설치된 서버에서 외부접속이 되지 않을 경우 다음과 �
 
 4. 서버내 복사된 경로에서 압축을 해제한다. ::
 
-      tar zxvf ston.2.4.9.rhel.2.6.32.x64.tar.gz
+      tar zxvf ston. ``version`` .rhel.2.6.32.x64.tar.gz
 
 
    .. figure:: img/update_manual1.png
