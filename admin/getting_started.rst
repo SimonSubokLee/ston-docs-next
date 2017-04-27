@@ -217,7 +217,7 @@ STON이 설치된 서버에서 외부접속이 되지 않을 경우 다음과 �
 
 3. STON이 실행 중이라면 중단시킨다. ::
 
-      service stop stop
+      service ston stop
 
 
 4. 서버내 복사된 경로에서 압축을 해제한다. ::
