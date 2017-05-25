@@ -228,7 +228,7 @@ SNI (Server Name Indication)
 
 SSL/TLS의 `SNI(Server Name Indication) <http://en.wikipedia.org/wiki/Server_Name_Indication>`_
 확장 필드를 사용하는 방식이다.
-이 기능은 처음 클라이언트가 서버에게 SSL 연결을 요청할 때 HTTP 요청의 Host헤더처럼 대상 가상호스트를 명시함으로써 가능하다. ::
+이 방식은 클라이언트가 서버에게 SSL 연결을 요청할 때 Server Name 확장필드를 명시함으로써 가능하다. ::
 
    # server.xml - <Server><Cache>
 
@@ -258,11 +258,11 @@ SSL/TLS의 `SNI(Server Name Indication) <http://en.wikipedia.org/wiki/Server_Nam
 
 .. note::
 
-   <HttpsSNI> 설정은 동적 리로딩이 불가능하다. 설정변경 후 반드시 서비스를 재가동해야 한다.
+   ``<HttpsSNI>`` 는 동적으로 변경이 불가능하다. 설정변경 후 반드시 서비스를 재가동해야 한다.
 
 현재까지 가장 우아한 방법이지만 일부 구버전 클라이언트에서 지원하지 않는다.
 다음은 SNI를 지원하지 않는 클라이언트 목록이다.
-(출처: `Wikipedia - Server Name Indication <http://en.wikipedia.org/wiki/Server_Name_Indication#Client_side>`_ ).
+(출처: `Wikipedia - Server Name Indication <http://en.wikipedia.org/wiki/Server_Name_Indication#Client_side>`_ )
 
 - Internet Explorer (any version) on Windows XP or Internet Explorer 6 or earlier
 - Safari on Windows XP
