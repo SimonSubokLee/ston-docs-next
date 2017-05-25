@@ -171,7 +171,7 @@ Caching된 콘텐츠를 저장할 Storage를 구성한다. ::
 
 .. note::
 
-   v2.5.0부터 :ref:`adv_topics_memory_only` 가 지원된다.
+   v2.5.0부터 디스크 없이 동작하는 :ref:`adv_topics_memory_only` 가 지원된다.
 
 
 
