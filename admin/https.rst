@@ -262,7 +262,7 @@ SSL/TLS의 `SNI(Server Name Indication) <http://en.wikipedia.org/wiki/Server_Nam
 
    SNI는 2003년 6월 `RFC 3546 <https://tools.ietf.org/html/rfc3546#page-8>`_ 를 통해 TLS 1.0이상에서만 정의되었습니다. 
    따라서 SSL v3에서는 SNI를 지원하지 않습니다. 
-   참고로 OpenSSL s_client 역시 SSL-3.0 옵션을 적용하면 SNI확장필드를 보내지 않습니다.
+   참고로 OpenSSL의 s_client에 SSL-3.0 옵션을 적용하면 SNI 확장필드를 보내지 않습니다.
 
 현재까지 가장 우아한 방법이지만 일부 구버전 클라이언트에서 지원하지 않는다.
 다음은 SNI를 지원하지 않는 클라이언트 목록이다.
