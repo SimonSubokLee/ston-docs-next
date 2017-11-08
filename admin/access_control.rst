@@ -190,3 +190,7 @@ Redirect 할 때 클라이언트가 요청한 URL가 필요할 수 있다.
    # referer헤더가 존재하지 않는다면 example.com에 요청 URL을 붙여서 Redirect한다.
    # 클라이언트 요청은 /로 시작하기 때문에 #URL 앞에 /를 붙이지 않도록 주의한다.
    !HEADER[referer], redirect, http://example.com#URL
+
+HTTPS만을 지원하는 서비스의 경우 HTTP 요청에 대해 다음과 같이 HTTPS를 사용하도록 redirect시킬 수 있다.
+
+   $PROTOCOL[HTTP], redirect, https://example.com#URL
