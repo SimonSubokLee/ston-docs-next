@@ -9,18 +9,19 @@ v2.5.x
 2.5.8 (2017.11.9)
 ----------------------------
 
+- :ref:`origin-use-policy` - DNS에서 Resolving된 IP의 최대 사용시간을 설정한다.
+
 **기능개선/정책변경**
 
  - :ref:`media-dims` - ``ResizeCrop`` 명령어 추가
  - :ref:`media-dims` - :ref:`media-dims-anigif` 변환시 프레임 수 제한 명령어 ``limit`` 추가
  - :ref:`access-control-vhost` - :ref:`access-control-vhost_redirect` 조건에 ``PROTOCOL`` 조건 추가
 
-
 **버그수정**
 
  - :ref:`origin-use-policy` - DNS에서 Resolving된 IP의 누적개수가 많아질 경우 통계집계가 지연되던 증상
  - [WM] :ref:`access-control-vhost` UI가 깨지는 증상
-
+ - [WM] :ref:`handling-http-requests-modify-client` 설정이 초기화되는 증상
 
 
 
