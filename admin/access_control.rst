@@ -155,15 +155,15 @@ ACL은 /svc/{가상호스트 이름}/acl.txt에 설정한다. ::
    /profile.zip, deny, 500
    /secure/*.dat
 
-조건은 IP, GeoIP, Header, URL 4가지로 설정이 가능하다.
+조건은 IP, GeoIP, Header, URL, PROTOCOL 5가지로 설정이 가능하다.
 
 -  **IP**
    $IP[...]로 표기하며 IP, IP Range, Bitmask, Subnet 네 가지 형식을 지원한다.
 
--  **GeoIP**
+-  **GEOIP**
    $IP[...]로 표기하며 반드시 GeoIP설정이 되어 있어야 동작한다.
 
--  **Header**
+-  **HEADER**
    $HEADER[Key : Value]로 표기한다.
    Value는 명확한 표현과 패턴을 인식한다.
    $HEADER[Key:]처럼 구분자는 있지만 Value가 빈 문자열이라면 요청 헤더의 값이 비어 있는 경우를 의미한다.
@@ -171,6 +171,9 @@ ACL은 /svc/{가상호스트 이름}/acl.txt에 설정한다. ::
 
 -  **URL**
    $URL[...]로 표기하며 생략이 가능하다. 명확한 표현과 패턴을 인식한다.
+
+-  **PROTOCOL**
+   $PROTOCOL[...]로 표기하며 HTTP 접근요청을 HTTPS요청으로 redirect할 때 사용한다.
 
 $는 "조건에 맞다면 ~ 한다"를 의미하지만 !는 "조건에 맞지 않는다면 ~ 한다"를 의미한다.
 다음과 같이 부정조건으로 지원한다. ::
@@ -184,13 +187,13 @@ $는 "조건에 맞다면 ~ 한다"를 의미하지만 !는 "조건에 맞지 �
    # /secure/ 경로 하위가 아니라면 allow한다.
    !URL[/secure/*], allow
 
-Redirect 할 때 클라이언트가 요청한 URL가 필요할 수 있다.
+Redirect 할 때 클라이언트가 요청한 URL이 필요할 수 있다.
 이런 경우 ``#URL`` 키워드를 사용한다. ::
 
    # referer헤더가 존재하지 않는다면 example.com에 요청 URL을 붙여서 Redirect한다.
    # 클라이언트 요청은 /로 시작하기 때문에 #URL 앞에 /를 붙이지 않도록 주의한다.
    !HEADER[referer], redirect, http://example.com#URL
 
-HTTPS만을 지원하는 서비스의 경우 HTTP 요청에 대해 다음과 같이 HTTPS를 사용하도록 redirect시킬 수 있다.
+HTTPS만을 지원하는 서비스의 경우 HTTP 요청에 대해 다음과 같이 HTTPS로 강제하도록 redirect시킬 수 있다. ::
 
    $PROTOCOL[HTTP], redirect, https://example.com#URL
