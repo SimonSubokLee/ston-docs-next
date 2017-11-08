@@ -19,7 +19,9 @@ v2.5.x
 **버그수정**
 
  - :ref:`origin-use-policy` - DNS에서 Resolving된 IP의 누적개수가 많아질 경우 통계집계가 지연되던 증상
- - [WM] :ref:`access-control-vhost` 설정 UI가 깨지는 증상
+ - [WM] :ref:`access-control-vhost` UI가 깨지는 증상
+
+
 
 
 2.5.7 (2017.10.13)
@@ -42,6 +44,7 @@ v2.5.x
 
  - 설정이 정상적으로 백업되지 않을 때 SNMP 관련 설정이 반영되지 않던 문제 수정
  - :ref:`handling_http_requests_compression` - TTL이 초기화되던 문제 수정
+
 
 
 2.5.5 (2017.8.30)
