@@ -137,6 +137,17 @@ IP 목록은 동적으로 변경될 수 있으며 모든 IP는 TTL(Time To Live)
 -  같은 IP가 다시 Resolving되면 TTL을 갱신한다.
 -  IP테이블은 비어서는 안된다. (TTL이 만료되었더라도) 마지막 IP들은 삭제되지 않는다.
 
+IP의 TTL이 너무 길 경우 STON이 지나치게 많은 IP를 사용하게 되어 의도치 않은 결과를 만들 수 있다. 
+이를 방지하기 위해 IP의 최대 TTL을 제한할 수 있다. ::
+
+   # server.xml - <Server><VHostDefault><OriginOptions>
+   # vhosts.xml - <Vhosts><Vhost><OriginOptions>
+
+   <DnsMaxTTL>60</DnsMaxTTL>
+
+-  ``<DnsMaxTTL> (기본: 60초)`` Resolving된 IP의 최대 사용시간(초)을 설정한다.
+   이 값이 0일 경우 DNS로부터 제공받은 TTL을 그대로 사용한다.
+
 원본주소를 Domain으로 설정하여도 장애/복구는 IP기반으로 동작한다.
 Domain주소 장애/복구 정책은 다음과 같다.
 
