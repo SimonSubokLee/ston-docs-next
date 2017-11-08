@@ -158,21 +158,26 @@ ACL은 /svc/{가상호스트 이름}/acl.txt에 설정한다. ::
 조건은 IP, GeoIP, Header, URL, PROTOCOL 5가지로 설정이 가능하다.
 
 -  **IP**
+
    $IP[...]로 표기하며 IP, IP Range, Bitmask, Subnet 네 가지 형식을 지원한다.
 
 -  **GEOIP**
+
    $IP[...]로 표기하며 반드시 GeoIP설정이 되어 있어야 동작한다.
 
 -  **HEADER**
+
    $HEADER[Key : Value]로 표기한다.
    Value는 명확한 표현과 패턴을 인식한다.
    $HEADER[Key:]처럼 구분자는 있지만 Value가 빈 문자열이라면 요청 헤더의 값이 비어 있는 경우를 의미한다.
    $HEADER[Key]처럼 구분자 없이 Key만 명시되어 있다면 Key에 해당하는 헤더의 존재유무를 조건으로 판단한다.
 
 -  **URL**
+
    $URL[...]로 표기하며 생략이 가능하다. 명확한 표현과 패턴을 인식한다.
 
 -  **PROTOCOL**
+
    $PROTOCOL[...]로 표기하며 HTTP 접근요청을 HTTPS요청으로 redirect할 때 사용한다.
 
 $는 "조건에 맞다면 ~ 한다"를 의미하지만 !는 "조건에 맞지 않는다면 ~ 한다"를 의미한다.
