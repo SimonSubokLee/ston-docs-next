@@ -21,7 +21,7 @@ v2.5.x
 
  - :ref:`origin-use-policy` - DNS에서 Resolving된 IP의 누적개수가 많아질 경우 통계집계가 지연되던 증상
  - [WM] :ref:`access-control-vhost` UI가 깨지는 증상
- - [WM] :ref:`handling-http-requests-modify-client` 설정이 초기화되는 증상
+ - [WM] :ref:`handling_http_requests_modify_client` 설정이 초기화되는 증상
 
 
 
