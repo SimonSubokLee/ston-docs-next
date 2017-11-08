@@ -117,8 +117,7 @@ GeoIP가 설정되어 있다면 해당 디렉토리에 저장된 파일목록을
      ``Default (기본: Allow)`` 속성이 ``Allow`` 라면 ACL은 거부목록이 된다.
      반대로 ``Deny`` 라면 ACL은 허가목록이 된다.
 
-접근제어 목록은 /svc/{가상호스트 이름}/acl.txt에 설정한다.
-Deny된 요청은 :ref:`admin-log-access` 에 TCP_DENY로 기록된다.
+구체적인 접근제어 목록은 /svc/{가상호스트 이름}/acl.txt에 설정한다.
 
 
 .. _access-control-vhost_allow_deny:
@@ -127,10 +126,12 @@ Deny된 요청은 :ref:`admin-log-access` 에 TCP_DENY로 기록된다.
 ---------------------
 
 모든 클라이언트 HTTP요청에 대하여 허용/거부 여부를 설정한다.
+Deny된 요청은 :ref:`admin-log-access` 에 TCP_DENY로 기록된다.
+
 각 조건마다 별도로 응답코드를 설정할 수도 있다. ::
 
    # /svc/www.example.com/acl.txt
-   # 구분자는 콤마(,)이며 {조건},{키워드 = allow | deny | redirect} 순서로 표기한다.
+   # 구분자는 콤마(,)이며 {조건},{allow 또는 deny} 순서로 표기한다.
    # deny일 경우 키워드 뒤에 응답코드를 명시할 수 있다.
    # 명시하지 않으면 ``<AccessControl>`` 의 ``DenialCode`` 를 사용한다.
    # n 개의 조건을 결합(AND)하기 위해서는 &를 사용한다.
@@ -193,25 +194,17 @@ Redirect
 Redirect된 요청에 대해서는 **302 Moved temporarily** 로 응답한다. ::
 
    # /svc/www.example.com/acl.txt
-   # 구분자는 콤마(,)이며 {조건},{키워드 = allow | deny | redirect} 순서로 표기한다.
+   # 구분자는 콤마(,)이며 {조건},{redirect} 순서로 표기한다.
    # redirect일 경우 키워드 뒤에 이동시킬 URL을 명시한다. (Location헤더의 값으로 명시)
 
    $IP[GIN], redirect, /page/illegal_access.html
    $HEADER[referer:], redirect, http://another-site.com
-
-   # referer헤더가 존재하지 않는다면 example.com에 요청 URL을 붙여서 Redirect한다.
-   # 클라이언트 요청은 /로 시작하기 때문에 #URL 앞에 /를 붙이지 않도록 주의한다.
    !HEADER[referer], redirect, http://example.com#URL
-
-Redirect에서는 ``PROTOCOL`` 조건을 사용할 수 있다.
-
--  **PROTOCOL**
-
-   $PROTOCOL[...]로 표기하며 HTTP 접근요청을 HTTPS요청으로 redirect할 때 사용한다.
 
 Redirect 할 때 클라이언트가 요청한 URL이 필요할 수 있다.
 이런 경우 ``#URL`` 키워드를 사용한다.
-HTTPS만을 지원하는 서비스의 경우 HTTP 요청에 대해 다음과 같이 HTTPS로 강제하도록 redirect시킬 수 있다. ::
+
+HTTPS만을 지원하는 서비스의 경우 HTTP 요청에 대해 다음과 같이 ``$PROTOCOL[HTTP]`` 조건으로 HTTPS로 강제하도록 redirect시킬 수 있다. ::
 
    $PROTOCOL[HTTP], redirect, https://example.com#URL
-   
+
