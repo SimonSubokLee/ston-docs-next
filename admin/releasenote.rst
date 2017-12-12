@@ -12,7 +12,9 @@ v2.5.x
 **기능개선/정책변경**
 
  - :ref:`media-dims` - Round(이미지 모서리를 둥글게 처리) 명령어 추가
- - :ref:`media-dims` - :ref:`media-dims-anigif` 변환시 프레임 수 제한 명령어 ``limit`` 추가
+ - :ref:`handling_http_requests_modify_client` , :ref:`origin_modify_client` - #PROTOCOL 키워드 추가
+ 
+ - :ref:`media-dims-anigif` 변환시 프레임 수 제한 명령어 ``limit`` 추가
  - :ref:`access-control-vhost` - :ref:`access-control-vhost_redirect` 조건에 ``PROTOCOL`` 조건 추가
 
 

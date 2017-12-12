@@ -226,6 +226,7 @@ Caching된 콘텐츠를 저장할 Storage를 구성한다. ::
         <Cleanup>
             <Time>02:00</Time>
             <Age>0</Age>
+            <EmptyFolder>remove/maintain</EmptyFolder>
         </Cleanup>
         <Listen>0.0.0.0</Listen>
         <ConfigHistory>30</ConfigHistory>
@@ -240,6 +241,9 @@ Caching된 콘텐츠를 저장할 Storage를 구성한다. ::
 
     - ``<Age> (기본: 0, 단위: 일)`` 0보다 큰 경우, 일정 기간동안 한번도 접근되지 않은 콘텐츠를 삭제한다.
       디스크를 미리 확보하여 서비스 시간 중 디스크 부족이 발생할 확률을 줄이기 위함이다.
+
+    - ``<EmptyFolder> (기본: remove)`` Cleanup 시점에 비어있는 폴더의 삭제여부를 결정한다.
+      ``remove`` 인 경우 삭제하며, ``maintain`` 의 경우 삭제하지 않는다.
 
 -  ``<Listen>``
     모든 가상호스트가 Listen할 IP목록을 지정한다.
