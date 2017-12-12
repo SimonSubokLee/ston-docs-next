@@ -648,5 +648,8 @@ XML 개별 설정 압축파일을 HTTP Post방식(Multipart와 SOAP 방식 모�
     http://127.0.0.1:10040/conf/upload/server.xml
     http://127.0.0.1:10040/conf/upload/vhosts.xml
 
-server.xml을 업로드 하는 경우 전체 설정을 갱신하지만, vhosts.xml만 업로드 하는 경우 가상호스트에 대해서만 설정을 갱신한다.
+
+.. note::
+   
+   server.xml을 업로드 하는 경우 전체 설정을 갱신하지만, vhosts.xml만 업로드 하는 경우 가상호스트에 대해서만 설정을 갱신한다.
 

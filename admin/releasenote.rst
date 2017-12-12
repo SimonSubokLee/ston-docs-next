@@ -14,12 +14,12 @@ v2.5.x
  - :ref:`media-dims` - Round(이미지 모서리를 둥글게 처리) 명령어 추가
  - :ref:`handling_http_requests_modify_client` , :ref:`origin_modify_client` - #PROTOCOL 키워드 추가
  - :ref:`env-etc` - 빈 디렉토리 삭제정책 추가
- - :ref:`access-control-vhost` - :ref:`access-control-vhost_redirect` 조건에 ``PROTOCOL`` 조건 추가
+ - :ref:`api-conf-upload-xml` 추가
 
 
 **버그수정**
 
- - API 호출의 결과 JSON 문법오류 수정
+ - 일부 API 호출결과 JSON 문법오류 수정
 
 
 
