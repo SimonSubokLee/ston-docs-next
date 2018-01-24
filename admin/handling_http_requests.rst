@@ -426,6 +426,9 @@ Server 헤더
 -  **URL**
    $URL[...]로 표기하며 생략이 가능하다. 명확한 표현과 패턴을 인식한다.
 
+-  **METHOD**
+   $METHOD[...]로 표기하며 GET, POST, HEAD, OPTIONS 중 하나만 명시적으로 지정한다.
+
 {$REQ}와 {$RES}는 헤더변경 방법을 설정한다.
 ``set`` ``put`` ``append`` 의 경우 {Key: Value}로 설정하며,
 Value가 입력되지 않은 경우 빈 값("")이 입력된다.

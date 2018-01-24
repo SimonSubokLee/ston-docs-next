@@ -13,6 +13,7 @@ v2.5.x
 
  - SSL/TLS - :ref:`https-ciphersuite` SHA384 지원
  - SSL/TLS - `The ROBOT Attack <https://robotattack.org/>`_ 대응
+ - :ref:`handling_http_requests_modify_client` - HTTP 요청 Method 조건 추가
  - :ref:`access-control-vhost` - POST 요청도 접근 제한이 가능하도록 개선
  - WM - 캐싱상태 확인 페이지에 HTTPS 다운로드 기능 추가
 
