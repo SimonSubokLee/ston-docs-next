@@ -394,6 +394,7 @@ Server 헤더
    $HEADER[user-agent: *IE6*], $REQ[accept-encoding], unset
    $HEADER[via], $REQ[via], unset
    $URL[/source/*.zip], $REQ[accept-encoding: deflate], set
+   $METHOD[POST], $REQ[host: sub.example.com], set
 
    # 응답변경
    # {Match}, {$RES}, {Action(set|put|append|unset)}, {condition} 순서로 표기한다.
