@@ -122,9 +122,9 @@ XML형식의 텍스트파일이다. ::
 
     - ``HttpMethod``
 
-      - ``ON (기본)`` :ref:`api-etc-httpmethod` 호출시 ACL을 검사한다.
+      - ``ON (기본)`` :ref:`caching-purge-http-method` 호출시 ACL을 검사한다.
 
-      - ``OFF`` :ref:`api-etc-httpmethod` 호출시 ACL을 검사하지 않는다.
+      - ``OFF`` :ref:`caching-purge-http-method` 호출시 ACL을 검사하지 않는다.
 
     - ``UploadMultipartName`` :ref:`api-conf-upload` 의 변수명을 설정한다.
 
