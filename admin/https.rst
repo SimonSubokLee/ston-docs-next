@@ -219,7 +219,7 @@ CipherSuite표현식은 `OpenSSL 1.0.0E <https://www.openssl.org/docs/apps/ciphe
 SNI                 서버설정만으로 동작 (표준)
 Multi Certificate	인증서만 교체하여 동작
 Multi Port          포트만 변경하여 동작
-Multi NIC	        서버설정만으로 동작 (가장 널리쓰임)
+Multi NIC	        
 =================== ====================================== ========================================================================
 
 
