@@ -443,7 +443,7 @@ Default 가상호스트
            <Listen>1.1.1.1:90</Listen>
        </Vhost>
 
-.. note:
+.. note::
 
    서비스 포트를 열지 않으려면 ``OFF`` 로 설정한다. ::
 
