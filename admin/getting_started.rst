@@ -452,6 +452,8 @@ example.com:8080/account/dir   example.com:8080
    GET / HTTP/1.1
    Host: origin.com:8888
 
+
+
 .. note::
 
    원본서버에 example.com/account/dir처럼 경로가 붙어있다면 요청된 URL은 원본서버 주소 경로 뒤에 붙는다.
