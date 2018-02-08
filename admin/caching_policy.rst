@@ -418,7 +418,7 @@ QueryString-예외조건은 /svc/{가상호스트 이름}/querystring.txt에 설
 
    -  ``ON`` 파라미터 URL뿐만 아니라 URL에 QueryString이 존재하는 모든 컨텐츠를 대상으로 지정한다.
 
-``Collective`` 속성이 ON이고 파일이 많을수록 ::ref:`api-cmd-purge` API 수행 CPU부하가 높아진다.
+``Collective`` 속성이 ON이고 파일이 많을수록 :ref:`api-cmd-purge` API 수행 CPU부하가 높아진다.
 관련 파일을 검색하는 소요시간이 길어질 수 있어 예기치 않은 문제를 일으킬 수 있다.
 가급적 QueryString까지 붙은 명확한 URL로 :ref:`api-cmd-purge` API를 호출할 것을 권장한다.
 
