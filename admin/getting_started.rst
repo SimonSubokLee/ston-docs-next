@@ -452,7 +452,7 @@ example.com:8080/account/dir   example.com:8080
    GET / HTTP/1.1
    Host: origin.com:8888
 
-.. note:
+.. note::
 
    원본서버에 example.com/account/dir처럼 경로가 붙어있다면 요청된 URL은 원본서버 주소 경로 뒤에 붙는다.
    클라이언트가 /img.jpg를 요청하면 최종 주소는 example.com/account/dir/img.jpg가 된다.
@@ -463,7 +463,7 @@ example.com:8080/account/dir   example.com:8080
 보조 원본주소
 ------------------------------------------------
 
-보조 원본서버를 설정한다.::
+보조 원본서버를 설정한다. ::
 
     <Vhosts>
         <Vhost Name="www.example.com">
@@ -501,7 +501,7 @@ STON버전을 확인한다. ::
 
    ./stonapi version
 
-.. note:
+.. note::
 
    HTTP API는 &를 QueryString의 구분자로 인식하지만 Linux 콘솔에서는 다른 의미를 가진다.
    &가 들어가는 명령어를 호출하는 경우 \&로 입려하거나 반드시 괄호(" /...&... ")로 호출하는 URL을 묶어야 한다.
