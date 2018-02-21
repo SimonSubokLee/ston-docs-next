@@ -491,6 +491,13 @@ JPEG, JPEG-2000, Loseless-JPEG 이미지만 지원이 가능하다.
 그렇지 않다면 서비스 규모에 맞게 물리적인 CPU자원을 충분히 확보해야 한다.
 
 
+.. note::
+
+   메타정보만을 삭제하고 싶을 경우 아래 명령어를 이용한다. ::
+
+      http://image.example.com/img.jpg/dims/strip/true
+
+
 
 잘라내기
 -----------------------
@@ -500,6 +507,12 @@ JPEG, JPEG-2000, Loseless-JPEG 이미지만 지원이 가능하다.
 다음은 좌상단 x=20, y=30을 기준으로 width=100, height=200만큼 잘라내는 예제다. ::
 
    http://image.example.com/img.jpg/dims/crop/100x200+20+30/
+
+
+이미지 중앙을 기준으로 하고 싶은 경우 cropcenter명령어를 사용한다. ::
+
+   http://image.example.com/img.jpg/dims/cropcenter/100x200+20+30/
+
 
 
 Thumbnail 생성
@@ -537,6 +550,13 @@ Resizing
    http://image.example.com/img.jpg/dims/resize/200x200/
 
 
+이미지를 확대하지 않고 캔버스 크기만 비율에 맞추어 키우고 싶을 때는 resizec 또는 extent명령어를 사용한다. ::
+
+   http://image.example.com/img.jpg/dims/resizec/1000
+
+
+
+
 Format 변경
 -----------------------
 
@@ -556,6 +576,17 @@ Format 변경
 다음은 이미지 품질을 25%로 조절하는 예제다. ::
 
    http://image.example.com/img.jpg/dims/quality/25/
+
+
+이펙트
+-----------------------
+
+이미지에 다양한 이펙트를 줄 수 있다. ::
+
+======================= =================
+명령어                 변수
+======================= =================
+
 
 
 합성
