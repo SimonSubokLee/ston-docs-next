@@ -549,13 +549,21 @@ Resizing
 
    http://image.example.com/img.jpg/dims/resize/200x200/
 
+그 외 이미지 크기와 관련된 명령어는 다음과 같다.
 
-이미지를 확대하지 않고 캔버스 크기만 비율에 맞추어 키우고 싶을 때는 resizec 또는 extent명령어를 사용한다. ::
+-  **resizec**
 
-   http://image.example.com/img.jpg/dims/resizec/1000
+   축소하면 resize와 동일하지만, 확대하면 이미지는 유지되고 캔버스 크기만 확대된다.
 
+-  **extent**
 
+   캔버스만 조절하는 명령어. 축소하면 crop과 동일한 효과를 내지만, 확대하면 resizec와 동일하게 확대된다.
+   
+-  **trim**
 
+   상하좌우 흰색배경을 제거한다.
+
+   
 
 Format 변경
 -----------------------
