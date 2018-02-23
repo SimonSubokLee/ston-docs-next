@@ -202,7 +202,7 @@ MP4파일 헤더의 위치에 상관없이 다운로드와 동시에 실시간�
 
     MP4HLS는 Elementary Stream(Video 또는 Audio)을 변환하는 트랜스코딩(Transcoding)이 아니다.
     그러므로 HLS에 적합한 형식으로 인코딩된 MP4파일에 한해서 원활한 단말 재생이 가능하다.
-    인코딩이 적합하지 않을 경우 화면이나 깨지거나 소리가 재생되지 않을 수 있다.
+    인코딩이 적합하지 않을 경우 화면이 깨지거나 소리가 재생되지 않을 수 있다.
     현재(2014.2.20) Apple에서 밝히고 있는 Video/Audio 인코딩 규격은 다음과 같다.
 
     What are the specifics of the video and audio formats supported?
