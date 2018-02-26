@@ -7,11 +7,7 @@
 
    - `[동영상 강좌] 해보자! STON Edge Server - Chapter 4. 실시간 이미지 가공 <https://youtu.be/Pdfe-HbtXVs?list=PLqvIfHb2IlKeZ-Eym_UPsp6hbpeF-a2gE>`_
 
-이 장에서는 이미지를 전송시점에스마트하게 서비스하는 방법에 대해 설명한다.
-클라이언트 환경과 서비스 다양화와 함께 콘텐츠를 다양한 형태로 가공하는 경우가 많다.
-때문에 같은 콘텐츠지만 다양한 형태로 원본서버에 존재하게 된다.
-이런 방식은 처리시간과 저장공간의 낭비로 이어질 뿐만 아니라 관리가 어렵다.
-
+이 장에서는 이미지를 전송시점에 on-the-fly로 변환/전송하는 DIMS(딤스)에 대해 다룬다.
 
 DIMS(Dynamic Image Management System)는 원본이미지를 다양한 형태로 가공하는 기능이다.
 `mod_dims <https://code.google.com/p/moddims/wiki/WebserviceApi>`_ 를 기반으로 확장한 형태이다.
