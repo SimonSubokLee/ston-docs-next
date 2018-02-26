@@ -11,7 +11,6 @@
 
 DIMS(Dynamic Image Management System)는 원본이미지를 다양한 형태로 가공하는 기능이다.
 `mod_dims <https://code.google.com/p/moddims/wiki/WebserviceApi>`_ 를 기반으로 확장한 형태이다.
-가공형태는 모두 7가지(optimize, crop, thumbnail, resize, format, quality, composite)이며 이를 조합한 복합가공이 가능하다.
 
 .. figure:: img/dims.png
    :align: center
