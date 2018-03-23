@@ -467,7 +467,7 @@ Value가 입력되지 않은 경우 빈 값("")이 입력된다.
       $URL[*], $REQ[X-Forwarded-Proto: #PROTOCOL], set
 
 
-   ``#CACHEHIT`` 키워드를 통해 :ref:`_adv_topics_req_hit_ratio` 의 결과를 응답헤더에 추가할 수 있다. ::
+   ``#CACHEHIT`` 키워드를 통해 :ref:`adv_topics_req_hit_ratio` 의 결과를 응답헤더에 추가할 수 있다. ::
 
       $URL[*], $RES[X-Cache-Result: #CACHEHIT], set
 
