@@ -118,7 +118,7 @@ URL전처리는 :ref:`media-trimming` , :ref:`media-hls` 등 다른 기능들과
       image.example.com
       myimage.example.com
       
-   image.exampe.com으로 패턴을 생성한 경우 myimage.example.com도 패턴과 일치하는 것으로 간주된다. 
+   정규표현식에서는 image.exampe.com으로 패턴을 생성한 경우 myimage.example.com도 패턴과 일치하는 것으로 간주된다. 
    이를 방지하기 위해 맨 앞에 글자없음을 ``^`` 로 표기해주어야 image.example.com만 매칭시킬 수 있다. ::
 
       <URLRewrite>
